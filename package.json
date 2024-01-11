@@ -1,10 +1,16 @@
 {
   "name": "@scalex/types",
   "version": "1.0.0",
-  "description": "Types for Scalex Projects",
-  "main": "index.js",
+  "description": "",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsup --dts"
   },
   "author": "",
   "license": "ISC",
