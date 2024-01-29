@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "npx tsup --dts",
-    "commit": "pnpm build && git add . & git commit -am "
+    "commit": "pnpm build && git add . && git commit -am "
   },
   "author": "",
   "license": "ISC",
