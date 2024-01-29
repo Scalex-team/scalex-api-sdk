@@ -1,3 +1,2 @@
-export interface Scalex {
-    name: string;
-}
+export * from './sdks';
+export * from './types';
