@@ -14,7 +14,7 @@ const InternalEnvironmentUrls: {
     [key in ScalexInternalEnvironments]: string;
 } = {
     local: 'http://localhost:8500',
-    dev: 'https://scalex-dev.railway.app',
+    dev: 'https://scalex-api-gateway-dev.railway.app',
     prod: 'https://scalex-api.railway.app'
 }
 
