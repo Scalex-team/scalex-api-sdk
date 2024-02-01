@@ -153,7 +153,7 @@ interface ILoginResponse {
 }
 declare const RequestOtpForLoginEndpoint: Endpoint;
 declare const VerifyOtpAndPasswordForLoginEndpoint: Endpoint;
-declare const Verify2faForLogin: Endpoint;
+declare const Verify2faForLoginEndpoint: Endpoint;
 
 interface ScalexSuccessResponse<T> {
     statusCode?: HttpStatusCode;
@@ -186,4 +186,4 @@ declare class ScalexInternalAPI {
     constructor(environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions);
 }
 
-export { type ApiResponse, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IInitiate2faResponse, type ILoginResponse, type IReqeustOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, type ValuesOf, Verify2faEndpoint, Verify2faForLogin, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint };
+export { type ApiResponse, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IInitiate2faResponse, type ILoginResponse, type IReqeustOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, type ValuesOf, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint };

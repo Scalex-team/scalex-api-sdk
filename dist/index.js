@@ -204,7 +204,7 @@ var VerifyOtpAndPasswordForLoginEndpoint = {
   path: "login",
   fullPath: "customers-auth/login"
 };
-var Verify2faForLogin = {
+var Verify2faForLoginEndpoint = {
   method: "PATCH" /* Patch */,
   path: "login/2fa",
   fullPath: "customers-auth/login/2fa"
@@ -309,7 +309,7 @@ export {
   TokenActions,
   TokenExpiry,
   Verify2faEndpoint,
-  Verify2faForLogin,
+  Verify2faForLoginEndpoint,
   VerifyOtpAndCreatePasswordEndpoint,
   VerifyOtpAndPasswordForLoginEndpoint
 };

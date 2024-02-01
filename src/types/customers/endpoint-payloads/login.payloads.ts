@@ -25,7 +25,7 @@ export const VerifyOtpAndPasswordForLoginEndpoint: Endpoint = {
     fullPath: 'customers-auth/login'
 }
 
-export const Verify2faForLogin: Endpoint = {
+export const Verify2faForLoginEndpoint: Endpoint = {
     method: HttpMethods.Patch,
     path: 'login/2fa',
     fullPath: 'customers-auth/login/2fa'

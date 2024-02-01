@@ -76,7 +76,7 @@ __export(src_exports, {
   TokenActions: () => TokenActions,
   TokenExpiry: () => TokenExpiry,
   Verify2faEndpoint: () => Verify2faEndpoint,
-  Verify2faForLogin: () => Verify2faForLogin,
+  Verify2faForLoginEndpoint: () => Verify2faForLoginEndpoint,
   VerifyOtpAndCreatePasswordEndpoint: () => VerifyOtpAndCreatePasswordEndpoint,
   VerifyOtpAndPasswordForLoginEndpoint: () => VerifyOtpAndPasswordForLoginEndpoint
 });
@@ -251,7 +251,7 @@ var VerifyOtpAndPasswordForLoginEndpoint = {
   path: "login",
   fullPath: "customers-auth/login"
 };
-var Verify2faForLogin = {
+var Verify2faForLoginEndpoint = {
   method: "PATCH" /* Patch */,
   path: "login/2fa",
   fullPath: "customers-auth/login/2fa"
@@ -357,7 +357,7 @@ var ScalexInternalAPI = class {
   TokenActions,
   TokenExpiry,
   Verify2faEndpoint,
-  Verify2faForLogin,
+  Verify2faForLoginEndpoint,
   VerifyOtpAndCreatePasswordEndpoint,
   VerifyOtpAndPasswordForLoginEndpoint
 });
