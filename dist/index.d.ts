@@ -108,6 +108,52 @@ interface IRequestOtpToRegisterResponse {
     token: string;
 }
 declare const RequestOtpToRegisterEndpoint: Endpoint;
+interface IVerifyOtpAndCreatePasswordPayload {
+    otp: string;
+    password: string;
+    agreedToTerms: boolean;
+}
+interface IVerifyOtpAndCreatePasswordResponse {
+    token: string;
+}
+declare const VerifyOtpAndCreatePasswordEndpoint: Endpoint;
+interface IInitiate2faResponse {
+    qr: string;
+    secret: string;
+}
+declare const Initiate2faEndpoint: Endpoint;
+interface IVerify2faTokenPayload {
+    token: string;
+}
+declare const Verify2faEndpoint: Endpoint;
+
+interface IRequestPasswordResetPayload {
+    email: string;
+}
+interface IRequestPasswordResetResponse {
+    token: string;
+}
+declare const RequestPasswordResetEndpoint: Endpoint;
+interface IResetPasswordPayload {
+    otp: string;
+    password: string;
+    confirmPassword: string;
+}
+declare const ResetPasswordEndpoint: Endpoint;
+
+interface IReqeustOtpForLoginPayload {
+    email: string;
+}
+interface IVerifyOtpAndPasswordForLoginPayload {
+    otp: string;
+    password: string;
+}
+interface ILoginResponse {
+    token: string;
+}
+declare const RequestOtpForLoginEndpoint: Endpoint;
+declare const VerifyOtpAndPasswordForLoginEndpoint: Endpoint;
+declare const Verify2faForLogin: Endpoint;
 
 interface ScalexSuccessResponse<T> {
     statusCode?: HttpStatusCode;
@@ -119,6 +165,11 @@ declare class ScalexCustomersSdk {
     protected apiUrl: string;
     constructor(apiUrl: string);
     requestOtpToRegister(payload: IRequestOtpToRegisterPayload): Promise<ScalexSuccessResponse<IRequestOtpToRegisterResponse>>;
+    verifyOtpAndCreatePassword(payload: IVerifyOtpAndCreatePasswordPayload, authToken: string): Promise<ScalexSuccessResponse<IVerifyOtpAndCreatePasswordResponse>>;
+    initiate2faRegistration(authToken: string): Promise<ScalexSuccessResponse<IInitiate2faResponse>>;
+    verify2faToken(payload: IVerify2faTokenPayload, authToken: string): Promise<ScalexSuccessResponse<null>>;
+    requestPasswordReset(payload: IRequestPasswordResetPayload): Promise<ScalexSuccessResponse<IRequestPasswordResetResponse>>;
+    resetPassword(payload: IResetPasswordPayload, authToken: string): Promise<ScalexSuccessResponse<null>>;
 }
 
 declare enum ScalexInternalEnvironments {
@@ -135,4 +186,4 @@ declare class ScalexInternalAPI {
     constructor(environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions);
 }
 
-export { type ApiResponse, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, RequestOtpToRegisterEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, type ValuesOf };
+export { type ApiResponse, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IInitiate2faResponse, type ILoginResponse, type IReqeustOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, type ValuesOf, Verify2faEndpoint, Verify2faForLogin, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint };

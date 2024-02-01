@@ -1,3 +1,19 @@
+var __defProp = Object.defineProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 var __async = (__this, __arguments, generator) => {
   return new Promise((resolve, reject) => {
     var fulfilled = (value) => {
@@ -110,6 +126,11 @@ function callApi(requestParams) {
     }
   });
 }
+function setBearerToken(token) {
+  return {
+    authorization: `Bearer ${token}`
+  };
+}
 
 // src/types/generic/endpoints.interface.ts
 var HttpMethods = /* @__PURE__ */ ((HttpMethods2) => {
@@ -144,6 +165,50 @@ var RequestOtpToRegisterEndpoint = {
   path: "otps",
   fullPath: "customers-auth/otps"
 };
+var VerifyOtpAndCreatePasswordEndpoint = {
+  method: "POST" /* Post */,
+  path: "passwords",
+  fullPath: "customers-auth/passwords"
+};
+var Initiate2faEndpoint = {
+  method: "POST" /* Post */,
+  path: "2fa",
+  fullPath: "customers-auth/2fa"
+};
+var Verify2faEndpoint = {
+  method: "PATCH" /* Patch */,
+  path: "2fa",
+  fullPath: "customers-auth/2fa"
+};
+
+// src/types/customers/endpoint-payloads/account-recovery.payloads.ts
+var RequestPasswordResetEndpoint = {
+  method: "POST" /* Post */,
+  path: "",
+  fullPath: "customers-account-recovery"
+};
+var ResetPasswordEndpoint = {
+  method: "PATCH" /* Patch */,
+  path: "",
+  fullPath: "customers-account-recovery"
+};
+
+// src/types/customers/endpoint-payloads/login.payloads.ts
+var RequestOtpForLoginEndpoint = {
+  method: "POST" /* Post */,
+  path: "login",
+  fullPath: "customers-auth/login"
+};
+var VerifyOtpAndPasswordForLoginEndpoint = {
+  method: "PATCH" /* Patch */,
+  path: "login",
+  fullPath: "customers-auth/login"
+};
+var Verify2faForLogin = {
+  method: "PATCH" /* Patch */,
+  path: "login/2fa",
+  fullPath: "customers-auth/login/2fa"
+};
 
 // src/sdks/internal/modules/customers.sdk.ts
 var ScalexCustomersSdk = class {
@@ -156,6 +221,54 @@ var ScalexCustomersSdk = class {
         serviceUri: this.apiUrl,
         endpoint: RequestOtpToRegisterEndpoint,
         body: payload
+      });
+    });
+  }
+  verifyOtpAndCreatePassword(payload, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: VerifyOtpAndCreatePasswordEndpoint,
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
+  initiate2faRegistration(authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: Initiate2faEndpoint,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
+  verify2faToken(payload, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: Verify2faEndpoint,
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
+  requestPasswordReset(payload) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RequestPasswordResetEndpoint,
+        body: payload
+      });
+    });
+  }
+  resetPassword(payload, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: ResetPasswordEndpoint,
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }
@@ -174,7 +287,7 @@ var ScalexInternalApiVersions = /* @__PURE__ */ ((ScalexInternalApiVersions2) =>
 })(ScalexInternalApiVersions || {});
 var InternalEnvironmentUrls = {
   local: "http://localhost:8500",
-  dev: "https://scalex-dev.railway.app",
+  dev: "https://scalex-api-gateway-dev.railway.app",
   prod: "https://scalex-api.railway.app"
 };
 var ScalexInternalAPI = class {
@@ -185,11 +298,19 @@ var ScalexInternalAPI = class {
 };
 export {
   HttpMethods,
+  Initiate2faEndpoint,
+  RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint,
+  RequestPasswordResetEndpoint,
+  ResetPasswordEndpoint,
   ScalexInternalAPI,
   ScalexInternalApiVersions,
   ScalexInternalEnvironments,
   TokenActions,
-  TokenExpiry
+  TokenExpiry,
+  Verify2faEndpoint,
+  Verify2faForLogin,
+  VerifyOtpAndCreatePasswordEndpoint,
+  VerifyOtpAndPasswordForLoginEndpoint
 };
 //# sourceMappingURL=index.js.map

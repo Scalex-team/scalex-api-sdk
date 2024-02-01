@@ -63,3 +63,9 @@ export async function callApi<Input, Output>( requestParams: {
 		} );
 	}
 }
+
+export function setBearerToken(token: string) {
+	return {
+		authorization: `Bearer ${token}`
+	}
+}
