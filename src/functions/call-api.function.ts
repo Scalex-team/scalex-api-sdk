@@ -17,7 +17,10 @@ export async function makeHttpRequest (
 		query?: any
 	} ): Promise<AxiosResponse> {
 	const aggregatedHeaders: any = {
-		'Content-Type': 'application/json'
+		'Content-Type': 'application/json',
+		'Access-Control-Allow-Credentials': true,
+		'Access-Control-Allow-Headers': 'content-type',
+		'Access-Control-Allow-Methods': 'GET,HEAD,PUT,POST,DELETE,PATCH',
 	};
 	if ( headers ) {
 		if ( headers[ScalexAuthHeaderName] ) {
