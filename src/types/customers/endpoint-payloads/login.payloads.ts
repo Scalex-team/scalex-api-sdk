@@ -15,18 +15,18 @@ export interface ILoginResponse {
 
 export const RequestOtpForLoginEndpoint: Endpoint = {
     method: HttpMethods.Post,
-    path: 'login',
-    fullPath: 'customers-auth/login'
+    path: '/login',
+    fullPath: '/customers-auth/login'
 }
 
 export const VerifyOtpAndPasswordForLoginEndpoint: Endpoint = {
     method: HttpMethods.Patch,
-    path: 'login',
-    fullPath: 'customers-auth/login'
+    path: '/login',
+    fullPath: '/customers-auth/login'
 }
 
 export const Verify2faForLoginEndpoint: Endpoint = {
     method: HttpMethods.Patch,
-    path: 'login/2fa',
-    fullPath: 'customers-auth/login/2fa'
+    path: '/login/2fa',
+    fullPath: '/customers-auth/login/2fa'
 }

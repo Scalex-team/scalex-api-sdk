@@ -212,13 +212,13 @@ var TokenExpiry = {
 // src/types/customers/endpoint-payloads/create-account.payloads.ts
 var RequestOtpToRegisterEndpoint = {
   method: "POST" /* Post */,
-  path: "otps",
-  fullPath: "customers-auth/otps"
+  path: "/otps",
+  fullPath: "/customers-auth/otps"
 };
 var VerifyOtpAndCreatePasswordEndpoint = {
   method: "POST" /* Post */,
-  path: "passwords",
-  fullPath: "customers-auth/passwords"
+  path: "/passwords",
+  fullPath: "/customers-auth/passwords"
 };
 var Initiate2faEndpoint = {
   method: "POST" /* Post */,
@@ -235,29 +235,29 @@ var Verify2faEndpoint = {
 var RequestPasswordResetEndpoint = {
   method: "POST" /* Post */,
   path: "",
-  fullPath: "customers-account-recovery"
+  fullPath: "/customers-account-recovery"
 };
 var ResetPasswordEndpoint = {
   method: "PATCH" /* Patch */,
   path: "",
-  fullPath: "customers-account-recovery"
+  fullPath: "/customers-account-recovery"
 };
 
 // src/types/customers/endpoint-payloads/login.payloads.ts
 var RequestOtpForLoginEndpoint = {
   method: "POST" /* Post */,
-  path: "login",
-  fullPath: "customers-auth/login"
+  path: "/login",
+  fullPath: "/customers-auth/login"
 };
 var VerifyOtpAndPasswordForLoginEndpoint = {
   method: "PATCH" /* Patch */,
-  path: "login",
-  fullPath: "customers-auth/login"
+  path: "/login",
+  fullPath: "/customers-auth/login"
 };
 var Verify2faForLoginEndpoint = {
   method: "PATCH" /* Patch */,
-  path: "login/2fa",
-  fullPath: "customers-auth/login/2fa"
+  path: "/login/2fa",
+  fullPath: "/customers-auth/login/2fa"
 };
 
 // src/sdks/internal/modules/customers.sdk.ts

@@ -10,8 +10,8 @@ export interface IRequestOtpToRegisterResponse {
 
 export const RequestOtpToRegisterEndpoint: Endpoint = {
     method: HttpMethods.Post,
-    path: 'otps',
-    fullPath: 'customers-auth/otps'
+    path: '/otps',
+    fullPath: '/customers-auth/otps'
 }
 
 export interface IVerifyOtpAndCreatePasswordPayload {
@@ -26,8 +26,8 @@ export interface IVerifyOtpAndCreatePasswordResponse {
 
 export const VerifyOtpAndCreatePasswordEndpoint: Endpoint = {
     method: HttpMethods.Post,
-    path: 'passwords',
-    fullPath: 'customers-auth/passwords'
+    path: '/passwords',
+    fullPath: '/customers-auth/passwords'
 }
 
 export interface IInitiate2faResponse {
