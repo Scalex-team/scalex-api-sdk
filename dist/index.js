@@ -86,7 +86,10 @@ function makeHttpRequest(_0) {
     params
   }) {
     const aggregatedHeaders = {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Credentials": true,
+      "Access-Control-Allow-Headers": "content-type",
+      "Access-Control-Allow-Methods": "GET,HEAD,PUT,POST,DELETE,PATCH"
     };
     if (headers) {
       if (headers[ScalexAuthHeaderName]) {
@@ -287,8 +290,8 @@ var ScalexInternalApiVersions = /* @__PURE__ */ ((ScalexInternalApiVersions2) =>
 })(ScalexInternalApiVersions || {});
 var InternalEnvironmentUrls = {
   local: "http://localhost:8500",
-  dev: "https://scalex-api-gateway-dev.railway.app",
-  prod: "https://scalex-api.railway.app"
+  dev: "https://scalex-api-gateway-dev.up.railway.app",
+  prod: "https://scalex-api.up.railway.app"
 };
 var ScalexInternalAPI = class {
   constructor(environment = "dev" /* dev */, version = "/v1" /* v1 */) {
