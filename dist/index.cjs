@@ -123,6 +123,7 @@ function notifyClientOfFailure({
 
 // src/functions/call-api.function.ts
 var ScalexAuthHeaderName = "scalexadminauthorization";
+var AuthorizationHeaderName = "Authorization";
 function makeHttpRequest(_0) {
   return __async(this, arguments, function* ({
     method,
@@ -141,6 +142,9 @@ function makeHttpRequest(_0) {
     if (headers) {
       if (headers[ScalexAuthHeaderName]) {
         aggregatedHeaders[ScalexAuthHeaderName] = headers[ScalexAuthHeaderName];
+      }
+      if (headers[AuthorizationHeaderName]) {
+        aggregatedHeaders[AuthorizationHeaderName] = headers[AuthorizationHeaderName];
       }
     }
     if (params) {
@@ -178,7 +182,7 @@ function callApi(requestParams) {
 }
 function setBearerToken(token) {
   return {
-    authorization: `Bearer ${token}`
+    Authorization: `Bearer ${token}`
   };
 }
 
