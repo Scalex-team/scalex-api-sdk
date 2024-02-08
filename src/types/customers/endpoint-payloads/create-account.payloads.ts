@@ -37,8 +37,8 @@ export interface IInitiate2faResponse {
 
 export const Initiate2faEndpoint: Endpoint = {
     method: HttpMethods.Post,
-    path: '2fa',
-    fullPath: 'customers-auth/2fa'
+    path: '/2fa',
+    fullPath: '/customers-auth/2fa'
 }
 
 export interface IVerify2faTokenPayload {
@@ -47,7 +47,7 @@ export interface IVerify2faTokenPayload {
 
 export const Verify2faEndpoint: Endpoint = {
     method: HttpMethods.Patch,
-    path: '2fa',
-    fullPath: 'customers-auth/2fa'
+    path: '/2fa',
+    fullPath: '/customers-auth/2fa'
 }
 

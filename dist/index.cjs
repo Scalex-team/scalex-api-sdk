@@ -226,13 +226,13 @@ var VerifyOtpAndCreatePasswordEndpoint = {
 };
 var Initiate2faEndpoint = {
   method: "POST" /* Post */,
-  path: "2fa",
-  fullPath: "customers-auth/2fa"
+  path: "/2fa",
+  fullPath: "/customers-auth/2fa"
 };
 var Verify2faEndpoint = {
   method: "PATCH" /* Patch */,
-  path: "2fa",
-  fullPath: "customers-auth/2fa"
+  path: "/2fa",
+  fullPath: "/customers-auth/2fa"
 };
 
 // src/types/customers/endpoint-payloads/account-recovery.payloads.ts
