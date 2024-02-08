@@ -3,6 +3,7 @@ import { ApiResponse, Endpoint, ScalexError } from '../types';
 import { notifyClientOfSuccess, notifyClientOfFailure } from './send-api-response';
 export const ScalexAuthHeaderName = 'scalexadminauthorization';
 export const ScalexAuthBearerName = 'ScalexAdminBearer';
+export const AuthorizationHeaderName = 'Authorization'
 
 export async function makeHttpRequest ( 
 	{
@@ -25,6 +26,9 @@ export async function makeHttpRequest (
 	if ( headers ) {
 		if ( headers[ScalexAuthHeaderName] ) {
 			aggregatedHeaders[ScalexAuthHeaderName] = headers[ScalexAuthHeaderName];
+		}
+		if ( headers[AuthorizationHeaderName] ) {
+			aggregatedHeaders[AuthorizationHeaderName] = headers[AuthorizationHeaderName];
 		}
 	}
 
@@ -69,6 +73,6 @@ export async function callApi<Input, Output>( requestParams: {
 
 export function setBearerToken(token: string) {
 	return {
-		authorization: `Bearer ${token}`
+		Authorization: `Bearer ${token}`
 	}
 }
