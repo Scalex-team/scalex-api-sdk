@@ -326,6 +326,33 @@ var ScalexCustomersSdk = class {
       });
     });
   }
+  requestOtpToLogin(payload) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RequestOtpForLoginEndpoint,
+        body: payload
+      });
+    });
+  }
+  verifyOtpAndPasswordForLogin(payload) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: VerifyOtpAndPasswordForLoginEndpoint,
+        body: payload
+      });
+    });
+  }
+  verify2faForLogin(payload) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: Verify2faForLoginEndpoint,
+        body: payload
+      });
+    });
+  }
 };
 
 // src/sdks/internal/internal.sdk.ts

@@ -1,6 +1,6 @@
 import { Endpoint, HttpMethods } from "../../generic";
 
-export interface IReqeustOtpForLoginPayload {
+export interface IRequestOtpForLoginPayload {
     email: string;
 }
 
@@ -10,6 +10,10 @@ export interface IVerifyOtpAndPasswordForLoginPayload {
 }
 
 export interface ILoginResponse {
+    token: string;
+}
+
+export interface IVerify2faForLoginPayload {
     token: string;
 }
 
