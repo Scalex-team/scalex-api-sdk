@@ -174,8 +174,8 @@ declare class ScalexCustomersSdk {
     requestPasswordReset(payload: IRequestPasswordResetPayload): Promise<ScalexSuccessResponse<IRequestPasswordResetResponse>>;
     resetPassword(payload: IResetPasswordPayload, authToken: string): Promise<ScalexSuccessResponse<null>>;
     requestOtpToLogin(payload: IRequestOtpForLoginPayload): Promise<ScalexSuccessResponse<ILoginResponse>>;
-    verifyOtpAndPasswordForLogin(payload: IVerifyOtpAndPasswordForLoginPayload): Promise<ScalexSuccessResponse<ILoginResponse>>;
-    verify2faForLogin(payload: IVerify2faForLoginPayload): Promise<ScalexSuccessResponse<ILoginResponse>>;
+    verifyOtpAndPasswordForLogin(payload: IVerifyOtpAndPasswordForLoginPayload, authToken: string): Promise<ScalexSuccessResponse<ILoginResponse>>;
+    verify2faForLogin(payload: IVerify2faForLoginPayload, authToken: string): Promise<ScalexSuccessResponse<ILoginResponse>>;
 }
 
 declare enum ScalexInternalEnvironments {

@@ -101,21 +101,27 @@ export class ScalexCustomersSdk {
         })
     }
 
-    async verifyOtpAndPasswordForLogin( payload: IVerifyOtpAndPasswordForLoginPayload )
+    async verifyOtpAndPasswordForLogin( payload: IVerifyOtpAndPasswordForLoginPayload, authToken: string )
         : Promise<ScalexSuccessResponse<ILoginResponse>> {
         return callApi<IVerifyOtpAndPasswordForLoginPayload, ILoginResponse>({
             serviceUri: this.apiUrl,
             endpoint: VerifyOtpAndPasswordForLoginEndpoint,
             body: payload,
+            headers: {
+                ...setBearerToken(authToken)
+            }
         })
     }
 
-    async verify2faForLogin( payload: IVerify2faForLoginPayload )
+    async verify2faForLogin( payload: IVerify2faForLoginPayload, authToken: string )
         : Promise<ScalexSuccessResponse<ILoginResponse>> {
         return callApi<IVerify2faForLoginPayload, ILoginResponse>({
             serviceUri: this.apiUrl,
             endpoint: Verify2faForLoginEndpoint,
             body: payload,
+            headers: {
+                ...setBearerToken(authToken)
+            }
         })
     }
 }

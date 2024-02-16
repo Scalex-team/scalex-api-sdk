@@ -288,21 +288,23 @@ var ScalexCustomersSdk = class {
       });
     });
   }
-  verifyOtpAndPasswordForLogin(payload) {
+  verifyOtpAndPasswordForLogin(payload, authToken) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: VerifyOtpAndPasswordForLoginEndpoint,
-        body: payload
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }
-  verify2faForLogin(payload) {
+  verify2faForLogin(payload, authToken) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: Verify2faForLoginEndpoint,
-        body: payload
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }

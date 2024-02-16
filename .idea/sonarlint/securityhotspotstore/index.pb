@@ -11,3 +11,5 @@ Z
 *src/sdks/internal/modules/customers.sdk.ts,a/b/abb72400decf72adc872107c1e180c4a21207740
 >
 pnpm-lock.yaml,a/8/a829ed6336deb68f9874e5da490e1ec440b0e9b7
+<
+package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
