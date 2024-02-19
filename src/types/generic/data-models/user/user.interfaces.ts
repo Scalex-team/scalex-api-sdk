@@ -23,7 +23,7 @@ export enum AuthStatus {
 
 export interface IUser extends IBaseModel {
 	fullName: string;
-	invitedBy: string;
+	invitedBy?: string;
 	email: string;
 	status: UserStatus;
 	roleMatrix: string | IAdminRoleMatrix;
@@ -32,6 +32,9 @@ export interface IUser extends IBaseModel {
 	authStatusLastChangedAt?: Date;
 	passWordResetToken?: string;
 	passWordResetTokenExpiry?: Date;
+	twoFactorAuthSecret?: string;
+	twoFactorAuthActive?: boolean;
+	agreedToTerms: boolean;
 }
 
 export interface IUserMethods {

@@ -15,3 +15,5 @@ Z
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 Q
 !src/sdks/internal/internal.sdk.ts,1/e/1e90f19b4811dd47de574a0dad24b3bd1aac2b2c
+e
+5src/types/generic/data-models/user/user.interfaces.ts,c/7/c7cb1022c1b41f18ea2c18aa123c31ed00eef2ec

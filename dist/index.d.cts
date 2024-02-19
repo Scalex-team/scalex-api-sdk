@@ -67,7 +67,7 @@ declare enum AuthStatus {
 }
 interface IUser extends IBaseModel {
     fullName: string;
-    invitedBy: string;
+    invitedBy?: string;
     email: string;
     status: UserStatus;
     roleMatrix: string | IAdminRoleMatrix;
@@ -76,6 +76,9 @@ interface IUser extends IBaseModel {
     authStatusLastChangedAt?: Date;
     passWordResetToken?: string;
     passWordResetTokenExpiry?: Date;
+    twoFactorAuthSecret?: string;
+    twoFactorAuthActive?: boolean;
+    agreedToTerms: boolean;
 }
 
 type ValuesOf<T extends any[]> = T[number];
