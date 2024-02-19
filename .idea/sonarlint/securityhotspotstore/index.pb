@@ -17,3 +17,9 @@ Q
 !src/sdks/internal/internal.sdk.ts,1/e/1e90f19b4811dd47de574a0dad24b3bd1aac2b2c
 e
 5src/types/generic/data-models/user/user.interfaces.ts,c/7/c7cb1022c1b41f18ea2c18aa123c31ed00eef2ec
+[
++src/types/generic/data-models/user/index.ts,2/f/2f78e097e86ceb3c59d9556a3fbaf82af471ba8c
+V
+&src/types/generic/data-models/index.ts,6/b/6b12263dfe2822705e31f3461d404fb66234b389
+J
+src/types/generic/index.ts,f/c/fc8d3721a76b5a95e32f8044f019f6525fbd32ee

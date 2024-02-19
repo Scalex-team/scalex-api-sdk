@@ -166,6 +166,22 @@ var TokenExpiry = {
   "login": "10m"
 };
 
+// src/types/generic/data-models/user/user.interfaces.ts
+var UserStatus = /* @__PURE__ */ ((UserStatus2) => {
+  UserStatus2["Active"] = "active";
+  UserStatus2["Suspended"] = "suspended";
+  UserStatus2["Deactivated"] = "deactivated";
+  return UserStatus2;
+})(UserStatus || {});
+var AuthStatus = /* @__PURE__ */ ((AuthStatus2) => {
+  AuthStatus2["loggedInWithout2fa"] = "logged-in-without-2fa";
+  AuthStatus2["loggedInWith2fa"] = "logged-in-with-2fa";
+  AuthStatus2["loggedOutByExpiredToken"] = "logged-out-by-expired-token";
+  AuthStatus2["loggedOutManually"] = "logged-out-manually";
+  AuthStatus2["neverLoggedIn"] = "never-logged-in";
+  return AuthStatus2;
+})(AuthStatus || {});
+
 // src/types/customers/endpoint-payloads/create-account.payloads.ts
 var RequestOtpToRegisterEndpoint = {
   method: "POST" /* Post */,
@@ -333,6 +349,7 @@ var ScalexInternalAPI = class {
   }
 };
 export {
+  AuthStatus,
   HttpMethods,
   Initiate2faEndpoint,
   RequestOtpForLoginEndpoint,
@@ -344,6 +361,7 @@ export {
   ScalexInternalEnvironments,
   TokenActions,
   TokenExpiry,
+  UserStatus,
   Verify2faEndpoint,
   Verify2faForLoginEndpoint,
   VerifyOtpAndCreatePasswordEndpoint,
