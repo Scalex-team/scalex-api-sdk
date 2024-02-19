@@ -1,4 +1,5 @@
 import { Endpoint, HttpMethods } from "../../generic";
+import {IUser} from "../../generic/data-models/user";
 
 export interface IRequestOtpForLoginPayload {
     email: string;
@@ -11,6 +12,11 @@ export interface IVerifyOtpAndPasswordForLoginPayload {
 
 export interface ILoginResponse {
     token: string;
+}
+
+export interface ITokenWithUserResponse {
+    token: string;
+    customer: Partial<IUser>
 }
 
 export interface IVerify2faForLoginPayload {

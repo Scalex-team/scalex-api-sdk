@@ -21,7 +21,7 @@ import {
     IVerifyOtpAndPasswordForLoginPayload,
     VerifyOtpAndPasswordForLoginEndpoint,
     IVerify2faForLoginPayload,
-    Verify2faForLoginEndpoint
+    Verify2faForLoginEndpoint, ITokenWithUserResponse
 } from "../../../types";
 
 export class ScalexCustomersSdk {
@@ -102,8 +102,8 @@ export class ScalexCustomersSdk {
     }
 
     async verifyOtpAndPasswordForLogin( payload: IVerifyOtpAndPasswordForLoginPayload, authToken: string )
-        : Promise<ScalexSuccessResponse<ILoginResponse>> {
-        return callApi<IVerifyOtpAndPasswordForLoginPayload, ILoginResponse>({
+        : Promise<ScalexSuccessResponse<ITokenWithUserResponse>> {
+        return callApi<IVerifyOtpAndPasswordForLoginPayload, ITokenWithUserResponse>({
             serviceUri: this.apiUrl,
             endpoint: VerifyOtpAndPasswordForLoginEndpoint,
             body: payload,
