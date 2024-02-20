@@ -60,8 +60,8 @@ export class ScalexCustomersSdk {
     }
 
     async verify2faToken( payload: IVerify2faTokenPayload, authToken: string )
-    : Promise<ScalexSuccessResponse<null>> {
-        return callApi<IVerify2faTokenPayload, null>({
+    : Promise<ScalexSuccessResponse<ITokenWithUserResponse>> {
+        return callApi<IVerify2faTokenPayload, ITokenWithUserResponse>({
             serviceUri: this.apiUrl,
             endpoint: Verify2faEndpoint,
             body: payload,

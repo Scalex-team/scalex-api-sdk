@@ -1,5 +1,4 @@
-import { Endpoint, HttpMethods } from "../../generic";
-import {IUser} from "../../generic";
+import { Endpoint, HttpMethods, IUser } from "../../generic";
 
 export interface IRequestOtpForLoginPayload {
     email: string;
