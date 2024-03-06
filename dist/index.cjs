@@ -64,9 +64,11 @@ var __async = (__this, __arguments, generator) => {
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
+  ActiveOrInactive: () => ActiveOrInactive,
   AuthStatus: () => AuthStatus,
   HttpMethods: () => HttpMethods,
   Initiate2faEndpoint: () => Initiate2faEndpoint,
+  IntegrationType: () => IntegrationType,
   RequestOtpForLoginEndpoint: () => RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint: () => RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint: () => RequestPasswordResetEndpoint,
@@ -230,6 +232,18 @@ var AuthStatus = /* @__PURE__ */ ((AuthStatus2) => {
   AuthStatus2["neverLoggedIn"] = "never-logged-in";
   return AuthStatus2;
 })(AuthStatus || {});
+
+// src/types/generic/data-models/enums/utility.enums.ts
+var ActiveOrInactive = /* @__PURE__ */ ((ActiveOrInactive2) => {
+  ActiveOrInactive2["active"] = "active";
+  ActiveOrInactive2["inactive"] = "inactive";
+  return ActiveOrInactive2;
+})(ActiveOrInactive || {});
+var IntegrationType = /* @__PURE__ */ ((IntegrationType2) => {
+  IntegrationType2["SDK"] = "sdk";
+  IntegrationType2["REST"] = "rest";
+  return IntegrationType2;
+})(IntegrationType || {});
 
 // src/types/customers/endpoint-payloads/create-account.payloads.ts
 var RequestOtpToRegisterEndpoint = {
@@ -399,9 +413,11 @@ var ScalexInternalAPI = class {
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  ActiveOrInactive,
   AuthStatus,
   HttpMethods,
   Initiate2faEndpoint,
+  IntegrationType,
   RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint,

@@ -48,6 +48,21 @@ interface IAdminRoleMatrix extends IBaseModel {
     admin: IUser | string;
 }
 
+declare enum VerifiableEntity {
+    governmentIssuedId = "government-issued-id",
+    utilityBill = "utility-bill",
+    businessRegistrationCertificate = "business-registration-certificate",
+    phoneNumber = "phone-number"
+}
+declare enum VerificationApplicationStatus {
+    cold = "cold",
+    inProgress = "in-progress",
+    expired = "expired",
+    filled = "filled",
+    failed = "failed",
+    successful = "successful"
+}
+
 interface IPassword {
     token: string;
     hint: string;
@@ -80,7 +95,10 @@ interface IUser extends IBaseModel {
     twoFactorAuthSecret?: string;
     twoFactorAuthActive?: boolean;
     agreedToTerms: boolean;
-    verifiedName?: boolean;
+    verifications: Array<{
+        entity: VerifiableEntity;
+        status: VerificationApplicationStatus;
+    }>;
 }
 interface IUserMethods {
     updatePassword(newPassword: string, hint?: string): void;
@@ -110,6 +128,15 @@ type DecodedJwtToken = {
     action?: TokenActions;
 };
 type ScalexAuthenticatedRequest = Request & DecodedJwtToken;
+
+declare enum ActiveOrInactive {
+    active = "active",
+    inactive = "inactive"
+}
+declare enum IntegrationType {
+    SDK = "sdk",
+    REST = "rest"
+}
 
 interface IRequestOtpToRegisterPayload {
     email: string;
@@ -206,4 +233,4 @@ declare class ScalexInternalAPI {
     constructor(environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions);
 }
 
-export { type ApiResponse, AuthStatus, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAdminRoleMatrix, type IInitiate2faResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type IUser, type IUserMethods, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UserStatus, type ValuesOf, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint };
+export { ActiveOrInactive, type ApiResponse, AuthStatus, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAdminRoleMatrix, type IBaseModel, type IInitiate2faResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type IUser, type IUserMethods, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, IntegrationType, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UserStatus, type ValuesOf, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint };

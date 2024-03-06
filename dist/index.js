@@ -182,6 +182,18 @@ var AuthStatus = /* @__PURE__ */ ((AuthStatus2) => {
   return AuthStatus2;
 })(AuthStatus || {});
 
+// src/types/generic/data-models/enums/utility.enums.ts
+var ActiveOrInactive = /* @__PURE__ */ ((ActiveOrInactive2) => {
+  ActiveOrInactive2["active"] = "active";
+  ActiveOrInactive2["inactive"] = "inactive";
+  return ActiveOrInactive2;
+})(ActiveOrInactive || {});
+var IntegrationType = /* @__PURE__ */ ((IntegrationType2) => {
+  IntegrationType2["SDK"] = "sdk";
+  IntegrationType2["REST"] = "rest";
+  return IntegrationType2;
+})(IntegrationType || {});
+
 // src/types/customers/endpoint-payloads/create-account.payloads.ts
 var RequestOtpToRegisterEndpoint = {
   method: "POST" /* Post */,
@@ -349,9 +361,11 @@ var ScalexInternalAPI = class {
   }
 };
 export {
+  ActiveOrInactive,
   AuthStatus,
   HttpMethods,
   Initiate2faEndpoint,
+  IntegrationType,
   RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint,

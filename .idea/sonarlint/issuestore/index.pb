@@ -23,3 +23,15 @@ V
 &src/types/generic/data-models/index.ts,6/b/6b12263dfe2822705e31f3461d404fb66234b389
 J
 src/types/generic/index.ts,f/c/fc8d3721a76b5a95e32f8044f019f6525fbd32ee
+S
+#src/types/customers/models/index.ts,2/5/25fcc29a8e029ddd99e361bd95e51fe0a1be5ff9
+a
+1src/types/customers/models/verification.models.ts,4/2/4227e953359950f9744a5cfeb24c4b10face4c90
+h
+8src/types/generic/data-models/active-or-inactive.enum.ts,7/e/7ecc4fafca5edc4ca866017d6f093143375b4de3
+\
+,src/types/generic/data-models/enums/index.ts,6/5/65bea15d0cf9a11da8bfd98360ec4dc23dc9966b
+d
+4src/types/generic/data-models/enums/utility.enums.ts,f/4/f449c1ab550f67a218712b9c3d27f3c2b71ff0f4
+[
++src/types/generic/data-models/base.model.ts,e/a/ea7bfac706a99a52506a2a3471bf4edc038841c4
