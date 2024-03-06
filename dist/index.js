@@ -245,6 +245,45 @@ var Verify2faForLoginEndpoint = {
   fullPath: "/customers-auth/login/2fa"
 };
 
+// src/types/customers/models/verification.models.ts
+var VerifiableEntity = /* @__PURE__ */ ((VerifiableEntity2) => {
+  VerifiableEntity2["governmentIssuedId"] = "government-issued-id";
+  VerifiableEntity2["utilityBill"] = "utility-bill";
+  VerifiableEntity2["businessRegistrationCertificate"] = "business-registration-certificate";
+  VerifiableEntity2["phoneNumber"] = "phone-number";
+  return VerifiableEntity2;
+})(VerifiableEntity || {});
+var VerificationApplicantType = /* @__PURE__ */ ((VerificationApplicantType2) => {
+  VerificationApplicantType2["individual"] = "individual";
+  VerificationApplicantType2["business"] = "business";
+  return VerificationApplicantType2;
+})(VerificationApplicantType || {});
+var VerificationAction = /* @__PURE__ */ ((VerificationAction2) => {
+  VerificationAction2["initiateJobWithPartner"] = "initiate-job-with-partner";
+  VerificationAction2["confirmJobStatusWithPartner"] = "confirm-job-status-with-partner";
+  VerificationAction2["updateLocalUserRecords"] = "update-local-user-records";
+  return VerificationAction2;
+})(VerificationAction || {});
+var VerificationStepType = /* @__PURE__ */ ((VerificationStepType2) => {
+  VerificationStepType2["apiCall"] = "api-call";
+  VerificationStepType2["webhook"] = "webhook";
+  return VerificationStepType2;
+})(VerificationStepType || {});
+var VerificationRequirementStatus = /* @__PURE__ */ ((VerificationRequirementStatus2) => {
+  VerificationRequirementStatus2["one"] = "one";
+  VerificationRequirementStatus2["all"] = "all";
+  return VerificationRequirementStatus2;
+})(VerificationRequirementStatus || {});
+var VerificationApplicationStatus = /* @__PURE__ */ ((VerificationApplicationStatus2) => {
+  VerificationApplicationStatus2["cold"] = "cold";
+  VerificationApplicationStatus2["inProgress"] = "in-progress";
+  VerificationApplicationStatus2["expired"] = "expired";
+  VerificationApplicationStatus2["filled"] = "filled";
+  VerificationApplicationStatus2["failed"] = "failed";
+  VerificationApplicationStatus2["successful"] = "successful";
+  return VerificationApplicationStatus2;
+})(VerificationApplicationStatus || {});
+
 // src/sdks/internal/modules/customers.sdk.ts
 var ScalexCustomersSdk = class {
   constructor(apiUrl) {
@@ -376,6 +415,12 @@ export {
   TokenActions,
   TokenExpiry,
   UserStatus,
+  VerifiableEntity,
+  VerificationAction,
+  VerificationApplicantType,
+  VerificationApplicationStatus,
+  VerificationRequirementStatus,
+  VerificationStepType,
   Verify2faEndpoint,
   Verify2faForLoginEndpoint,
   VerifyOtpAndCreatePasswordEndpoint,

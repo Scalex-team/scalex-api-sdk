@@ -54,6 +54,23 @@ declare enum VerifiableEntity {
     businessRegistrationCertificate = "business-registration-certificate",
     phoneNumber = "phone-number"
 }
+declare enum VerificationApplicantType {
+    individual = "individual",
+    business = "business"
+}
+declare enum VerificationAction {
+    initiateJobWithPartner = "initiate-job-with-partner",
+    confirmJobStatusWithPartner = "confirm-job-status-with-partner",
+    updateLocalUserRecords = "update-local-user-records"
+}
+declare enum VerificationStepType {
+    apiCall = "api-call",
+    webhook = "webhook"
+}
+declare enum VerificationRequirementStatus {
+    one = "one",
+    all = "all"
+}
 declare enum VerificationApplicationStatus {
     cold = "cold",
     inProgress = "in-progress",
@@ -61,6 +78,49 @@ declare enum VerificationApplicationStatus {
     filled = "filled",
     failed = "failed",
     successful = "successful"
+}
+type VerificationFlow = {
+    entity: VerifiableEntity;
+    status: ActiveOrInactive;
+    applicantTypes: Array<VerificationApplicantType>;
+    steps: Array<{
+        index: number;
+        action: VerificationAction;
+        type: VerificationStepType;
+        endpoint: string;
+        payloads: {
+            request: string;
+            response: string;
+        };
+    }>;
+};
+interface IVerificationPartner<ApiKeyType = unknown> extends IBaseModel {
+    name: string;
+    integrationType: IntegrationType;
+    apiKeys: string | ApiKeyType;
+    status: ActiveOrInactive;
+    baseUrl?: string;
+    docsUrl?: string;
+    webhookUrl?: string;
+    processFlows: Array<VerificationFlow>;
+}
+interface IVerificationApplication extends IBaseModel {
+    applicant: string;
+    applicantType: VerificationApplicantType;
+    applications: Array<{
+        entity: VerifiableEntity;
+        partner: {
+            id: string;
+            processFlowSnapshot: string;
+        };
+        status: VerificationApplicationStatus;
+        steps: {
+            index: number;
+            request: string;
+            response: string;
+            status: VerificationApplicationStatus;
+        };
+    }>;
 }
 
 interface IPassword {
@@ -233,4 +293,4 @@ declare class ScalexInternalAPI {
     constructor(environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions);
 }
 
-export { ActiveOrInactive, type ApiResponse, AuthStatus, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAdminRoleMatrix, type IBaseModel, type IInitiate2faResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type IUser, type IUserMethods, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, IntegrationType, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UserStatus, type ValuesOf, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint };
+export { ActiveOrInactive, type ApiResponse, AuthStatus, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAdminRoleMatrix, type IBaseModel, type IInitiate2faResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, IntegrationType, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint };
