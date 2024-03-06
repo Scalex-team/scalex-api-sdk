@@ -68,6 +68,7 @@ declare enum AuthStatus {
 interface IUser extends IBaseModel {
     fullName: string;
     invitedBy?: string;
+    dateOfBirth?: Date;
     email: string;
     status: UserStatus;
     roleMatrix: string | IAdminRoleMatrix;
@@ -199,7 +200,7 @@ declare enum ScalexInternalApiVersions {
     v1 = "/v1"
 }
 declare class ScalexInternalAPI {
-    private apiUrl;
+    private readonly apiUrl;
     customers: ScalexCustomersSdk;
     constructor(environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions);
 }

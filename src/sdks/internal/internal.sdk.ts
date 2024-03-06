@@ -19,7 +19,7 @@ const InternalEnvironmentUrls: {
 }
 
 export class ScalexInternalAPI {
-    private apiUrl: string;
+    private readonly apiUrl: string;
     customers: ScalexCustomersSdk;
 
 

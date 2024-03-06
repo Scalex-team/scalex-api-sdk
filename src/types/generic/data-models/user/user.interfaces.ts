@@ -24,6 +24,7 @@ export enum AuthStatus {
 export interface IUser extends IBaseModel {
 	fullName: string;
 	invitedBy?: string;
+	dateOfBirth?: Date;
 	email: string;
 	status: UserStatus;
 	roleMatrix: string | IAdminRoleMatrix;
