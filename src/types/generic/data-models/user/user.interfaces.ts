@@ -36,6 +36,7 @@ export interface IUser extends IBaseModel {
 	twoFactorAuthSecret?: string;
 	twoFactorAuthActive?: boolean;
 	agreedToTerms: boolean;
+	verifiedName?: boolean;
 }
 
 export interface IUserMethods {

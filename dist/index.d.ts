@@ -80,6 +80,7 @@ interface IUser extends IBaseModel {
     twoFactorAuthSecret?: string;
     twoFactorAuthActive?: boolean;
     agreedToTerms: boolean;
+    verifiedName?: boolean;
 }
 interface IUserMethods {
     updatePassword(newPassword: string, hint?: string): void;
