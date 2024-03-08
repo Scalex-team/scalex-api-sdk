@@ -27,8 +27,6 @@ S
 #src/types/customers/models/index.ts,2/5/25fcc29a8e029ddd99e361bd95e51fe0a1be5ff9
 a
 1src/types/customers/models/verification.models.ts,4/2/4227e953359950f9744a5cfeb24c4b10face4c90
-h
-8src/types/generic/data-models/active-or-inactive.enum.ts,7/e/7ecc4fafca5edc4ca866017d6f093143375b4de3
 \
 ,src/types/generic/data-models/enums/index.ts,6/5/65bea15d0cf9a11da8bfd98360ec4dc23dc9966b
 d
@@ -39,3 +37,11 @@ L
 src/types/customers/index.ts,6/7/67ccc4db62550f8acfaab4abb620ba45417239e2
 q
 Asrc/types/generic/data-models/user/admin-role-matrix.interface.ts,e/9/e92c276c7f8607327968451b94c7589e8042f649
+R
+"src/functions/call-api.function.ts,0/7/073277e83c8ff688049bc6c32cfa7acb641e914f
+w
+Gsrc/types/customers/endpoint-payloads/initiate-verification.payloads.ts,d/7/d78b64f0384766ab14b00f515fbadff614a0a0f8
+\
+,src/types/customers/models/profile.models.ts,e/f/ef1d18a1dd00fbe3b31e1faefb34e929ce48b48f
+i
+9src/types/customers/endpoint-payloads/profile.payloads.ts,9/e/9e9ca00192ca2d8ca4b69bcaa68cc3690712b390

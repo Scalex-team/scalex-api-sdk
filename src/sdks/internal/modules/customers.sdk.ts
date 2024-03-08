@@ -21,7 +21,15 @@ import {
     IVerifyOtpAndPasswordForLoginPayload,
     VerifyOtpAndPasswordForLoginEndpoint,
     IVerify2faForLoginPayload,
-    Verify2faForLoginEndpoint, ITokenWithUserResponse
+    Verify2faForLoginEndpoint,
+    ITokenWithUserResponse,
+    IInitiateVerificationPayload,
+    IInitiateVerificationResponse,
+    InitiateVerificationEndpoint,
+    UpdateProfileEndpoint,
+    IUpdateProfilePayload,
+    IUpdateProfileResponse,
+    RetrieveProfileEndpoint
 } from "../../../types";
 
 export class ScalexCustomersSdk {
@@ -118,6 +126,41 @@ export class ScalexCustomersSdk {
         return callApi<IVerify2faForLoginPayload, ILoginResponse>({
             serviceUri: this.apiUrl,
             endpoint: Verify2faForLoginEndpoint,
+            body: payload,
+            headers: {
+                ...setBearerToken(authToken)
+            }
+        })
+    }
+
+    async updateProfile( payload: IUpdateProfilePayload, authToken: string )
+        : Promise<ScalexSuccessResponse<IUpdateProfileResponse>> {
+        return callApi<IUpdateProfilePayload, IUpdateProfileResponse>({
+            serviceUri: this.apiUrl,
+            endpoint: UpdateProfileEndpoint,
+            body: payload,
+            headers: {
+                ...setBearerToken(authToken)
+            }
+        })
+    }
+
+    async retrieveProfile( authToken: string )
+        : Promise<ScalexSuccessResponse<IUpdateProfileResponse>> {
+        return callApi<null, IUpdateProfileResponse>({
+            serviceUri: this.apiUrl,
+            endpoint: RetrieveProfileEndpoint,
+            headers: {
+                ...setBearerToken(authToken)
+            }
+        })
+    }
+
+    async initiateVerification( payload: IInitiateVerificationPayload, authToken: string )
+        : Promise<ScalexSuccessResponse<IInitiateVerificationResponse>> {
+        return callApi<IInitiateVerificationPayload, IInitiateVerificationResponse>({
+            serviceUri: this.apiUrl,
+            endpoint: InitiateVerificationEndpoint,
             body: payload,
             headers: {
                 ...setBearerToken(authToken)

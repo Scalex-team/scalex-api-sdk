@@ -259,6 +259,25 @@ declare const RequestOtpForLoginEndpoint: Endpoint;
 declare const VerifyOtpAndPasswordForLoginEndpoint: Endpoint;
 declare const Verify2faForLoginEndpoint: Endpoint;
 
+interface IInitiateVerificationPayload {
+    entity: VerifiableEntity;
+}
+interface IInitiateVerificationResponse {
+    link: string;
+}
+declare const InitiateVerificationEndpoint: Endpoint;
+
+interface IUpdateProfilePayload {
+    firstName: string;
+    lastName: string;
+    dateOfBirth: Date;
+}
+interface IUpdateProfileResponse {
+    customer: Partial<IUser>;
+}
+declare const UpdateProfileEndpoint: Endpoint;
+declare const RetrieveProfileEndpoint: Endpoint;
+
 interface ScalexSuccessResponse<T> {
     statusCode?: HttpStatusCode;
     message?: string;
@@ -277,6 +296,9 @@ declare class ScalexCustomersSdk {
     requestOtpToLogin(payload: IRequestOtpForLoginPayload): Promise<ScalexSuccessResponse<ILoginResponse>>;
     verifyOtpAndPasswordForLogin(payload: IVerifyOtpAndPasswordForLoginPayload, authToken: string): Promise<ScalexSuccessResponse<ITokenWithUserResponse>>;
     verify2faForLogin(payload: IVerify2faForLoginPayload, authToken: string): Promise<ScalexSuccessResponse<ILoginResponse>>;
+    updateProfile(payload: IUpdateProfilePayload, authToken: string): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
+    retrieveProfile(authToken: string): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
+    initiateVerification(payload: IInitiateVerificationPayload, authToken: string): Promise<ScalexSuccessResponse<IInitiateVerificationResponse>>;
 }
 
 declare enum ScalexInternalEnvironments {
@@ -293,4 +315,4 @@ declare class ScalexInternalAPI {
     constructor(environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions);
 }
 
-export { ActiveOrInactive, type ApiResponse, AuthStatus, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAdminRoleMatrix, type IBaseModel, type IInitiate2faResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, IntegrationType, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint };
+export { ActiveOrInactive, type ApiResponse, AuthStatus, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAdminRoleMatrix, type IBaseModel, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint };

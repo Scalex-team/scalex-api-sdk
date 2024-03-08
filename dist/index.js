@@ -245,6 +245,25 @@ var Verify2faForLoginEndpoint = {
   fullPath: "/customers-auth/login/2fa"
 };
 
+// src/types/customers/endpoint-payloads/initiate-verification.payloads.ts
+var InitiateVerificationEndpoint = {
+  method: "POST" /* Post */,
+  path: "/customer-verification",
+  fullPath: "/customers-verification"
+};
+
+// src/types/customers/endpoint-payloads/profile.payloads.ts
+var UpdateProfileEndpoint = {
+  method: "PATCH" /* Patch */,
+  path: "customer-profile",
+  fullPath: "customer-profile"
+};
+var RetrieveProfileEndpoint = {
+  method: "GET" /* Get */,
+  path: "customer-profile",
+  fullPath: "customer-profile"
+};
+
 // src/types/customers/models/verification.models.ts
 var VerifiableEntity = /* @__PURE__ */ ((VerifiableEntity2) => {
   VerifiableEntity2["governmentIssuedId"] = "government-issued-id";
@@ -375,6 +394,35 @@ var ScalexCustomersSdk = class {
       });
     });
   }
+  updateProfile(payload, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: UpdateProfileEndpoint,
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
+  retrieveProfile(authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveProfileEndpoint,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
+  initiateVerification(payload, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: InitiateVerificationEndpoint,
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
 };
 
 // src/sdks/internal/internal.sdk.ts
@@ -404,16 +452,19 @@ export {
   AuthStatus,
   HttpMethods,
   Initiate2faEndpoint,
+  InitiateVerificationEndpoint,
   IntegrationType,
   RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint,
   ResetPasswordEndpoint,
+  RetrieveProfileEndpoint,
   ScalexInternalAPI,
   ScalexInternalApiVersions,
   ScalexInternalEnvironments,
   TokenActions,
   TokenExpiry,
+  UpdateProfileEndpoint,
   UserStatus,
   VerifiableEntity,
   VerificationAction,
