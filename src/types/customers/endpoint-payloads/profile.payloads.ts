@@ -12,12 +12,12 @@ export interface IUpdateProfileResponse {
 
 export const UpdateProfileEndpoint: Endpoint = {
     method: HttpMethods.Patch,
-    path: 'customer-profile',
-    fullPath: 'customer-profile'
+    path: '/customer-profile',
+    fullPath: '/customer-profile'
 }
 
 export const RetrieveProfileEndpoint: Endpoint = {
     method: HttpMethods.Get,
-    path: 'customer-profile',
-    fullPath: 'customer-profile'
+    path: '/customer-profile',
+    fullPath: '/customer-profile'
 }

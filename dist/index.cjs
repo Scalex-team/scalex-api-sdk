@@ -315,13 +315,13 @@ var InitiateVerificationEndpoint = {
 // src/types/customers/endpoint-payloads/profile.payloads.ts
 var UpdateProfileEndpoint = {
   method: "PATCH" /* Patch */,
-  path: "customer-profile",
-  fullPath: "customer-profile"
+  path: "/customer-profile",
+  fullPath: "/customer-profile"
 };
 var RetrieveProfileEndpoint = {
   method: "GET" /* Get */,
-  path: "customer-profile",
-  fullPath: "customer-profile"
+  path: "/customer-profile",
+  fullPath: "/customer-profile"
 };
 
 // src/types/customers/models/verification.models.ts
