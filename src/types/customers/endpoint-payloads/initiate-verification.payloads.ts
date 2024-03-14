@@ -12,5 +12,5 @@ export interface IInitiateVerificationResponse {
 export const InitiateVerificationEndpoint: Endpoint = {
     method: HttpMethods.Post,
     path: '/customer-verification',
-    fullPath: '/customers-verification'
+    fullPath: '/customer-verification'
 }

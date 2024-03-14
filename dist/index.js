@@ -249,7 +249,7 @@ var Verify2faForLoginEndpoint = {
 var InitiateVerificationEndpoint = {
   method: "POST" /* Post */,
   path: "/customer-verification",
-  fullPath: "/customers-verification"
+  fullPath: "/customer-verification"
 };
 
 // src/types/customers/endpoint-payloads/profile.payloads.ts
@@ -447,6 +447,16 @@ var ScalexInternalAPI = class {
     this.customers = new ScalexCustomersSdk(this.apiUrl);
   }
 };
+
+// src/constants/sockets.constants.ts
+var socketChannelsAndEvents = {
+  verification: {
+    channelName: "verification",
+    events: {
+      completedVerification: "completed-verification"
+    }
+  }
+};
 export {
   ActiveOrInactive,
   AuthStatus,
@@ -475,6 +485,7 @@ export {
   Verify2faEndpoint,
   Verify2faForLoginEndpoint,
   VerifyOtpAndCreatePasswordEndpoint,
-  VerifyOtpAndPasswordForLoginEndpoint
+  VerifyOtpAndPasswordForLoginEndpoint,
+  socketChannelsAndEvents
 };
 //# sourceMappingURL=index.js.map

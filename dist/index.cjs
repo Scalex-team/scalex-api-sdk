@@ -91,7 +91,8 @@ __export(src_exports, {
   Verify2faEndpoint: () => Verify2faEndpoint,
   Verify2faForLoginEndpoint: () => Verify2faForLoginEndpoint,
   VerifyOtpAndCreatePasswordEndpoint: () => VerifyOtpAndCreatePasswordEndpoint,
-  VerifyOtpAndPasswordForLoginEndpoint: () => VerifyOtpAndPasswordForLoginEndpoint
+  VerifyOtpAndPasswordForLoginEndpoint: () => VerifyOtpAndPasswordForLoginEndpoint,
+  socketChannelsAndEvents: () => socketChannelsAndEvents
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -309,7 +310,7 @@ var Verify2faForLoginEndpoint = {
 var InitiateVerificationEndpoint = {
   method: "POST" /* Post */,
   path: "/customer-verification",
-  fullPath: "/customers-verification"
+  fullPath: "/customer-verification"
 };
 
 // src/types/customers/endpoint-payloads/profile.payloads.ts
@@ -507,6 +508,16 @@ var ScalexInternalAPI = class {
     this.customers = new ScalexCustomersSdk(this.apiUrl);
   }
 };
+
+// src/constants/sockets.constants.ts
+var socketChannelsAndEvents = {
+  verification: {
+    channelName: "verification",
+    events: {
+      completedVerification: "completed-verification"
+    }
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   ActiveOrInactive,
@@ -536,6 +547,7 @@ var ScalexInternalAPI = class {
   Verify2faEndpoint,
   Verify2faForLoginEndpoint,
   VerifyOtpAndCreatePasswordEndpoint,
-  VerifyOtpAndPasswordForLoginEndpoint
+  VerifyOtpAndPasswordForLoginEndpoint,
+  socketChannelsAndEvents
 });
 //# sourceMappingURL=index.cjs.map
