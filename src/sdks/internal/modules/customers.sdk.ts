@@ -29,7 +29,11 @@ import {
     UpdateProfileEndpoint,
     IUpdateProfilePayload,
     IUpdateProfileResponse,
-    RetrieveProfileEndpoint
+    RetrieveProfileEndpoint,
+    IUpdateAddressPayload,
+    IUpdateAddressResponse,
+    UpdateAddressEndpoint,
+    ICreateBusinessPayload, ICreateBusinessResponse
 } from "../../../types";
 
 export class ScalexCustomersSdk {
@@ -161,6 +165,30 @@ export class ScalexCustomersSdk {
         return callApi<IInitiateVerificationPayload, IInitiateVerificationResponse>({
             serviceUri: this.apiUrl,
             endpoint: InitiateVerificationEndpoint,
+            body: payload,
+            headers: {
+                ...setBearerToken(authToken)
+            }
+        })
+    }
+
+    async updateAddress( payload: IUpdateAddressPayload, authToken: string )
+        : Promise<ScalexSuccessResponse<IUpdateAddressResponse>> {
+        return callApi<IUpdateAddressPayload, IUpdateAddressResponse>({
+            serviceUri: this.apiUrl,
+            endpoint: UpdateAddressEndpoint,
+            body: payload,
+            headers: {
+                ...setBearerToken(authToken)
+            }
+        })
+    }
+
+    async createBusiness( payload: ICreateBusinessPayload, authToken: string )
+        : Promise<ScalexSuccessResponse<ICreateBusinessResponse>> {
+        return callApi<ICreateBusinessPayload, ICreateBusinessResponse>({
+            serviceUri: this.apiUrl,
+            endpoint: UpdateAddressEndpoint,
             body: payload,
             headers: {
                 ...setBearerToken(authToken)

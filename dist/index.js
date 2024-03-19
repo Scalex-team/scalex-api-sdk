@@ -258,6 +258,16 @@ var UpdateProfileEndpoint = {
   path: "/customer-profile",
   fullPath: "/customer-profile"
 };
+var CreateBusinessEndpoint = {
+  method: "POST" /* Post */,
+  path: "/businesses",
+  fullPath: "/businesses"
+};
+var UpdateAddressEndpoint = {
+  method: "PATCH" /* Patch */,
+  path: "/customer-address",
+  fullPath: "/customer-address"
+};
 var RetrieveProfileEndpoint = {
   method: "GET" /* Get */,
   path: "/customer-profile",
@@ -423,6 +433,26 @@ var ScalexCustomersSdk = class {
       });
     });
   }
+  updateAddress(payload, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: UpdateAddressEndpoint,
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
+  createBusiness(payload, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: UpdateAddressEndpoint,
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
 };
 
 // src/sdks/internal/internal.sdk.ts
@@ -460,6 +490,7 @@ var socketChannelsAndEvents = {
 export {
   ActiveOrInactive,
   AuthStatus,
+  CreateBusinessEndpoint,
   HttpMethods,
   Initiate2faEndpoint,
   InitiateVerificationEndpoint,
@@ -474,6 +505,7 @@ export {
   ScalexInternalEnvironments,
   TokenActions,
   TokenExpiry,
+  UpdateAddressEndpoint,
   UpdateProfileEndpoint,
   UserStatus,
   VerifiableEntity,

@@ -1,4 +1,4 @@
-import {Endpoint, HttpMethods, IUser} from "../../generic";
+import {Address, Business, Endpoint, HttpMethods, IUser} from "../../generic";
 
 export interface IUpdateProfilePayload {
     firstName: string;
@@ -6,6 +6,17 @@ export interface IUpdateProfilePayload {
     dateOfBirth: Date;
 }
 
+export interface ICreateBusinessPayload extends Business {}
+
+export interface IUpdateAddressPayload extends Address {}
+
+export interface IUpdateAddressResponse {
+    customer: Partial<IUser>
+}
+
+export interface ICreateBusinessResponse {
+    customer: Partial<IUser>
+}
 export interface IUpdateProfileResponse {
     customer: Partial<IUser>
 }
@@ -14,6 +25,18 @@ export const UpdateProfileEndpoint: Endpoint = {
     method: HttpMethods.Patch,
     path: '/customer-profile',
     fullPath: '/customer-profile'
+}
+
+export const CreateBusinessEndpoint: Endpoint = {
+    method: HttpMethods.Post,
+    path: '/businesses',
+    fullPath: '/businesses'
+}
+
+export const UpdateAddressEndpoint: Endpoint = {
+    method: HttpMethods.Patch,
+    path: '/customer-address',
+    fullPath: '/customer-address'
 }
 
 export const RetrieveProfileEndpoint: Endpoint = {

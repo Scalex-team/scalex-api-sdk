@@ -1,6 +1,25 @@
 import {IBaseModel} from "../base.model";
 import {IAdminRoleMatrix} from "./admin-role-matrix.interface";
-import {VerifiableEntity, VerificationApplicationStatus} from "../../../customers/models/verification.models";
+import {VerifiableEntity, VerificationApplicationStatus} from "../../../customers";
+
+export interface Business extends IBaseModel {
+    country: string;
+    registration: {
+        name: string;
+        number: string;
+        date: Date;
+        agreedToKyc: boolean;
+    }
+}
+
+export interface Address extends IBaseModel {
+    country: string;
+    state: string;
+    city: string;
+    postalCode: string;
+    address: string;
+    proofOfAddress: string;
+}
 
 export interface IPassword {
     token: string;
@@ -41,6 +60,8 @@ export interface IUser extends IBaseModel {
         entity: VerifiableEntity,
         status: VerificationApplicationStatus
     }>
+    address: Address;
+    businesses: Array<Business>
 }
 
 export interface IUserMethods {

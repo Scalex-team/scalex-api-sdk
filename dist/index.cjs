@@ -66,6 +66,7 @@ var src_exports = {};
 __export(src_exports, {
   ActiveOrInactive: () => ActiveOrInactive,
   AuthStatus: () => AuthStatus,
+  CreateBusinessEndpoint: () => CreateBusinessEndpoint,
   HttpMethods: () => HttpMethods,
   Initiate2faEndpoint: () => Initiate2faEndpoint,
   InitiateVerificationEndpoint: () => InitiateVerificationEndpoint,
@@ -80,6 +81,7 @@ __export(src_exports, {
   ScalexInternalEnvironments: () => ScalexInternalEnvironments,
   TokenActions: () => TokenActions,
   TokenExpiry: () => TokenExpiry,
+  UpdateAddressEndpoint: () => UpdateAddressEndpoint,
   UpdateProfileEndpoint: () => UpdateProfileEndpoint,
   UserStatus: () => UserStatus,
   VerifiableEntity: () => VerifiableEntity,
@@ -319,6 +321,16 @@ var UpdateProfileEndpoint = {
   path: "/customer-profile",
   fullPath: "/customer-profile"
 };
+var CreateBusinessEndpoint = {
+  method: "POST" /* Post */,
+  path: "/businesses",
+  fullPath: "/businesses"
+};
+var UpdateAddressEndpoint = {
+  method: "PATCH" /* Patch */,
+  path: "/customer-address",
+  fullPath: "/customer-address"
+};
 var RetrieveProfileEndpoint = {
   method: "GET" /* Get */,
   path: "/customer-profile",
@@ -484,6 +496,26 @@ var ScalexCustomersSdk = class {
       });
     });
   }
+  updateAddress(payload, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: UpdateAddressEndpoint,
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
+  createBusiness(payload, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: UpdateAddressEndpoint,
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
 };
 
 // src/sdks/internal/internal.sdk.ts
@@ -522,6 +554,7 @@ var socketChannelsAndEvents = {
 0 && (module.exports = {
   ActiveOrInactive,
   AuthStatus,
+  CreateBusinessEndpoint,
   HttpMethods,
   Initiate2faEndpoint,
   InitiateVerificationEndpoint,
@@ -536,6 +569,7 @@ var socketChannelsAndEvents = {
   ScalexInternalEnvironments,
   TokenActions,
   TokenExpiry,
+  UpdateAddressEndpoint,
   UpdateProfileEndpoint,
   UserStatus,
   VerifiableEntity,

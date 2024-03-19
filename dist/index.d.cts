@@ -48,6 +48,67 @@ interface IAdminRoleMatrix extends IBaseModel {
     admin: IUser | string;
 }
 
+interface IRequestOtpToRegisterPayload {
+    email: string;
+}
+interface IRequestOtpToRegisterResponse {
+    token: string;
+}
+declare const RequestOtpToRegisterEndpoint: Endpoint;
+interface IVerifyOtpAndCreatePasswordPayload {
+    otp: string;
+    password: string;
+    agreedToTerms: boolean;
+}
+interface IVerifyOtpAndCreatePasswordResponse {
+    token: string;
+}
+declare const VerifyOtpAndCreatePasswordEndpoint: Endpoint;
+interface IInitiate2faResponse {
+    qr: string;
+    secret: string;
+}
+declare const Initiate2faEndpoint: Endpoint;
+interface IVerify2faTokenPayload {
+    token: string;
+}
+declare const Verify2faEndpoint: Endpoint;
+
+interface IRequestPasswordResetPayload {
+    email: string;
+}
+interface IRequestPasswordResetResponse {
+    token: string;
+}
+declare const RequestPasswordResetEndpoint: Endpoint;
+interface IResetPasswordPayload {
+    otp: string;
+    password: string;
+    confirmPassword: string;
+}
+declare const ResetPasswordEndpoint: Endpoint;
+
+interface IRequestOtpForLoginPayload {
+    email: string;
+}
+interface IVerifyOtpAndPasswordForLoginPayload {
+    otp: string;
+    password: string;
+}
+interface ILoginResponse {
+    token: string;
+}
+interface ITokenWithUserResponse {
+    token: string;
+    customer: Partial<IUser>;
+}
+interface IVerify2faForLoginPayload {
+    token: string;
+}
+declare const RequestOtpForLoginEndpoint: Endpoint;
+declare const VerifyOtpAndPasswordForLoginEndpoint: Endpoint;
+declare const Verify2faForLoginEndpoint: Endpoint;
+
 declare enum VerifiableEntity {
     governmentIssuedId = "government-issued-id",
     utilityBill = "utility-bill",
@@ -123,6 +184,54 @@ interface IVerificationApplication extends IBaseModel {
     }>;
 }
 
+interface IInitiateVerificationPayload {
+    entity: VerifiableEntity;
+}
+interface IInitiateVerificationResponse {
+    link: string;
+}
+declare const InitiateVerificationEndpoint: Endpoint;
+
+interface IUpdateProfilePayload {
+    firstName: string;
+    lastName: string;
+    dateOfBirth: Date;
+}
+interface ICreateBusinessPayload extends Business {
+}
+interface IUpdateAddressPayload extends Address {
+}
+interface IUpdateAddressResponse {
+    customer: Partial<IUser>;
+}
+interface ICreateBusinessResponse {
+    customer: Partial<IUser>;
+}
+interface IUpdateProfileResponse {
+    customer: Partial<IUser>;
+}
+declare const UpdateProfileEndpoint: Endpoint;
+declare const CreateBusinessEndpoint: Endpoint;
+declare const UpdateAddressEndpoint: Endpoint;
+declare const RetrieveProfileEndpoint: Endpoint;
+
+interface Business extends IBaseModel {
+    country: string;
+    registration: {
+        name: string;
+        number: string;
+        date: Date;
+        agreedToKyc: boolean;
+    };
+}
+interface Address extends IBaseModel {
+    country: string;
+    state: string;
+    city: string;
+    postalCode: string;
+    address: string;
+    proofOfAddress: string;
+}
 interface IPassword {
     token: string;
     hint: string;
@@ -159,6 +268,8 @@ interface IUser extends IBaseModel {
         entity: VerifiableEntity;
         status: VerificationApplicationStatus;
     }>;
+    address: Address;
+    businesses: Array<Business>;
 }
 interface IUserMethods {
     updatePassword(newPassword: string, hint?: string): void;
@@ -198,86 +309,6 @@ declare enum IntegrationType {
     REST = "rest"
 }
 
-interface IRequestOtpToRegisterPayload {
-    email: string;
-}
-interface IRequestOtpToRegisterResponse {
-    token: string;
-}
-declare const RequestOtpToRegisterEndpoint: Endpoint;
-interface IVerifyOtpAndCreatePasswordPayload {
-    otp: string;
-    password: string;
-    agreedToTerms: boolean;
-}
-interface IVerifyOtpAndCreatePasswordResponse {
-    token: string;
-}
-declare const VerifyOtpAndCreatePasswordEndpoint: Endpoint;
-interface IInitiate2faResponse {
-    qr: string;
-    secret: string;
-}
-declare const Initiate2faEndpoint: Endpoint;
-interface IVerify2faTokenPayload {
-    token: string;
-}
-declare const Verify2faEndpoint: Endpoint;
-
-interface IRequestPasswordResetPayload {
-    email: string;
-}
-interface IRequestPasswordResetResponse {
-    token: string;
-}
-declare const RequestPasswordResetEndpoint: Endpoint;
-interface IResetPasswordPayload {
-    otp: string;
-    password: string;
-    confirmPassword: string;
-}
-declare const ResetPasswordEndpoint: Endpoint;
-
-interface IRequestOtpForLoginPayload {
-    email: string;
-}
-interface IVerifyOtpAndPasswordForLoginPayload {
-    otp: string;
-    password: string;
-}
-interface ILoginResponse {
-    token: string;
-}
-interface ITokenWithUserResponse {
-    token: string;
-    customer: Partial<IUser>;
-}
-interface IVerify2faForLoginPayload {
-    token: string;
-}
-declare const RequestOtpForLoginEndpoint: Endpoint;
-declare const VerifyOtpAndPasswordForLoginEndpoint: Endpoint;
-declare const Verify2faForLoginEndpoint: Endpoint;
-
-interface IInitiateVerificationPayload {
-    entity: VerifiableEntity;
-}
-interface IInitiateVerificationResponse {
-    link: string;
-}
-declare const InitiateVerificationEndpoint: Endpoint;
-
-interface IUpdateProfilePayload {
-    firstName: string;
-    lastName: string;
-    dateOfBirth: Date;
-}
-interface IUpdateProfileResponse {
-    customer: Partial<IUser>;
-}
-declare const UpdateProfileEndpoint: Endpoint;
-declare const RetrieveProfileEndpoint: Endpoint;
-
 interface ScalexSuccessResponse<T> {
     statusCode?: HttpStatusCode;
     message?: string;
@@ -299,6 +330,8 @@ declare class ScalexCustomersSdk {
     updateProfile(payload: IUpdateProfilePayload, authToken: string): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
     retrieveProfile(authToken: string): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
     initiateVerification(payload: IInitiateVerificationPayload, authToken: string): Promise<ScalexSuccessResponse<IInitiateVerificationResponse>>;
+    updateAddress(payload: IUpdateAddressPayload, authToken: string): Promise<ScalexSuccessResponse<IUpdateAddressResponse>>;
+    createBusiness(payload: ICreateBusinessPayload, authToken: string): Promise<ScalexSuccessResponse<ICreateBusinessResponse>>;
 }
 
 declare enum ScalexInternalEnvironments {
@@ -324,4 +357,4 @@ declare const socketChannelsAndEvents: {
     };
 };
 
-export { ActiveOrInactive, type ApiResponse, AuthStatus, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAdminRoleMatrix, type IBaseModel, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };
+export { ActiveOrInactive, type Address, type ApiResponse, AuthStatus, type Business, CreateBusinessEndpoint, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAdminRoleMatrix, type IBaseModel, type ICreateBusinessPayload, type ICreateBusinessResponse, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };

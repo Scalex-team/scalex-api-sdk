@@ -45,7 +45,5 @@ i
 9src/types/customers/endpoint-payloads/profile.payloads.ts,9/e/9e9ca00192ca2d8ca4b69bcaa68cc3690712b390
 F
 src/constants/index.ts,c/4/c474d60acef81c229fcc1ee87758ef546a37ea82
-[
-+src/constants/sockets-channels.constants.ts,8/a/8aa1eec4d0fa159d8d3789f71b7d9d7793d62dc0
-<
-src/model.ts,c/0/c0cc5f285b5eeae57e093bc1a04f255cbaac658c
+A
+src/sdks/index.ts,a/c/ac0ec659fd297ff2c8711dca00f14e4d77b3ca2d
