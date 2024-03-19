@@ -2,7 +2,7 @@ import {IBaseModel} from "../base.model";
 import {IAdminRoleMatrix} from "./admin-role-matrix.interface";
 import {VerifiableEntity, VerificationApplicationStatus} from "../../../customers";
 
-export interface Business extends IBaseModel {
+export interface IBusiness extends IBaseModel {
     country: string;
     registration: {
         name: string;
@@ -12,7 +12,7 @@ export interface Business extends IBaseModel {
     }
 }
 
-export interface Address extends IBaseModel {
+export interface IAddress extends IBaseModel {
     country: string;
     state: string;
     city: string;
@@ -60,8 +60,8 @@ export interface IUser extends IBaseModel {
         entity: VerifiableEntity,
         status: VerificationApplicationStatus
     }>
-    address: Address;
-    businesses: Array<Business>
+    address: IAddress;
+    businesses: Array<IBusiness>
 }
 
 export interface IUserMethods {
