@@ -35,6 +35,7 @@ import {
     UpdateAddressEndpoint,
     ICreateBusinessPayload, ICreateBusinessResponse
 } from "../../../types";
+import { IRetrieveCountriesResponse, RetrieveCountriesEndpoint } from "../../../types/customers/endpoint-payloads/peference.payload";
 
 export class ScalexCustomersSdk {
     constructor( protected apiUrl: string ) {}
@@ -190,6 +191,17 @@ export class ScalexCustomersSdk {
             serviceUri: this.apiUrl,
             endpoint: UpdateAddressEndpoint,
             body: payload,
+            headers: {
+                ...setBearerToken(authToken)
+            }
+        })
+    }
+
+    async retrieveCountries( authToken: string )
+        : Promise<ScalexSuccessResponse<IRetrieveCountriesResponse>> {
+        return callApi<null, IRetrieveCountriesResponse>({
+            serviceUri: this.apiUrl,
+            endpoint: RetrieveCountriesEndpoint,
             headers: {
                 ...setBearerToken(authToken)
             }

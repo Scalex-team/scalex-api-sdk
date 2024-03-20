@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@scalex-api/sdk':
-    specifier: 'link:'
-    version: 'link:'
   axios:
     specifier: ^1.6.5
     version: 1.6.5
