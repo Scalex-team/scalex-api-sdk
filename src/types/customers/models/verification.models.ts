@@ -1,10 +1,15 @@
-import {ActiveOrInactive, IBaseModel, IntegrationType} from "../../generic";
+import {ActiveOrInactive, IBaseModel, IntegrationType, PassOrFail} from "../../generic";
 
 export enum VerifiableEntity {
     governmentIssuedId = 'government-issued-id',
     utilityBill = 'utility-bill',
     businessRegistrationCertificate = 'business-registration-certificate',
     phoneNumber = 'phone-number'
+}
+
+export type VerificationResult = {
+    entity: VerifiableEntity;
+    status: PassOrFail
 }
 
 export enum VerificationApplicantType {

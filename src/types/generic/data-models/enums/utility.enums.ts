@@ -7,3 +7,8 @@ export enum IntegrationType {
     SDK = 'sdk',
     REST = 'rest'
 }
+
+export enum PassOrFail {
+    passed = 'passed',
+    failed = 'failed'
+}

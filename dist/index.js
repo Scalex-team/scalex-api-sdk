@@ -193,6 +193,11 @@ var IntegrationType = /* @__PURE__ */ ((IntegrationType2) => {
   IntegrationType2["REST"] = "rest";
   return IntegrationType2;
 })(IntegrationType || {});
+var PassOrFail = /* @__PURE__ */ ((PassOrFail2) => {
+  PassOrFail2["passed"] = "passed";
+  PassOrFail2["failed"] = "failed";
+  return PassOrFail2;
+})(PassOrFail || {});
 
 // src/types/customers/endpoint-payloads/create-account.payloads.ts
 var RequestOtpToRegisterEndpoint = {
@@ -495,6 +500,7 @@ export {
   Initiate2faEndpoint,
   InitiateVerificationEndpoint,
   IntegrationType,
+  PassOrFail,
   RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint,

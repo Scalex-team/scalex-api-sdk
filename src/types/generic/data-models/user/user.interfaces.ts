@@ -58,6 +58,10 @@ export interface IUser extends IBaseModel {
     agreedToTerms: boolean;
     verifications: Array<{
         entity: VerifiableEntity,
+        references: {
+            linkId: string;
+            jobId: string;
+        }
         status: VerificationApplicationStatus
     }>
     address: IAddress;
