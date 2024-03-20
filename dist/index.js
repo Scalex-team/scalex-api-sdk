@@ -138,6 +138,14 @@ function setBearerToken(token) {
     Authorization: `Bearer ${token}`
   };
 }
+var myInterceptor = axios.interceptors.request.use(
+  (config) => {
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 // src/types/generic/endpoints.interface.ts
 var HttpMethods = /* @__PURE__ */ ((HttpMethods2) => {

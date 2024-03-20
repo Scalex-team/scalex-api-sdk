@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, Method } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 import { ApiResponse, Endpoint, ScalexError } from '../types';
 import {
   notifyClientOfSuccess,
@@ -49,7 +49,7 @@ export async function makeHttpRequest({
     url,
     data: body,
     headers: aggregatedHeaders,
-    params: query
+    params: query,
   });
 }
 
@@ -84,23 +84,11 @@ export function setBearerToken(token: string) {
   };
 }
 
-export function check401Error(
-  storeDispatch: unknown,
-  store: unknown | any,
-  logoutUser: () => void
-) {
-  return axios.interceptors.response.use(
-    (response: any) => {
-      return response;
-    },
-    (error: any) => {
-      if (error.response.status === 401) {
-        store.dispatch(logoutUser());
-        // storeDispatch
-        window.location.reload();
-      }
-
-      return Promise.reject(error);
-    }
-  );
-}
+export const myInterceptor = axios.interceptors.request.use(
+  (config: AxiosRequestConfig | any) => {
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
