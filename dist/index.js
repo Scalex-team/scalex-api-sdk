@@ -466,6 +466,11 @@ var ScalexCustomersSdk = class {
       });
     });
   }
+  check401Error() {
+    return __async(this, null, function* () {
+      return myInterceptor;
+    });
+  }
 };
 
 // src/sdks/internal/internal.sdk.ts

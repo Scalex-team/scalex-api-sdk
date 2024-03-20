@@ -1,4 +1,4 @@
-import { ScalexSuccessResponse, callApi, setBearerToken } from "../../../functions";
+import { ScalexSuccessResponse, callApi, myInterceptor, setBearerToken } from "../../../functions";
 import {
     IInitiate2faResponse,
     IRequestOtpToRegisterPayload,
@@ -194,5 +194,9 @@ export class ScalexCustomersSdk {
                 ...setBearerToken(authToken)
             }
         })
+    }
+
+    async check401Error():Promise<any>  {
+        return myInterceptor
     }
 }
