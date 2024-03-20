@@ -12,3 +12,8 @@ export enum PassOrFail {
     passed = 'passed',
     failed = 'failed'
 }
+
+export enum CurrencyType {
+    Crypto = 'crypto',
+    Fiat = 'fiat'
+}

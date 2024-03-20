@@ -47,3 +47,23 @@ F
 src/constants/index.ts,c/4/c474d60acef81c229fcc1ee87758ef546a37ea82
 A
 src/sdks/index.ts,a/c/ac0ec659fd297ff2c8711dca00f14e4d77b3ca2d
+B
+src/types/index.ts,c/d/cd7a0a5ed00515f0d0cd32a8badd4ed5ef962af8
+<
+src/index.ts,c/5/c5fb850250c7443c48a6c12b5cf6916773da31f1
+O
+src/types/transactions/index.ts,7/1/71d76dd11231029fb276e06c152f1923bbebe9c1
+b
+2src/types/transactions/models/transaction.model.ts,7/5/75c0a5ada67943b5c358131092af4571ae943da0
+V
+&src/types/transactions/models/index.ts,c/7/c7a01d89cedebcd4d3d59807833420e9e770c56f
+I
+src/types/admins/index.ts,4/a/4a0927bd04e8aab9f4cc17e6a0bb00c60f96327c
+n
+>src/types/admins/endpoint-payloads/get-permissions.payloads.ts,2/5/25ec77d8efad38195636cdbcae49c4d571632deb
+[
++src/types/admins/endpoint-payloads/index.ts,f/9/f95e3af52c4706027de7bc90fd8288abf7bb9878
+d
+4src/types/admins/endpoint-payloads/login.payloads.ts,0/0/00f79b1266ed5208dd847388726c2c6f54f2da3f
+[
++src/types/transactions/models/rate.model.ts,7/5/75639a7f55b17cffadb9ce7d93bafc88b9b2c7a1

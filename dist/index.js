@@ -198,6 +198,11 @@ var PassOrFail = /* @__PURE__ */ ((PassOrFail2) => {
   PassOrFail2["failed"] = "failed";
   return PassOrFail2;
 })(PassOrFail || {});
+var CurrencyType = /* @__PURE__ */ ((CurrencyType2) => {
+  CurrencyType2["Crypto"] = "crypto";
+  CurrencyType2["Fiat"] = "fiat";
+  return CurrencyType2;
+})(CurrencyType || {});
 
 // src/types/customers/endpoint-payloads/create-account.payloads.ts
 var RequestOtpToRegisterEndpoint = {
@@ -317,6 +322,17 @@ var VerificationApplicationStatus = /* @__PURE__ */ ((VerificationApplicationSta
   VerificationApplicationStatus2["successful"] = "successful";
   return VerificationApplicationStatus2;
 })(VerificationApplicationStatus || {});
+
+// src/types/transactions/models/transaction.model.ts
+var TransactionStatus = /* @__PURE__ */ ((TransactionStatus2) => {
+  TransactionStatus2["initiated"] = "initiated";
+  TransactionStatus2["processing"] = "processing";
+  TransactionStatus2["completed"] = "completed";
+  TransactionStatus2["failed"] = "failed";
+  TransactionStatus2["expired"] = "expired";
+  TransactionStatus2["cancelled"] = "cancelled";
+  return TransactionStatus2;
+})(TransactionStatus || {});
 
 // src/sdks/internal/modules/customers.sdk.ts
 var ScalexCustomersSdk = class {
@@ -496,6 +512,7 @@ export {
   ActiveOrInactive,
   AuthStatus,
   CreateBusinessEndpoint,
+  CurrencyType,
   HttpMethods,
   Initiate2faEndpoint,
   InitiateVerificationEndpoint,
@@ -511,6 +528,7 @@ export {
   ScalexInternalEnvironments,
   TokenActions,
   TokenExpiry,
+  TransactionStatus,
   UpdateAddressEndpoint,
   UpdateProfileEndpoint,
   UserStatus,

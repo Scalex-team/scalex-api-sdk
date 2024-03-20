@@ -320,6 +320,78 @@ declare enum PassOrFail {
     passed = "passed",
     failed = "failed"
 }
+declare enum CurrencyType {
+    Crypto = "crypto",
+    Fiat = "fiat"
+}
+
+declare enum PercentageChangeTimeframes {
+    _1h = "_1h",
+    _1d = "_1d",
+    _1w = "_1w"
+}
+interface IPercentageChangeTimeframes {
+    timeframe: PercentageChangeTimeframes;
+    value: number;
+}
+interface IRate extends IBaseModel {
+    id: string;
+    rate: number;
+    percentageChange: Array<IPercentageChangeTimeframes>;
+    type: CurrencyType;
+}
+
+type Nuban = {
+    nuban: string;
+    bank: string;
+    name: string;
+};
+declare enum TransactionStatus {
+    initiated = "initiated",
+    processing = "processing",
+    completed = "completed",
+    failed = "failed",
+    expired = "expired",
+    cancelled = "cancelled"
+}
+type CurrencyAndAmount = {
+    currencyType: CurrencyType;
+    currency: {
+        id: string;
+        networkId: string;
+    };
+    amount: number;
+};
+interface ITransaction extends IBaseModel {
+    reference: string;
+    initiator: string;
+    status: TransactionStatus;
+    amount: CurrencyAndAmount;
+    request: CurrencyAndAmount;
+    recipient: {
+        id: string;
+        isInternal: boolean;
+        address?: string;
+        bankAccount?: string;
+    };
+    product: string;
+    fee: {
+        id: string;
+        charge: CurrencyAndAmount;
+    };
+    meta: {
+        rateSnapshots: {
+            currencyToUsdt: IRate;
+            currencyToRequest: IRate;
+            usdtToNaira: IRate;
+        };
+        productConfig: unknown;
+        ledgerBalance: {
+            before: number;
+            after: number;
+        };
+    };
+}
 
 interface ScalexSuccessResponse<T> {
     statusCode?: HttpStatusCode;
@@ -369,4 +441,4 @@ declare const socketChannelsAndEvents: {
     };
 };
 
-export { ActiveOrInactive, type ApiResponse, AuthStatus, CreateBusinessEndpoint, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAddress, type IAdminRoleMatrix, type IBaseModel, type IBusiness, type ICreateBusinessPayload, type ICreateBusinessResponse, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, PassOrFail, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, type VerificationResult, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };
+export { ActiveOrInactive, type ApiResponse, AuthStatus, CreateBusinessEndpoint, type CurrencyAndAmount, CurrencyType, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAddress, type IAdminRoleMatrix, type IBaseModel, type IBusiness, type ICreateBusinessPayload, type ICreateBusinessResponse, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type ITransaction, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, type Nuban, PassOrFail, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, TransactionStatus, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, type VerificationResult, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };
