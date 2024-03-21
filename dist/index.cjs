@@ -66,6 +66,7 @@ var src_exports = {};
 __export(src_exports, {
   ActiveOrInactive: () => ActiveOrInactive,
   AuthStatus: () => AuthStatus,
+  Continents: () => Continents,
   CreateBusinessEndpoint: () => CreateBusinessEndpoint,
   HttpMethods: () => HttpMethods,
   Initiate2faEndpoint: () => Initiate2faEndpoint,
@@ -230,7 +231,7 @@ var TokenExpiry = {
   "login": "10m"
 };
 
-// src/types/generic/data-models/user/user.interfaces.ts
+// src/types/generic/data-models/user/user.interface.ts
 var UserStatus = /* @__PURE__ */ ((UserStatus2) => {
   UserStatus2["Active"] = "active";
   UserStatus2["Suspended"] = "suspended";
@@ -245,6 +246,18 @@ var AuthStatus = /* @__PURE__ */ ((AuthStatus2) => {
   AuthStatus2["neverLoggedIn"] = "never-logged-in";
   return AuthStatus2;
 })(AuthStatus || {});
+
+// src/types/generic/data-models/user/country.interface.ts
+var Continents = /* @__PURE__ */ ((Continents2) => {
+  Continents2["AF"] = "Africa";
+  Continents2["AN"] = "Antarctica";
+  Continents2["AS"] = "Asia";
+  Continents2["EU"] = "Europe";
+  Continents2["NA"] = "North America";
+  Continents2["OC"] = "Oceania";
+  Continents2["SA"] = "South America";
+  return Continents2;
+})(Continents || {});
 
 // src/types/generic/data-models/enums/utility.enums.ts
 var ActiveOrInactive = /* @__PURE__ */ ((ActiveOrInactive2) => {
@@ -381,6 +394,13 @@ var VerificationApplicationStatus = /* @__PURE__ */ ((VerificationApplicationSta
   VerificationApplicationStatus2["successful"] = "successful";
   return VerificationApplicationStatus2;
 })(VerificationApplicationStatus || {});
+
+// src/types/customers/endpoint-payloads/peference.payload.ts
+var RetrieveCountriesEndpoint = {
+  method: "GET" /* Get */,
+  path: "/countries",
+  fullPath: "/countries"
+};
 
 // src/sdks/internal/modules/customers.sdk.ts
 var ScalexCustomersSdk = class {
@@ -522,6 +542,15 @@ var ScalexCustomersSdk = class {
       });
     });
   }
+  retrieveCountries(authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveCountriesEndpoint,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
 };
 
 // src/sdks/internal/internal.sdk.ts
@@ -560,6 +589,7 @@ var socketChannelsAndEvents = {
 0 && (module.exports = {
   ActiveOrInactive,
   AuthStatus,
+  Continents,
   CreateBusinessEndpoint,
   HttpMethods,
   Initiate2faEndpoint,
