@@ -219,6 +219,11 @@ declare const CreateBusinessEndpoint: Endpoint;
 declare const UpdateAddressEndpoint: Endpoint;
 declare const RetrieveProfileEndpoint: Endpoint;
 
+interface IRetrieveCountriesResponse {
+    countries: Array<Partial<ICountry>>;
+}
+declare const RetrieveCountriesEndpoint: Endpoint;
+
 interface IBusiness extends IBaseModel {
     country: string;
     registration: {
@@ -359,10 +364,6 @@ interface ScalexSuccessResponse<T> {
     data?: T;
 }
 
-interface IRetrieveCountriesResponse {
-    countries: Array<Partial<ICountry>>;
-}
-
 declare class ScalexCustomersSdk {
     protected apiUrl: string;
     constructor(apiUrl: string);
@@ -406,4 +407,4 @@ declare const socketChannelsAndEvents: {
     };
 };
 
-export { ActiveOrInactive, type ApiResponse, AuthStatus, Continents, CreateBusinessEndpoint, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAddress, type IAdminRoleMatrix, type IBaseModel, type IBusiness, type ICountry, type ICreateBusinessPayload, type ICreateBusinessResponse, type IFiatCurrency, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type ILanguage, type ILoginResponse, type IPassword, type IPermission, type IPhoneCode, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, PassOrFail, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, type VerificationResult, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };
+export { ActiveOrInactive, type ApiResponse, AuthStatus, Continents, CreateBusinessEndpoint, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAddress, type IAdminRoleMatrix, type IBaseModel, type IBusiness, type ICountry, type ICreateBusinessPayload, type ICreateBusinessResponse, type IFiatCurrency, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type ILanguage, type ILoginResponse, type IPassword, type IPermission, type IPhoneCode, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRetrieveCountriesResponse, type IRole, type ITokenWithUserResponse, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, PassOrFail, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveCountriesEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, type VerificationResult, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };

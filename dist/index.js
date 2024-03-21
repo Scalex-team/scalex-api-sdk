@@ -291,6 +291,13 @@ var RetrieveProfileEndpoint = {
   fullPath: "/customer-profile"
 };
 
+// src/types/customers/endpoint-payloads/peference.payload.ts
+var RetrieveCountriesEndpoint = {
+  method: "GET" /* Get */,
+  path: "/countries",
+  fullPath: "/countries"
+};
+
 // src/types/customers/models/verification.models.ts
 var VerifiableEntity = /* @__PURE__ */ ((VerifiableEntity2) => {
   VerifiableEntity2["governmentIssuedId"] = "government-issued-id";
@@ -329,13 +336,6 @@ var VerificationApplicationStatus = /* @__PURE__ */ ((VerificationApplicationSta
   VerificationApplicationStatus2["successful"] = "successful";
   return VerificationApplicationStatus2;
 })(VerificationApplicationStatus || {});
-
-// src/types/customers/endpoint-payloads/peference.payload.ts
-var RetrieveCountriesEndpoint = {
-  method: "GET" /* Get */,
-  path: "/countries",
-  fullPath: "/countries"
-};
 
 // src/sdks/internal/modules/customers.sdk.ts
 var ScalexCustomersSdk = class {
@@ -534,6 +534,7 @@ export {
   RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint,
   ResetPasswordEndpoint,
+  RetrieveCountriesEndpoint,
   RetrieveProfileEndpoint,
   ScalexInternalAPI,
   ScalexInternalApiVersions,
