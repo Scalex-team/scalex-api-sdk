@@ -7,5 +7,5 @@ export interface IRetrieveCountriesResponse {
 export const RetrieveCountriesEndpoint: Endpoint = {
     method: HttpMethods.Get,
     path: '/countries',
-    fullPath: '/countries'
+    fullPath: '/countries',
 }
