@@ -294,8 +294,8 @@ var RetrieveProfileEndpoint = {
 // src/types/customers/endpoint-payloads/peference.payload.ts
 var RetrieveCountriesEndpoint = {
   method: "GET" /* Get */,
-  path: "/countries",
-  fullPath: "/countries"
+  path: "/preferences/countries",
+  fullPath: "/preferences/countries"
 };
 
 // src/types/customers/models/verification.models.ts
