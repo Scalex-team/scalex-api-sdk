@@ -202,6 +202,14 @@ function setBearerToken(token) {
     Authorization: `Bearer ${token}`
   };
 }
+var myInterceptor = import_axios2.default.interceptors.request.use(
+  (config) => {
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 // src/types/generic/endpoints.interface.ts
 var HttpMethods = /* @__PURE__ */ ((HttpMethods2) => {
@@ -520,6 +528,11 @@ var ScalexCustomersSdk = class {
         body: payload,
         headers: __spreadValues({}, setBearerToken(authToken))
       });
+    });
+  }
+  check401Error() {
+    return __async(this, null, function* () {
+      return myInterceptor;
     });
   }
 };

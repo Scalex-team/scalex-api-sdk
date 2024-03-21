@@ -1,4 +1,4 @@
-import { ScalexSuccessResponse, callApi, setBearerToken } from "../../../functions";
+import { ScalexSuccessResponse, callApi, myInterceptor, setBearerToken } from "../../../functions";
 import {
     IInitiate2faResponse,
     IRequestOtpToRegisterPayload,
