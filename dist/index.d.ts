@@ -381,7 +381,7 @@ declare class ScalexCustomersSdk {
     initiateVerification(payload: IInitiateVerificationPayload, authToken: string): Promise<ScalexSuccessResponse<IInitiateVerificationResponse>>;
     updateAddress(payload: IUpdateAddressPayload, authToken: string): Promise<ScalexSuccessResponse<IUpdateAddressResponse>>;
     createBusiness(payload: ICreateBusinessPayload, authToken: string): Promise<ScalexSuccessResponse<ICreateBusinessResponse>>;
-    check401Error(): Promise<number>;
+    check401Error(): number;
     retrieveCountries(authToken: string): Promise<ScalexSuccessResponse<IRetrieveCountriesResponse>>;
 }
 

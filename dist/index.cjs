@@ -558,9 +558,7 @@ var ScalexCustomersSdk = class {
     });
   }
   check401Error() {
-    return __async(this, null, function* () {
-      return myInterceptor;
-    });
+    return myInterceptor;
   }
   retrieveCountries(authToken) {
     return __async(this, null, function* () {

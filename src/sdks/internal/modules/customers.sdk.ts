@@ -240,7 +240,7 @@ export class ScalexCustomersSdk {
     });
   }
 
-  async check401Error() {
+  check401Error() {
     return myInterceptor;
   }
 
