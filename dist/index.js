@@ -143,7 +143,7 @@ var myInterceptor = axios.interceptors.request.use(
     return config;
   },
   (error) => {
-    return Promise.reject(error);
+    return error;
   }
 );
 
@@ -174,7 +174,7 @@ var TokenExpiry = {
   "login": "10m"
 };
 
-// src/types/generic/data-models/user/user.interfaces.ts
+// src/types/generic/data-models/user/user.interface.ts
 var UserStatus = /* @__PURE__ */ ((UserStatus2) => {
   UserStatus2["Active"] = "active";
   UserStatus2["Suspended"] = "suspended";
@@ -189,6 +189,18 @@ var AuthStatus = /* @__PURE__ */ ((AuthStatus2) => {
   AuthStatus2["neverLoggedIn"] = "never-logged-in";
   return AuthStatus2;
 })(AuthStatus || {});
+
+// src/types/generic/data-models/user/country.interface.ts
+var Continents = /* @__PURE__ */ ((Continents2) => {
+  Continents2["AF"] = "Africa";
+  Continents2["AN"] = "Antarctica";
+  Continents2["AS"] = "Asia";
+  Continents2["EU"] = "Europe";
+  Continents2["NA"] = "North America";
+  Continents2["OC"] = "Oceania";
+  Continents2["SA"] = "South America";
+  return Continents2;
+})(Continents || {});
 
 // src/types/generic/data-models/enums/utility.enums.ts
 var ActiveOrInactive = /* @__PURE__ */ ((ActiveOrInactive2) => {
@@ -287,6 +299,13 @@ var RetrieveProfileEndpoint = {
   fullPath: "/customer-profile"
 };
 
+// src/types/customers/endpoint-payloads/peference.payload.ts
+var RetrieveCountriesEndpoint = {
+  method: "GET" /* Get */,
+  path: "/preferences/countries",
+  fullPath: "/preferences/countries"
+};
+
 // src/types/customers/models/verification.models.ts
 var VerifiableEntity = /* @__PURE__ */ ((VerifiableEntity2) => {
   VerifiableEntity2["governmentIssuedId"] = "government-issued-id";
@@ -333,11 +352,13 @@ var ScalexCustomersSdk = class {
   }
   requestOtpToRegister(payload) {
     return __async(this, null, function* () {
-      return callApi({
-        serviceUri: this.apiUrl,
-        endpoint: RequestOtpToRegisterEndpoint,
-        body: payload
-      });
+      return callApi(
+        {
+          serviceUri: this.apiUrl,
+          endpoint: RequestOtpToRegisterEndpoint,
+          body: payload
+        }
+      );
     });
   }
   verifyOtpAndCreatePassword(payload, authToken) {
@@ -371,11 +392,13 @@ var ScalexCustomersSdk = class {
   }
   requestPasswordReset(payload) {
     return __async(this, null, function* () {
-      return callApi({
-        serviceUri: this.apiUrl,
-        endpoint: RequestPasswordResetEndpoint,
-        body: payload
-      });
+      return callApi(
+        {
+          serviceUri: this.apiUrl,
+          endpoint: RequestPasswordResetEndpoint,
+          body: payload
+        }
+      );
     });
   }
   resetPassword(payload, authToken) {
@@ -438,12 +461,14 @@ var ScalexCustomersSdk = class {
   }
   initiateVerification(payload, authToken) {
     return __async(this, null, function* () {
-      return callApi({
-        serviceUri: this.apiUrl,
-        endpoint: InitiateVerificationEndpoint,
-        body: payload,
-        headers: __spreadValues({}, setBearerToken(authToken))
-      });
+      return callApi(
+        {
+          serviceUri: this.apiUrl,
+          endpoint: InitiateVerificationEndpoint,
+          body: payload,
+          headers: __spreadValues({}, setBearerToken(authToken))
+        }
+      );
     });
   }
   updateAddress(payload, authToken) {
@@ -460,7 +485,7 @@ var ScalexCustomersSdk = class {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
-        endpoint: UpdateAddressEndpoint,
+        endpoint: CreateBusinessEndpoint,
         body: payload,
         headers: __spreadValues({}, setBearerToken(authToken))
       });
@@ -469,6 +494,15 @@ var ScalexCustomersSdk = class {
   check401Error() {
     return __async(this, null, function* () {
       return myInterceptor;
+    });
+  }
+  retrieveCountries(authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveCountriesEndpoint,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
     });
   }
 };
@@ -508,6 +542,7 @@ var socketChannelsAndEvents = {
 export {
   ActiveOrInactive,
   AuthStatus,
+  Continents,
   CreateBusinessEndpoint,
   HttpMethods,
   Initiate2faEndpoint,
@@ -518,6 +553,7 @@ export {
   RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint,
   ResetPasswordEndpoint,
+  RetrieveCountriesEndpoint,
   RetrieveProfileEndpoint,
   ScalexInternalAPI,
   ScalexInternalApiVersions,

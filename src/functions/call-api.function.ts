@@ -49,7 +49,7 @@ export async function makeHttpRequest({
     url,
     data: body,
     headers: aggregatedHeaders,
-    params: query,
+    params: query
   });
 }
 
@@ -89,6 +89,6 @@ export const myInterceptor = axios.interceptors.request.use(
     return config;
   },
   (error) => {
-    return Promise.reject(error);
+    return error;
   }
 );

@@ -1,6 +1,6 @@
 import { HttpStatusCode } from "axios";
 import { ScalexError } from "./errors.interface";
-import { IUser } from "./data-models/user/user.interfaces";
+import { IUser } from "./data-models/user/user.interface";
 
 export type ValuesOf<T extends any[]> = T[number];
 export interface ApiResponse<T> {
