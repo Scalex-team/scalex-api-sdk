@@ -13,21 +13,21 @@ export enum ScalexInternalApiVersions {
 const InternalEnvironmentUrls: {
     [key in ScalexInternalEnvironments]: string;
 } = {
-    local: 'http://localhost:8500',
-    dev: 'https://scalex-api-gateway-dev.up.railway.app',
-    prod: 'https://scalex-api.up.railway.app'
-}
+	local: 'http://localhost:8500',
+	dev: 'https://scalex-api-gateway-dev.up.railway.app',
+	prod: 'https://scalex-api.up.railway.app'
+};
 
 export class ScalexInternalAPI {
-    private readonly apiUrl: string;
-    customers: ScalexCustomersSdk;
+	private readonly apiUrl: string;
+	customers: ScalexCustomersSdk;
 
 
-    constructor(
-        environment: ScalexInternalEnvironments = ScalexInternalEnvironments.dev,
-        version: ScalexInternalApiVersions = ScalexInternalApiVersions.v1
-    ) {
-        this.apiUrl = InternalEnvironmentUrls[environment] + version;
-        this.customers = new ScalexCustomersSdk(this.apiUrl)
-    }
+	constructor(
+		environment: ScalexInternalEnvironments = ScalexInternalEnvironments.dev,
+		version: ScalexInternalApiVersions = ScalexInternalApiVersions.v1
+	) {
+		this.apiUrl = InternalEnvironmentUrls[environment] + version;
+		this.customers = new ScalexCustomersSdk( this.apiUrl );
+	}
 }

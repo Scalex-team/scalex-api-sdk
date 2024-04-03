@@ -9,10 +9,10 @@ export interface IRequestOtpToRegisterResponse {
 }
 
 export const RequestOtpToRegisterEndpoint: Endpoint = {
-    method: HttpMethods.Post,
-    path: '/otps',
-    fullPath: '/customers-auth/otps'
-}
+	method: HttpMethods.Post,
+	path: '/otps',
+	fullPath: '/customers-auth/otps'
+};
 
 export interface IVerifyOtpAndCreatePasswordPayload {
     otp: string;
@@ -25,10 +25,10 @@ export interface IVerifyOtpAndCreatePasswordResponse {
 }
 
 export const VerifyOtpAndCreatePasswordEndpoint: Endpoint = {
-    method: HttpMethods.Post,
-    path: '/passwords',
-    fullPath: '/customers-auth/passwords'
-}
+	method: HttpMethods.Post,
+	path: '/passwords',
+	fullPath: '/customers-auth/passwords'
+};
 
 export interface IInitiate2faResponse {
     qr: string;
@@ -36,18 +36,18 @@ export interface IInitiate2faResponse {
 }
 
 export const Initiate2faEndpoint: Endpoint = {
-    method: HttpMethods.Post,
-    path: '/2fa',
-    fullPath: '/customers-auth/2fa'
-}
+	method: HttpMethods.Post,
+	path: '/2fa',
+	fullPath: '/customers-auth/2fa'
+};
 
 export interface IVerify2faTokenPayload {
     token: string;
 }
 
 export const Verify2faEndpoint: Endpoint = {
-    method: HttpMethods.Patch,
-    path: '/2fa',
-    fullPath: '/customers-auth/2fa'
-}
+	method: HttpMethods.Patch,
+	path: '/2fa',
+	fullPath: '/customers-auth/2fa'
+};
 

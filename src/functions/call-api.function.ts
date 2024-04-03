@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import axios, { AxiosResponse, Method } from 'axios';
 import { ApiResponse, Endpoint, ScalexError } from '../types';
 import {
   notifyClientOfSuccess,
@@ -78,6 +79,7 @@ export async function callApi<Input, Output>(requestParams: {
   }
 }
 
+<<<<<<< HEAD
 export function setBearerToken(token: string) {
   return {
     Authorization: `Bearer ${token}`
@@ -92,3 +94,10 @@ export const myInterceptor = axios.interceptors.request.use(
     return error;
   }
 );
+=======
+export function setBearerToken( token: string ) {
+	return {
+		Authorization: `Bearer ${token}`
+	};
+}
+>>>>>>> feat/SCX-589

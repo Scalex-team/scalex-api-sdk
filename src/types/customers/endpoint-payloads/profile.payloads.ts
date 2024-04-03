@@ -22,25 +22,25 @@ export interface IUpdateProfileResponse {
 }
 
 export const UpdateProfileEndpoint: Endpoint = {
-    method: HttpMethods.Patch,
-    path: '/customer-profile',
-    fullPath: '/customer-profile'
-}
+	method: HttpMethods.Patch,
+	path: '/customer-profile',
+	fullPath: '/customer-profile'
+};
 
 export const CreateBusinessEndpoint: Endpoint = {
-    method: HttpMethods.Post,
-    path: '/businesses',
-    fullPath: '/businesses'
-}
+	method: HttpMethods.Post,
+	path: '/businesses',
+	fullPath: '/businesses'
+};
 
 export const UpdateAddressEndpoint: Endpoint = {
-    method: HttpMethods.Patch,
-    path: '/customer-address',
-    fullPath: '/customer-address'
-}
+	method: HttpMethods.Patch,
+	path: '/customer-address',
+	fullPath: '/customer-address'
+};
 
 export const RetrieveProfileEndpoint: Endpoint = {
-    method: HttpMethods.Get,
-    path: '/customer-profile',
-    fullPath: '/customer-profile'
-}
+	method: HttpMethods.Get,
+	path: '/customer-profile',
+	fullPath: '/customer-profile'
+};
