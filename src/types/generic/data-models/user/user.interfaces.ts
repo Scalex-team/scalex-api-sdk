@@ -74,7 +74,7 @@ export interface IUserMethods {
         hint?: string
     ): void;
 
-    updateAuthStatus(status: AuthStatus): void;
+    updateAuthStatus( status: AuthStatus ): void;
 
-    updatePasswordResetToken(token: string): void;
+    updatePasswordResetToken( token: string ): void;
 }

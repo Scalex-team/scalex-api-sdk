@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosResponse, Method } from 'axios';
 import { ApiResponse, Endpoint, ScalexError } from '../types';
 import { notifyClientOfSuccess, notifyClientOfFailure } from './send-api-response';
 export const ScalexAuthHeaderName = 'scalexadminauthorization';
 export const ScalexAuthBearerName = 'ScalexAdminBearer';
-export const AuthorizationHeaderName = 'Authorization'
+export const AuthorizationHeaderName = 'Authorization';
 
 export async function makeHttpRequest ( 
 	{
@@ -71,8 +72,8 @@ export async function callApi<Input, Output>( requestParams: {
 	}
 }
 
-export function setBearerToken(token: string) {
+export function setBearerToken( token: string ) {
 	return {
 		Authorization: `Bearer ${token}`
-	}
+	};
 }

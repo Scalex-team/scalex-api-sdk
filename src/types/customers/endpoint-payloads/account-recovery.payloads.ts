@@ -9,10 +9,10 @@ export interface IRequestPasswordResetResponse {
 }
 
 export const RequestPasswordResetEndpoint: Endpoint = {
-    method: HttpMethods.Post,
-    path: '',
-    fullPath: '/customers-account-recovery'
-}
+	method: HttpMethods.Post,
+	path: '',
+	fullPath: '/customers-account-recovery'
+};
 
 export interface IResetPasswordPayload {
     otp: string;
@@ -21,7 +21,7 @@ export interface IResetPasswordPayload {
 }
 
 export const ResetPasswordEndpoint: Endpoint = {
-    method: HttpMethods.Patch,
-    path: '',
-    fullPath: '/customers-account-recovery'
-}
+	method: HttpMethods.Patch,
+	path: '',
+	fullPath: '/customers-account-recovery'
+};

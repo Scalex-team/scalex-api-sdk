@@ -280,9 +280,9 @@ interface IUser extends IBaseModel {
     businesses: Array<IBusiness>;
 }
 interface IUserMethods {
-    updatePassword(newPassword: string, hint?: string): void;
-    updateAuthStatus(status: AuthStatus): void;
-    updatePasswordResetToken(token: string): void;
+    updatePassword( newPassword: string, hint?: string ): void;
+    updateAuthStatus( status: AuthStatus ): void;
+    updatePasswordResetToken( token: string ): void;
 }
 
 type ValuesOf<T extends any[]> = T[number];
@@ -400,22 +400,22 @@ interface ScalexSuccessResponse<T> {
 }
 
 declare class ScalexCustomersSdk {
-    protected apiUrl: string;
-    constructor(apiUrl: string);
-    requestOtpToRegister(payload: IRequestOtpToRegisterPayload): Promise<ScalexSuccessResponse<IRequestOtpToRegisterResponse>>;
-    verifyOtpAndCreatePassword(payload: IVerifyOtpAndCreatePasswordPayload, authToken: string): Promise<ScalexSuccessResponse<IVerifyOtpAndCreatePasswordResponse>>;
-    initiate2faRegistration(authToken: string): Promise<ScalexSuccessResponse<IInitiate2faResponse>>;
-    verify2faToken(payload: IVerify2faTokenPayload, authToken: string): Promise<ScalexSuccessResponse<ITokenWithUserResponse>>;
-    requestPasswordReset(payload: IRequestPasswordResetPayload): Promise<ScalexSuccessResponse<IRequestPasswordResetResponse>>;
-    resetPassword(payload: IResetPasswordPayload, authToken: string): Promise<ScalexSuccessResponse<null>>;
-    requestOtpToLogin(payload: IRequestOtpForLoginPayload): Promise<ScalexSuccessResponse<ILoginResponse>>;
-    verifyOtpAndPasswordForLogin(payload: IVerifyOtpAndPasswordForLoginPayload, authToken: string): Promise<ScalexSuccessResponse<ITokenWithUserResponse>>;
-    verify2faForLogin(payload: IVerify2faForLoginPayload, authToken: string): Promise<ScalexSuccessResponse<ILoginResponse>>;
-    updateProfile(payload: IUpdateProfilePayload, authToken: string): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
-    retrieveProfile(authToken: string): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
-    initiateVerification(payload: IInitiateVerificationPayload, authToken: string): Promise<ScalexSuccessResponse<IInitiateVerificationResponse>>;
-    updateAddress(payload: IUpdateAddressPayload, authToken: string): Promise<ScalexSuccessResponse<IUpdateAddressResponse>>;
-    createBusiness(payload: ICreateBusinessPayload, authToken: string): Promise<ScalexSuccessResponse<ICreateBusinessResponse>>;
+	protected apiUrl: string;
+	constructor( apiUrl: string );
+	requestOtpToRegister( payload: IRequestOtpToRegisterPayload ): Promise<ScalexSuccessResponse<IRequestOtpToRegisterResponse>>;
+	verifyOtpAndCreatePassword( payload: IVerifyOtpAndCreatePasswordPayload, authToken: string ): Promise<ScalexSuccessResponse<IVerifyOtpAndCreatePasswordResponse>>;
+	initiate2faRegistration( authToken: string ): Promise<ScalexSuccessResponse<IInitiate2faResponse>>;
+	verify2faToken( payload: IVerify2faTokenPayload, authToken: string ): Promise<ScalexSuccessResponse<ITokenWithUserResponse>>;
+	requestPasswordReset( payload: IRequestPasswordResetPayload ): Promise<ScalexSuccessResponse<IRequestPasswordResetResponse>>;
+	resetPassword( payload: IResetPasswordPayload, authToken: string ): Promise<ScalexSuccessResponse<null>>;
+	requestOtpToLogin( payload: IRequestOtpForLoginPayload ): Promise<ScalexSuccessResponse<ILoginResponse>>;
+	verifyOtpAndPasswordForLogin( payload: IVerifyOtpAndPasswordForLoginPayload, authToken: string ): Promise<ScalexSuccessResponse<ITokenWithUserResponse>>;
+	verify2faForLogin( payload: IVerify2faForLoginPayload, authToken: string ): Promise<ScalexSuccessResponse<ILoginResponse>>;
+	updateProfile( payload: IUpdateProfilePayload, authToken: string ): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
+	retrieveProfile( authToken: string ): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
+	initiateVerification( payload: IInitiateVerificationPayload, authToken: string ): Promise<ScalexSuccessResponse<IInitiateVerificationResponse>>;
+	updateAddress( payload: IUpdateAddressPayload, authToken: string ): Promise<ScalexSuccessResponse<IUpdateAddressResponse>>;
+	createBusiness( payload: ICreateBusinessPayload, authToken: string ): Promise<ScalexSuccessResponse<ICreateBusinessResponse>>;
 }
 
 declare enum ScalexInternalEnvironments {
@@ -427,9 +427,9 @@ declare enum ScalexInternalApiVersions {
     v1 = "/v1"
 }
 declare class ScalexInternalAPI {
-    private readonly apiUrl;
-    customers: ScalexCustomersSdk;
-    constructor(environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions);
+	private readonly apiUrl;
+	customers: ScalexCustomersSdk;
+	constructor( environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions );
 }
 
 declare const socketChannelsAndEvents: {

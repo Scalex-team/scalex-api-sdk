@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpStatusCode } from "axios";
 import { ScalexError } from "./errors.interface";
 import { IUser } from "./data-models/user/user.interfaces";

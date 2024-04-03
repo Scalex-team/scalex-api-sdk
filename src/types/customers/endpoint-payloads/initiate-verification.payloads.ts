@@ -10,7 +10,7 @@ export interface IInitiateVerificationResponse {
 }
 
 export const InitiateVerificationEndpoint: Endpoint = {
-    method: HttpMethods.Post,
-    path: '/customer-verification',
-    fullPath: '/customer-verification'
-}
+	method: HttpMethods.Post,
+	path: '/customer-verification',
+	fullPath: '/customer-verification'
+};
