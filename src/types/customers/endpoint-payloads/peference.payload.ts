@@ -5,7 +5,7 @@ export interface IRetrieveCountriesResponse {
 }
 
 export const RetrieveCountriesEndpoint: Endpoint = {
-    method: HttpMethods.Get,
-    path: '/preferences/countries',
-    fullPath: '/preferences/countries',
-}
+	method: HttpMethods.Get,
+	path: '/preferences/countries',
+	fullPath: '/preferences/countries',
+};

@@ -1,4 +1,4 @@
-import { IBaseModel } from "../base.model"
+import { IBaseModel } from "../base.model";
 
 export enum Continents {
 	AF = 'Africa',

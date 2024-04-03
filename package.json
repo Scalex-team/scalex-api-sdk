@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "npx tsup --dts",
-    "commit": "pnpm build && git add . && git commit -am ",
+    "commit": "pnpm lint:fix && pnpm build && git add . && git commit -am ",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
