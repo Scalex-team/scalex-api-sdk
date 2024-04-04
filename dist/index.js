@@ -280,11 +280,6 @@ var UpdateProfileEndpoint = {
   path: "/customer-profile",
   fullPath: "/customer-profile"
 };
-var CreateBusinessEndpoint = {
-  method: "POST" /* Post */,
-  path: "/businesses",
-  fullPath: "/businesses"
-};
 var UpdateAddressEndpoint = {
   method: "PATCH" /* Patch */,
   path: "/customer-address",
@@ -303,7 +298,24 @@ var RetrieveCountriesEndpoint = {
   fullPath: "/preferences/countries"
 };
 
-// src/types/customers/models/verification.models.ts
+// src/types/customers/endpoint-payloads/business.payloads.ts
+var CreateBusinessEndpoint = {
+  method: "POST" /* Post */,
+  path: "/businesses",
+  fullPath: "/businesses"
+};
+var CreateBusinessDirectorEndpoint = {
+  method: "POST" /* Post */,
+  path: "/directors",
+  fullPath: "/businesses/directors"
+};
+var CreateBusinessAddressEndpoint = {
+  method: "POST" /* Post */,
+  path: "/addresses",
+  fullPath: "/businesses/addresses"
+};
+
+// src/types/customers/models/verification-application.models.ts
 var VerifiableEntity = /* @__PURE__ */ ((VerifiableEntity2) => {
   VerifiableEntity2["governmentIssuedId"] = "government-issued-id";
   VerifiableEntity2["utilityBill"] = "utility-bill";
@@ -314,6 +326,7 @@ var VerifiableEntity = /* @__PURE__ */ ((VerifiableEntity2) => {
 var VerificationApplicantType = /* @__PURE__ */ ((VerificationApplicantType2) => {
   VerificationApplicantType2["individual"] = "individual";
   VerificationApplicantType2["business"] = "business";
+  VerificationApplicantType2["director"] = "director";
   return VerificationApplicantType2;
 })(VerificationApplicantType || {});
 var VerificationAction = /* @__PURE__ */ ((VerificationAction2) => {
@@ -341,6 +354,14 @@ var VerificationApplicationStatus = /* @__PURE__ */ ((VerificationApplicationSta
   VerificationApplicationStatus2["successful"] = "successful";
   return VerificationApplicationStatus2;
 })(VerificationApplicationStatus || {});
+
+// src/types/customers/models/business-profile.model.ts
+var BusinessRegistrationType = /* @__PURE__ */ ((BusinessRegistrationType2) => {
+  BusinessRegistrationType2["businessName"] = "business-name";
+  BusinessRegistrationType2["privateOrPublicLtd"] = "private-public-ltd";
+  BusinessRegistrationType2["incorporatedTrustees"] = "incorporated-trustees";
+  return BusinessRegistrationType2;
+})(BusinessRegistrationType || {});
 
 // src/types/transactions/models/transaction.model.ts
 var TransactionStatus = /* @__PURE__ */ ((TransactionStatus2) => {
@@ -516,8 +537,53 @@ var ScalexCustomersSdk = class {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
-        endpoint: UpdateAddressEndpoint,
+        endpoint: CreateBusinessEndpoint,
         body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
+  createBusinessDirector(payload, businessId, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: CreateBusinessDirectorEndpoint,
+        body: payload,
+        query: {
+          id: businessId
+        },
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
+  createBusinessAddress(payload, businessId, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: CreateBusinessAddressEndpoint,
+        body: payload,
+        query: {
+          id: businessId
+        },
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
+};
+
+// src/sdks/internal/modules/utils.sdk.ts
+var ScalexUtilsSdk = class {
+  constructor(apiUrl) {
+    this.apiUrl = apiUrl;
+  }
+  fetchJob(jobId, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: FetchJobEndpoint,
+        query: {
+          id: jobId
+        },
         headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
@@ -544,22 +610,26 @@ var ScalexInternalAPI = class {
   constructor(environment = "dev" /* dev */, version = "/v1" /* v1 */) {
     this.apiUrl = InternalEnvironmentUrls[environment] + version;
     this.customers = new ScalexCustomersSdk(this.apiUrl);
+    this.utils = new ScalexUtilsSdk(this.apiUrl);
   }
 };
 
 // src/constants/sockets.constants.ts
 var socketChannelsAndEvents = {
-  verification: {
-    channelName: "verification",
+  jobs: {
+    channelName: "job-stream",
     events: {
-      completedVerification: "completed-verification"
+      completed: "completed-job"
     }
   }
 };
 export {
   ActiveOrInactive,
   AuthStatus,
+  BusinessRegistrationType,
   Continents,
+  CreateBusinessAddressEndpoint,
+  CreateBusinessDirectorEndpoint,
   CreateBusinessEndpoint,
   CurrencyType,
   FetchJobEndpoint,

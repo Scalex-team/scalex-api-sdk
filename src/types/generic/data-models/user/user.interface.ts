@@ -1,24 +1,16 @@
 import {IBaseModel} from "../base.model";
 import {IAdminRoleMatrix} from "./admin-role-matrix.interface";
-import {VerifiableEntity, VerificationApplicationStatus} from "../../../customers";
-
-export interface IBusiness extends IBaseModel {
-    country: string;
-    registration: {
-        name: string;
-        number: string;
-        date: Date;
-        agreedToKyc: boolean;
-    }
-}
+import {IVerification} from "./verification.interface";
 
 export interface IAddress extends IBaseModel {
-    country: string;
-    state: string;
-    city: string;
-    postalCode: string;
-    address: string;
-    proofOfAddress: string;
+    location: {
+        country: string;
+        state: string;
+        city: string;
+        postalCode: string;
+        address: string;
+    },
+    verification?: IVerification;
 }
 
 export interface IPassword {
@@ -56,16 +48,9 @@ export interface IUser extends IBaseModel {
     twoFactorAuthSecret?: string;
     twoFactorAuthActive?: boolean;
     agreedToTerms: boolean;
-    verifications: Array<{
-        entity: VerifiableEntity,
-        references: {
-            linkId: string;
-            jobId: string;
-        }
-        status: VerificationApplicationStatus
-    }>
-    address: IAddress;
-    businesses: Array<IBusiness>
+    verifications: Array<IVerification>
+    addresses: Array<IAddress>;
+    businesses: Array<string>
 }
 
 export interface IUserMethods {
@@ -75,6 +60,5 @@ export interface IUserMethods {
     ): void;
 
     updateAuthStatus( status: AuthStatus ): void;
-
     updatePasswordResetToken( token: string ): void;
 }

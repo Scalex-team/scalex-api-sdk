@@ -1,8 +1,10 @@
-import {VerifiableEntity} from "../models";
+import {VerifiableEntity, VerificationApplicantType} from "../models";
 import {Endpoint, HttpMethods} from "../../generic";
 
 export interface IInitiateVerificationPayload {
     entity: VerifiableEntity;
+	applicant: VerificationApplicantType;
+	applicantId?: string;
 }
 
 export interface IInitiateVerificationResponse {

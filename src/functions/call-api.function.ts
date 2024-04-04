@@ -54,13 +54,13 @@ export async function makeHttpRequest( {
 	} );
 }
 
-export async function callApi<Input, Output>( requestParams: {
+export async function callApi<Input, Output, Query = Input>( requestParams: {
   serviceUri: string;
   endpoint: Endpoint;
   headers?: unknown;
   body?: Input;
   params?: Array<string>;
-  query?: unknown;
+  query?: Query;
 } ): Promise<ApiResponse<Output>> {
 	try {
 		const response = await makeHttpRequest( {

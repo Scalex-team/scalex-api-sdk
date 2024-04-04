@@ -1,8 +1,8 @@
 export const socketChannelsAndEvents = {
-	verification: {
-		channelName: 'verification',
+	jobs: {
+		channelName: 'job-stream',
 		events: {
-			completedVerification: 'completed-verification'
+			completed: 'completed-job'
 		}
 	}
 };

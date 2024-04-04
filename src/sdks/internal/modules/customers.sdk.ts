@@ -33,7 +33,13 @@ import {
 	IUpdateAddressPayload,
 	IUpdateAddressResponse,
 	UpdateAddressEndpoint,
-	ICreateBusinessPayload, ICreateBusinessResponse
+	ICreateBusinessPayload,
+	IJobResponse,
+	ICreateBusinessDirectorPayload,
+	IBusinessResponse,
+	CreateBusinessEndpoint,
+	CreateBusinessAddressEndpoint,
+	ICreateBusinessAddressPayload, IBusinessDirectorResponse, CreateBusinessDirectorEndpoint, IHasQueryIdPayload
 } from "../../../types";
 
 export class ScalexCustomersSdk {
@@ -161,8 +167,8 @@ export class ScalexCustomersSdk {
 	}
 
 	async initiateVerification( payload: IInitiateVerificationPayload, authToken: string )
-        : Promise<ScalexSuccessResponse<IInitiateVerificationResponse>> {
-		return callApi<IInitiateVerificationPayload, IInitiateVerificationResponse>( {
+        : Promise<ScalexSuccessResponse<IJobResponse<IInitiateVerificationResponse>>> {
+		return callApi<IInitiateVerificationPayload, IJobResponse<IInitiateVerificationResponse>>( {
 			serviceUri: this.apiUrl,
 			endpoint: InitiateVerificationEndpoint,
 			body: payload,
@@ -185,11 +191,41 @@ export class ScalexCustomersSdk {
 	}
 
 	async createBusiness( payload: ICreateBusinessPayload, authToken: string )
-        : Promise<ScalexSuccessResponse<ICreateBusinessResponse>> {
-		return callApi<ICreateBusinessPayload, ICreateBusinessResponse>( {
+        : Promise<ScalexSuccessResponse<IBusinessResponse>> {
+		return callApi<ICreateBusinessPayload, IBusinessResponse>( {
 			serviceUri: this.apiUrl,
-			endpoint: UpdateAddressEndpoint,
+			endpoint: CreateBusinessEndpoint,
 			body: payload,
+			headers: {
+				...setBearerToken( authToken )
+			}
+		} );
+	}
+
+	async createBusinessDirector( payload: ICreateBusinessDirectorPayload, businessId: string, authToken: string )
+		: Promise<ScalexSuccessResponse<IBusinessDirectorResponse>> {
+		return callApi<ICreateBusinessDirectorPayload, IBusinessDirectorResponse, IHasQueryIdPayload>( {
+			serviceUri: this.apiUrl,
+			endpoint: CreateBusinessDirectorEndpoint,
+			body: payload,
+			query: {
+				id: businessId
+			},
+			headers: {
+				...setBearerToken( authToken )
+			}
+		} );
+	}
+
+	async createBusinessAddress( payload: ICreateBusinessAddressPayload, businessId: string, authToken: string )
+		: Promise<ScalexSuccessResponse<IBusinessResponse>> {
+		return callApi<ICreateBusinessAddressPayload, IBusinessResponse, IHasQueryIdPayload>( {
+			serviceUri: this.apiUrl,
+			endpoint: CreateBusinessAddressEndpoint,
+			body: payload,
+			query: {
+				id: businessId
+			},
 			headers: {
 				...setBearerToken( authToken )
 			}

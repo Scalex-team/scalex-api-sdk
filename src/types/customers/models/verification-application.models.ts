@@ -14,7 +14,8 @@ export type VerificationResult = {
 
 export enum VerificationApplicantType {
     individual = 'individual',
-    business = 'business'
+    business = 'business',
+    director = 'director'
 }
 
 export enum VerificationAction {

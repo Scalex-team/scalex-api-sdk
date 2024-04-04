@@ -15,8 +15,6 @@ Z
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 Q
 !src/sdks/internal/internal.sdk.ts,1/e/1e90f19b4811dd47de574a0dad24b3bd1aac2b2c
-e
-5src/types/generic/data-models/user/user.interfaces.ts,c/7/c7cb1022c1b41f18ea2c18aa123c31ed00eef2ec
 [
 +src/types/generic/data-models/user/index.ts,2/f/2f78e097e86ceb3c59d9556a3fbaf82af471ba8c
 V
@@ -67,3 +65,23 @@ d
 4src/types/admins/endpoint-payloads/login.payloads.ts,0/0/00f79b1266ed5208dd847388726c2c6f54f2da3f
 [
 +src/types/transactions/models/rate.model.ts,7/5/75639a7f55b17cffadb9ce7d93bafc88b9b2c7a1
+d
+4src/types/customers/models/business-profile.model.ts,4/7/473fee306039b1cd6d53474b2c8dcc8a3d32ce2f
+d
+4src/types/generic/data-models/user/user.interface.ts,4/a/4a3f211b15f419fb78e8649dcaae85307199a6d3
+l
+<src/types/generic/data-models/user/verification.interface.ts,9/c/9c5d6cbd891a15aceb675d2d0116b31e5b11297e
+i
+9src/types/utils/endpoint-payloads/manage-jobs.payloads.ts,6/6/66cfa02d2c3553ee9dfd6d37715315bb1e372a4c
+j
+:src/types/customers/endpoint-payloads/peference.payload.ts,8/3/835d84393626624ec512dd197761f0d892c1b9a8
+j
+:src/types/customers/endpoint-payloads/business.payloads.ts,0/e/0e6840e51568adfa116b1716a18e2d7215ecc6bc
+R
+"src/constants/sockets.constants.ts,a/6/a68fcc84dd317cdbe46003a0dee0607ff6e89171
+V
+&src/sdks/internal/modules/utils.sdk.ts,1/6/16922e74bfee2caff87191e051d6e62639a93feb
+Y
+)src/types/generic/has-query-id.payload.ts,4/b/4b3c9c9f250b09a67a005cfb138072f23ba2689c
+R
+"src/sdks/internal/modules/index.ts,1/f/1f32dc1588a6ae84b2cbf23c09cfa7fbeb6f4054
