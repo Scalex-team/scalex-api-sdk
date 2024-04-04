@@ -577,6 +577,14 @@ var ScalexUtilsSdk = class {
   constructor(apiUrl) {
     this.apiUrl = apiUrl;
   }
+  retrieveCountries() {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveCountriesEndpoint
+      });
+    });
+  }
   fetchJob(jobId, authToken) {
     return __async(this, null, function* () {
       return callApi({

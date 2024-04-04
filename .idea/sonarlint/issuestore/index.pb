@@ -87,3 +87,5 @@ R
 "src/sdks/internal/modules/index.ts,1/f/1f32dc1588a6ae84b2cbf23c09cfa7fbeb6f4054
 S
 #src/types/utils/models/job.model.ts,3/f/3ffe4214c4338a99c2741df2313b403dc8e806e8
+?
+dist/index.d.ts,c/4/c4710d6913096aa14dd2677307171ae1d9c43b8b

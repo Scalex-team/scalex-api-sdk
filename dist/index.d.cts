@@ -564,6 +564,7 @@ declare class ScalexCustomersSdk {
 declare class ScalexUtilsSdk {
     protected apiUrl: string;
     constructor(apiUrl: string);
+    retrieveCountries(): Promise<ScalexSuccessResponse<IRetrieveCountriesResponse>>;
     fetchJob(jobId: string, authToken: string): Promise<ScalexSuccessResponse<IJobResponse<unknown>>>;
 }
 
