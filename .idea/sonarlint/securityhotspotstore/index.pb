@@ -85,3 +85,5 @@ Y
 )src/types/generic/has-query-id.payload.ts,4/b/4b3c9c9f250b09a67a005cfb138072f23ba2689c
 R
 "src/sdks/internal/modules/index.ts,1/f/1f32dc1588a6ae84b2cbf23c09cfa7fbeb6f4054
+S
+#src/types/utils/models/job.model.ts,3/f/3ffe4214c4338a99c2741df2313b403dc8e806e8

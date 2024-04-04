@@ -502,8 +502,8 @@ declare enum JobStatus {
     failed = "failed"
 }
 declare enum JobTask {
-    bulkCustomerUpload = "bulk-customer-upload",
-    bulkProductUpload = "bulk-product-upload"
+    kyc = "kyc",
+    kyb = "kyb"
 }
 declare enum JobClientType {
     merchant = "merchant",

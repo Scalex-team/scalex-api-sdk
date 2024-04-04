@@ -9,8 +9,8 @@ export enum JobStatus {
 }
 
 export enum JobTask {
-  bulkCustomerUpload = 'bulk-customer-upload',
-  bulkProductUpload = 'bulk-product-upload'
+  kyc = 'kyc',
+  kyb = 'kyb'
 }
 
 export enum JobClientType {

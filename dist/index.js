@@ -383,8 +383,8 @@ var JobStatus = /* @__PURE__ */ ((JobStatus2) => {
   return JobStatus2;
 })(JobStatus || {});
 var JobTask = /* @__PURE__ */ ((JobTask2) => {
-  JobTask2["bulkCustomerUpload"] = "bulk-customer-upload";
-  JobTask2["bulkProductUpload"] = "bulk-product-upload";
+  JobTask2["kyc"] = "kyc";
+  JobTask2["kyb"] = "kyb";
   return JobTask2;
 })(JobTask || {});
 var JobClientType = /* @__PURE__ */ ((JobClientType2) => {
