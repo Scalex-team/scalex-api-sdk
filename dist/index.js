@@ -477,12 +477,11 @@ var ScalexCustomersSdk = class {
       });
     });
   }
-  retrieveCountries(authToken) {
+  retrieveCountries() {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
-        endpoint: RetrieveCountriesEndpoint,
-        headers: __spreadValues({}, setBearerToken(authToken))
+        endpoint: RetrieveCountriesEndpoint
       });
     });
   }
