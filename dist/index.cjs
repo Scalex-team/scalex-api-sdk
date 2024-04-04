@@ -66,12 +66,17 @@ var src_exports = {};
 __export(src_exports, {
   ActiveOrInactive: () => ActiveOrInactive,
   AuthStatus: () => AuthStatus,
+  Continents: () => Continents,
   CreateBusinessEndpoint: () => CreateBusinessEndpoint,
   CurrencyType: () => CurrencyType,
+  FetchJobEndpoint: () => FetchJobEndpoint,
   HttpMethods: () => HttpMethods,
   Initiate2faEndpoint: () => Initiate2faEndpoint,
   InitiateVerificationEndpoint: () => InitiateVerificationEndpoint,
   IntegrationType: () => IntegrationType,
+  JobClientType: () => JobClientType,
+  JobStatus: () => JobStatus,
+  JobTask: () => JobTask,
   PassOrFail: () => PassOrFail,
   RequestOtpForLoginEndpoint: () => RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint: () => RequestOtpToRegisterEndpoint,
@@ -248,6 +253,18 @@ var AuthStatus = /* @__PURE__ */ ((AuthStatus2) => {
   return AuthStatus2;
 })(AuthStatus || {});
 
+// src/types/generic/data-models/user/country.interface.ts
+var Continents = /* @__PURE__ */ ((Continents2) => {
+  Continents2["AF"] = "Africa";
+  Continents2["AN"] = "Antarctica";
+  Continents2["AS"] = "Asia";
+  Continents2["EU"] = "Europe";
+  Continents2["NA"] = "North America";
+  Continents2["OC"] = "Oceania";
+  Continents2["SA"] = "South America";
+  return Continents2;
+})(Continents || {});
+
 // src/types/generic/data-models/enums/utility.enums.ts
 var ActiveOrInactive = /* @__PURE__ */ ((ActiveOrInactive2) => {
   ActiveOrInactive2["active"] = "active";
@@ -400,6 +417,42 @@ var TransactionStatus = /* @__PURE__ */ ((TransactionStatus2) => {
   return TransactionStatus2;
 })(TransactionStatus || {});
 
+// src/types/utils/models/job.model.ts
+var JobStatus = /* @__PURE__ */ ((JobStatus2) => {
+  JobStatus2["initiated"] = "initiated";
+  JobStatus2["pending"] = "pending";
+  JobStatus2["completed"] = "completed";
+  JobStatus2["failed"] = "failed";
+  return JobStatus2;
+})(JobStatus || {});
+var JobTask = /* @__PURE__ */ ((JobTask2) => {
+  JobTask2["bulkCustomerUpload"] = "bulk-customer-upload";
+  JobTask2["bulkProductUpload"] = "bulk-product-upload";
+  return JobTask2;
+})(JobTask || {});
+var JobClientType = /* @__PURE__ */ ((JobClientType2) => {
+  JobClientType2["merchant"] = "merchant";
+  JobClientType2["customer"] = "customer";
+  JobClientType2["store"] = "store";
+  JobClientType2["admin"] = "admin";
+  JobClientType2["system"] = "system";
+  return JobClientType2;
+})(JobClientType || {});
+
+// src/types/utils/endpoint-payloads/manage-jobs.payloads.ts
+var FetchJobEndpoint = {
+  method: "GET" /* Get */,
+  path: "/jobs",
+  fullPath: "/jobs"
+};
+
+// src/types/customers/endpoint-payloads/preference.payload.ts
+var RetrieveCountriesEndpoint = {
+  method: "GET" /* Get */,
+  path: "/preferences/countries",
+  fullPath: "/preferences/countries"
+};
+
 // src/sdks/internal/modules/customers.sdk.ts
 var ScalexCustomersSdk = class {
   constructor(apiUrl) {
@@ -540,6 +593,14 @@ var ScalexCustomersSdk = class {
       });
     });
   }
+  retrieveCountries() {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveCountriesEndpoint
+      });
+    });
+  }
 };
 
 // src/sdks/internal/internal.sdk.ts
@@ -578,12 +639,17 @@ var socketChannelsAndEvents = {
 0 && (module.exports = {
   ActiveOrInactive,
   AuthStatus,
+  Continents,
   CreateBusinessEndpoint,
   CurrencyType,
+  FetchJobEndpoint,
   HttpMethods,
   Initiate2faEndpoint,
   InitiateVerificationEndpoint,
   IntegrationType,
+  JobClientType,
+  JobStatus,
+  JobTask,
   PassOrFail,
   RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint,

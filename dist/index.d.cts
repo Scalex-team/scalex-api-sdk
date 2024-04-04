@@ -280,9 +280,9 @@ interface IUser extends IBaseModel {
     businesses: Array<IBusiness>;
 }
 interface IUserMethods {
-    updatePassword( newPassword: string, hint?: string ): void;
-    updateAuthStatus( status: AuthStatus ): void;
-    updatePasswordResetToken( token: string ): void;
+    updatePassword(newPassword: string, hint?: string): void;
+    updateAuthStatus(status: AuthStatus): void;
+    updatePasswordResetToken(token: string): void;
 }
 
 type ValuesOf<T extends any[]> = T[number];
@@ -307,6 +307,38 @@ type DecodedJwtToken = {
     action?: TokenActions;
 };
 type ScalexAuthenticatedRequest = Request & DecodedJwtToken;
+
+declare enum Continents {
+    AF = "Africa",
+    AN = "Antarctica",
+    AS = "Asia",
+    EU = "Europe",
+    NA = "North America",
+    OC = "Oceania",
+    SA = "South America"
+}
+interface ILanguage extends IBaseModel {
+    name: string;
+    shortCode: string;
+    native: string;
+}
+interface IPhoneCode extends IBaseModel {
+    code: string;
+}
+interface IFiatCurrency extends IBaseModel {
+    currency: string;
+}
+interface ICountry {
+    name: string;
+    native: string;
+    countryCode: string;
+    phoneCodes: Array<IPhoneCode> | Array<string>;
+    continent: Continents;
+    capital: string;
+    emoji: string;
+    currencies: Array<IFiatCurrency> | Array<string>;
+    languages: Array<ILanguage> | Array<string>;
+}
 
 declare enum ActiveOrInactive {
     active = "active",
@@ -393,29 +425,71 @@ interface ITransaction extends IBaseModel {
     };
 }
 
+declare enum JobStatus {
+    initiated = "initiated",
+    pending = "pending",
+    completed = "completed",
+    failed = "failed"
+}
+declare enum JobTask {
+    bulkCustomerUpload = "bulk-customer-upload",
+    bulkProductUpload = "bulk-product-upload"
+}
+declare enum JobClientType {
+    merchant = "merchant",
+    customer = "customer",
+    store = "store",
+    admin = "admin",
+    system = "system"
+}
+interface IJob<T = unknown> extends IBaseModel {
+    status: JobStatus;
+    client: {
+        type: JobClientType;
+        id?: string;
+    };
+    reports: Array<string>;
+    description: string;
+    task: JobTask;
+    metadata: T;
+}
+
+interface IViewJobPayload {
+    jobId: string;
+}
+interface IJobResponse<T> {
+    job: IJob<T>;
+}
+declare const FetchJobEndpoint: Endpoint;
+
 interface ScalexSuccessResponse<T> {
     statusCode?: HttpStatusCode;
     message?: string;
     data?: T;
 }
 
+interface IRetrieveCountriesResponse {
+    countries: Array<Partial<ICountry>>;
+}
+
 declare class ScalexCustomersSdk {
-	protected apiUrl: string;
-	constructor( apiUrl: string );
-	requestOtpToRegister( payload: IRequestOtpToRegisterPayload ): Promise<ScalexSuccessResponse<IRequestOtpToRegisterResponse>>;
-	verifyOtpAndCreatePassword( payload: IVerifyOtpAndCreatePasswordPayload, authToken: string ): Promise<ScalexSuccessResponse<IVerifyOtpAndCreatePasswordResponse>>;
-	initiate2faRegistration( authToken: string ): Promise<ScalexSuccessResponse<IInitiate2faResponse>>;
-	verify2faToken( payload: IVerify2faTokenPayload, authToken: string ): Promise<ScalexSuccessResponse<ITokenWithUserResponse>>;
-	requestPasswordReset( payload: IRequestPasswordResetPayload ): Promise<ScalexSuccessResponse<IRequestPasswordResetResponse>>;
-	resetPassword( payload: IResetPasswordPayload, authToken: string ): Promise<ScalexSuccessResponse<null>>;
-	requestOtpToLogin( payload: IRequestOtpForLoginPayload ): Promise<ScalexSuccessResponse<ILoginResponse>>;
-	verifyOtpAndPasswordForLogin( payload: IVerifyOtpAndPasswordForLoginPayload, authToken: string ): Promise<ScalexSuccessResponse<ITokenWithUserResponse>>;
-	verify2faForLogin( payload: IVerify2faForLoginPayload, authToken: string ): Promise<ScalexSuccessResponse<ILoginResponse>>;
-	updateProfile( payload: IUpdateProfilePayload, authToken: string ): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
-	retrieveProfile( authToken: string ): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
-	initiateVerification( payload: IInitiateVerificationPayload, authToken: string ): Promise<ScalexSuccessResponse<IInitiateVerificationResponse>>;
-	updateAddress( payload: IUpdateAddressPayload, authToken: string ): Promise<ScalexSuccessResponse<IUpdateAddressResponse>>;
-	createBusiness( payload: ICreateBusinessPayload, authToken: string ): Promise<ScalexSuccessResponse<ICreateBusinessResponse>>;
+    protected apiUrl: string;
+    constructor(apiUrl: string);
+    requestOtpToRegister(payload: IRequestOtpToRegisterPayload): Promise<ScalexSuccessResponse<IRequestOtpToRegisterResponse>>;
+    verifyOtpAndCreatePassword(payload: IVerifyOtpAndCreatePasswordPayload, authToken: string): Promise<ScalexSuccessResponse<IVerifyOtpAndCreatePasswordResponse>>;
+    initiate2faRegistration(authToken: string): Promise<ScalexSuccessResponse<IInitiate2faResponse>>;
+    verify2faToken(payload: IVerify2faTokenPayload, authToken: string): Promise<ScalexSuccessResponse<ITokenWithUserResponse>>;
+    requestPasswordReset(payload: IRequestPasswordResetPayload): Promise<ScalexSuccessResponse<IRequestPasswordResetResponse>>;
+    resetPassword(payload: IResetPasswordPayload, authToken: string): Promise<ScalexSuccessResponse<null>>;
+    requestOtpToLogin(payload: IRequestOtpForLoginPayload): Promise<ScalexSuccessResponse<ILoginResponse>>;
+    verifyOtpAndPasswordForLogin(payload: IVerifyOtpAndPasswordForLoginPayload, authToken: string): Promise<ScalexSuccessResponse<ITokenWithUserResponse>>;
+    verify2faForLogin(payload: IVerify2faForLoginPayload, authToken: string): Promise<ScalexSuccessResponse<ILoginResponse>>;
+    updateProfile(payload: IUpdateProfilePayload, authToken: string): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
+    retrieveProfile(authToken: string): Promise<ScalexSuccessResponse<IUpdateProfileResponse>>;
+    initiateVerification(payload: IInitiateVerificationPayload, authToken: string): Promise<ScalexSuccessResponse<IInitiateVerificationResponse>>;
+    updateAddress(payload: IUpdateAddressPayload, authToken: string): Promise<ScalexSuccessResponse<IUpdateAddressResponse>>;
+    createBusiness(payload: ICreateBusinessPayload, authToken: string): Promise<ScalexSuccessResponse<ICreateBusinessResponse>>;
+    retrieveCountries(): Promise<ScalexSuccessResponse<IRetrieveCountriesResponse>>;
 }
 
 declare enum ScalexInternalEnvironments {
@@ -427,9 +501,9 @@ declare enum ScalexInternalApiVersions {
     v1 = "/v1"
 }
 declare class ScalexInternalAPI {
-	private readonly apiUrl;
-	customers: ScalexCustomersSdk;
-	constructor( environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions );
+    private readonly apiUrl;
+    customers: ScalexCustomersSdk;
+    constructor(environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions);
 }
 
 declare const socketChannelsAndEvents: {
@@ -441,4 +515,4 @@ declare const socketChannelsAndEvents: {
     };
 };
 
-export { ActiveOrInactive, type ApiResponse, AuthStatus, CreateBusinessEndpoint, type CurrencyAndAmount, CurrencyType, type DecodedJwtToken, type Endpoint, type Endpoints, HttpMethods, type IAddress, type IAdminRoleMatrix, type IBaseModel, type IBusiness, type ICreateBusinessPayload, type ICreateBusinessResponse, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type ILoginResponse, type IPassword, type IPermission, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type ITransaction, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, type Nuban, PassOrFail, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, TransactionStatus, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, type VerificationResult, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };
+export { ActiveOrInactive, type ApiResponse, AuthStatus, Continents, CreateBusinessEndpoint, type CurrencyAndAmount, CurrencyType, type DecodedJwtToken, type Endpoint, type Endpoints, FetchJobEndpoint, HttpMethods, type IAddress, type IAdminRoleMatrix, type IBaseModel, type IBusiness, type ICountry, type ICreateBusinessPayload, type ICreateBusinessResponse, type IFiatCurrency, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type IJob, type IJobResponse, type ILanguage, type ILoginResponse, type IPassword, type IPermission, type IPhoneCode, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRole, type ITokenWithUserResponse, type ITransaction, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, type IViewJobPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, JobClientType, JobStatus, JobTask, type Nuban, PassOrFail, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, TransactionStatus, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, type VerificationResult, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };
