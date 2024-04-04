@@ -199,14 +199,11 @@ export class ScalexCustomersSdk {
         })
     }
 
-    async retrieveCountries( authToken: string )
+    async retrieveCountries( )
         : Promise<ScalexSuccessResponse<IRetrieveCountriesResponse>> {
         return callApi<null, IRetrieveCountriesResponse>({
             serviceUri: this.apiUrl,
             endpoint: RetrieveCountriesEndpoint,
-            headers: {
-                ...setBearerToken(authToken)
-            }
         })
     }
 }
