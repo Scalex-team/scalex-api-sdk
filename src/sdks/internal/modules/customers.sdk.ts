@@ -39,7 +39,9 @@ import {
 	IBusinessResponse,
 	CreateBusinessEndpoint,
 	CreateBusinessAddressEndpoint,
-	ICreateBusinessAddressPayload, IBusinessDirectorResponse, CreateBusinessDirectorEndpoint, IHasQueryIdPayload
+	ICreateBusinessAddressPayload, IBusinessDirectorResponse, CreateBusinessDirectorEndpoint, IHasQueryIdPayload,
+	IRetrieveCountriesResponse,
+	RetrieveCountriesEndpoint
 } from "../../../types";
 
 export class ScalexCustomersSdk {

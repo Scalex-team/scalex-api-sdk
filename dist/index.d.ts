@@ -557,6 +557,7 @@ declare class ScalexCustomersSdk {
     initiateVerification(payload: IInitiateVerificationPayload, authToken: string): Promise<ScalexSuccessResponse<IJobResponse<IInitiateVerificationResponse>>>;
     updateAddress(payload: IUpdateAddressPayload, authToken: string): Promise<ScalexSuccessResponse<IUpdateAddressResponse>>;
     createBusiness(payload: ICreateBusinessPayload, authToken: string): Promise<ScalexSuccessResponse<IBusinessResponse>>;
+    retrieveCountries(): Promise<ScalexSuccessResponse<IRetrieveCountriesResponse>>;
     createBusinessDirector(payload: ICreateBusinessDirectorPayload, businessId: string, authToken: string): Promise<ScalexSuccessResponse<IBusinessDirectorResponse>>;
     createBusinessAddress(payload: ICreateBusinessAddressPayload, businessId: string, authToken: string): Promise<ScalexSuccessResponse<IBusinessResponse>>;
 }

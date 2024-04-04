@@ -544,6 +544,14 @@ var ScalexCustomersSdk = class {
       });
     });
   }
+  retrieveCountries() {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveCountriesEndpoint
+      });
+    });
+  }
   createBusinessDirector(payload, businessId, authToken) {
     return __async(this, null, function* () {
       return callApi({
