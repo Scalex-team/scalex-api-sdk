@@ -202,6 +202,14 @@ export class ScalexCustomersSdk {
 		} );
 	}
 
+	 async retrieveCountries()
+        : Promise<ScalexSuccessResponse<IRetrieveCountriesResponse>> {
+        return callApi<null, IRetrieveCountriesResponse>({
+            serviceUri: this.apiUrl,
+            endpoint: RetrieveCountriesEndpoint,
+        })
+    }
+
 	async createBusinessDirector( payload: ICreateBusinessDirectorPayload, businessId: string, authToken: string )
 		: Promise<ScalexSuccessResponse<IBusinessDirectorResponse>> {
 		return callApi<ICreateBusinessDirectorPayload, IBusinessDirectorResponse, IHasQueryIdPayload>( {
