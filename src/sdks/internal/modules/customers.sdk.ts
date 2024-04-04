@@ -35,6 +35,7 @@ import {
 	UpdateAddressEndpoint,
 	ICreateBusinessPayload, ICreateBusinessResponse
 } from "../../../types";
+import { IRetrieveCountriesResponse, RetrieveCountriesEndpoint } from "../../../types/customers/endpoint-payloads/preference.payload";
 
 export class ScalexCustomersSdk {
 	constructor( protected apiUrl: string ) {}
