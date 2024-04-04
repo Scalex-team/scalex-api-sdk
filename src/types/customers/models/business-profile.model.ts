@@ -10,7 +10,7 @@ export interface IBusinessDirector extends IBaseModel {
     country: string;
     firstName: string;
     lastName: string;
-    dateOfBirth: string;
+    dateOfBirth: Date;
     residentialAddress: string;
     verifications: Array<IVerification>;
 }
