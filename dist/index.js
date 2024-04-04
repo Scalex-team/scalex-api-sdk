@@ -390,7 +390,8 @@ var JobTask = /* @__PURE__ */ ((JobTask2) => {
 var JobClientType = /* @__PURE__ */ ((JobClientType2) => {
   JobClientType2["merchant"] = "merchant";
   JobClientType2["customer"] = "customer";
-  JobClientType2["store"] = "store";
+  JobClientType2["business"] = "business";
+  JobClientType2["businessDirector"] = "business-director";
   JobClientType2["admin"] = "admin";
   JobClientType2["system"] = "system";
   return JobClientType2;

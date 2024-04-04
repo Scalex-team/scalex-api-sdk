@@ -16,7 +16,8 @@ export enum JobTask {
 export enum JobClientType {
   merchant = 'merchant',
   customer = 'customer',
-  store = 'store',
+  business = 'business',
+  businessDirector = 'business-director',
   admin = 'admin',
   system = 'system'
 }
