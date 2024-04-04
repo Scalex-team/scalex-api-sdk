@@ -203,6 +203,7 @@ interface IBusinessDirector extends IBaseModel {
     verifications: Array<IVerification>;
 }
 interface IBusinessProfile extends IBaseModel {
+    customer: string;
     registration: {
         name: string;
         number: string;

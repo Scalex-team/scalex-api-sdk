@@ -16,6 +16,7 @@ export interface IBusinessDirector extends IBaseModel {
 }
 
 export interface IBusinessProfile extends IBaseModel {
+    customer: string;
     registration: {
         name: string;
         number: string;
