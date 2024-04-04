@@ -366,13 +366,6 @@ var RetrieveProfileEndpoint = {
   fullPath: "/customer-profile"
 };
 
-// src/types/customers/endpoint-payloads/peference.payload.ts
-var RetrieveCountriesEndpoint = {
-  method: "GET" /* Get */,
-  path: "/preferences/countries",
-  fullPath: "/preferences/countries"
-};
-
 // src/types/customers/endpoint-payloads/business.payloads.ts
 var CreateBusinessEndpoint = {
   method: "POST" /* Post */,
@@ -477,6 +470,13 @@ var FetchJobEndpoint = {
   method: "GET" /* Get */,
   path: "/jobs",
   fullPath: "/jobs"
+};
+
+// src/types/utils/endpoint-payloads/peference.payloads.ts
+var RetrieveCountriesEndpoint = {
+  method: "GET" /* Get */,
+  path: "/preferences/countries",
+  fullPath: "/preferences/countries"
 };
 
 // src/sdks/internal/modules/customers.sdk.ts

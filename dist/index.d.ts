@@ -251,11 +251,6 @@ declare const UpdateProfileEndpoint: Endpoint;
 declare const UpdateAddressEndpoint: Endpoint;
 declare const RetrieveProfileEndpoint: Endpoint;
 
-interface IRetrieveCountriesResponse {
-    countries: Array<Partial<ICountry>>;
-}
-declare const RetrieveCountriesEndpoint: Endpoint;
-
 interface ICreateBusinessPayload {
     registration: {
         type: BusinessRegistrationType;
@@ -533,6 +528,11 @@ interface IJobResponse<T> {
     job: IJob<T>;
 }
 declare const FetchJobEndpoint: Endpoint;
+
+interface IRetrieveCountriesResponse {
+    countries: Array<Partial<ICountry>>;
+}
+declare const RetrieveCountriesEndpoint: Endpoint;
 
 interface ScalexSuccessResponse<T> {
     statusCode?: HttpStatusCode;
