@@ -2,7 +2,7 @@ import {BusinessRegistrationType, IBusinessDirector, IBusinessProfile} from "../
 import {IUpdateAddressPayload} from "./profile.payloads";
 import {Endpoint, HttpMethods} from "../../generic";
 
-export interface BusinessDirectorDetails {
+export interface IBusinessDirectorDetails {
     country: string;
     firstName: string;
     lastName: string;
@@ -23,7 +23,7 @@ export interface ICreateBusinessPayload {
 
 export interface ICreateBusinessDirectorPayload {
     creatorIsADirector: boolean;
-    directorDetails?: BusinessDirectorDetails;
+    directorDetails?: IBusinessDirectorDetails;
 }
 
 export interface ICreateBusinessAddressPayload extends IUpdateAddressPayload {};
