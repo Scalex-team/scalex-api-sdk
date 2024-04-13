@@ -1,6 +1,5 @@
 import {IBaseModel} from "../base.model";
 import {IAdminRoleMatrix} from "./admin-role-matrix.interface";
-import {IVerification} from "./verification.interface";
 
 export interface IAddress extends IBaseModel {
     location: {
@@ -11,7 +10,6 @@ export interface IAddress extends IBaseModel {
         address: string;
     },
     isVerified: boolean;
-    verification?: IVerification;
 }
 
 export interface IPassword {
@@ -49,9 +47,10 @@ export interface IUser extends IBaseModel {
     twoFactorAuthSecret?: string;
     twoFactorAuthActive?: boolean;
     agreedToTerms: boolean;
-    verifications: Array<IVerification>
     addresses: Array<IAddress>;
     hasVerifiedIdentity: boolean;
+    hasVerifiedAddress: boolean;
+    hasVerifiedBusiness: boolean;
     businesses: Array<string>
 }
 

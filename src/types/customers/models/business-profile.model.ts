@@ -1,4 +1,4 @@
-import {IAddress, IBaseModel, IVerification} from "../../generic";
+import {IAddress, IBaseModel} from "../../generic";
 
 export enum BusinessRegistrationType {
     businessName = 'business-name',
@@ -12,7 +12,7 @@ export interface IBusinessDirector extends IBaseModel {
     lastName: string;
     dateOfBirth: Date;
     residentialAddress: string;
-    verifications: Array<IVerification>;
+    hasVerifiedIdentity: boolean;
 }
 
 export interface IBusinessProfile extends IBaseModel {
@@ -21,13 +21,13 @@ export interface IBusinessProfile extends IBaseModel {
         name: string;
         number: string;
         country: string;
+        isVerified: boolean;
         date: Date;
         type: BusinessRegistrationType;
     }
     creatorIsADirector: boolean;
     agreedToKyc: boolean;
-    isVerified: boolean;
-    addresses: Array<IAddress>
-    directors: Array<IBusinessDirector>
-    verifications: Array<IVerification>;
+    hasVerifiedDirector: boolean;
+    addresses: Array<IAddress>;
+    directors: Array<IBusinessDirector>;
 }

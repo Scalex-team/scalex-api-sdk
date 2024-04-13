@@ -48,6 +48,136 @@ interface IAdminRoleMatrix extends IBaseModel {
     admin: IUser | string;
 }
 
+interface IAddress extends IBaseModel {
+    location: {
+        country: string;
+        state: string;
+        city: string;
+        postalCode: string;
+        address: string;
+    };
+    isVerified: boolean;
+}
+interface IPassword {
+    token: string;
+    hint: string;
+    isActive: boolean;
+}
+declare enum UserStatus {
+    Active = "active",
+    Suspended = "suspended",
+    Deactivated = "deactivated"
+}
+declare enum AuthStatus {
+    loggedInWithout2fa = "logged-in-without-2fa",
+    loggedInWith2fa = "logged-in-with-2fa",
+    loggedOutByExpiredToken = "logged-out-by-expired-token",
+    loggedOutManually = "logged-out-manually",
+    neverLoggedIn = "never-logged-in"
+}
+interface IUser extends IBaseModel {
+    fullName: string;
+    invitedBy?: string;
+    dateOfBirth?: Date;
+    email: string;
+    status: UserStatus;
+    roleMatrix: string | IAdminRoleMatrix;
+    passwords?: Array<IPassword>;
+    authStatus?: AuthStatus;
+    authStatusLastChangedAt?: Date;
+    passWordResetToken?: string;
+    passWordResetTokenExpiry?: Date;
+    twoFactorAuthSecret?: string;
+    twoFactorAuthActive?: boolean;
+    agreedToTerms: boolean;
+    addresses: Array<IAddress>;
+    hasVerifiedIdentity: boolean;
+    hasVerifiedAddress: boolean;
+    hasVerifiedBusiness: boolean;
+    businesses: Array<string>;
+}
+interface IUserMethods {
+    updatePassword(newPassword: string, hint?: string): void;
+    updateAuthStatus(status: AuthStatus): void;
+    updatePasswordResetToken(token: string): void;
+}
+
+type ValuesOf<T extends any[]> = T[number];
+interface ApiResponse<T> {
+    statusCode: HttpStatusCode;
+    error?: ScalexError;
+    message: string;
+    data: T;
+}
+declare enum TokenActions {
+    Login = "login",
+    DataAccess = "data-access",
+    SetPassword = "set-password",
+    Refresh = "refresh",
+    ResetPassword = "reset-password"
+}
+declare const TokenExpiry: {
+    [key in TokenActions]: string;
+};
+type DecodedJwtToken = {
+    admin?: Partial<IUser>;
+    action?: TokenActions;
+};
+type ScalexAuthenticatedRequest = Request & DecodedJwtToken;
+
+declare enum Continents {
+    AF = "Africa",
+    AN = "Antarctica",
+    AS = "Asia",
+    EU = "Europe",
+    NA = "North America",
+    OC = "Oceania",
+    SA = "South America"
+}
+interface ILanguage extends IBaseModel {
+    name: string;
+    shortCode: string;
+    native: string;
+}
+interface IPhoneCode extends IBaseModel {
+    code: string;
+}
+interface IFiatCurrency extends IBaseModel {
+    currency: string;
+}
+interface ICountry {
+    name: string;
+    native: string;
+    countryCode: string;
+    phoneCodes: Array<IPhoneCode> | Array<string>;
+    continent: Continents;
+    capital: string;
+    emoji: string;
+    currencies: Array<IFiatCurrency> | Array<string>;
+    languages: Array<ILanguage> | Array<string>;
+}
+
+declare enum ActiveOrInactive {
+    active = "active",
+    inactive = "inactive"
+}
+declare enum IntegrationType {
+    SDK = "sdk",
+    REST = "rest"
+}
+declare enum PassOrFail {
+    passed = "passed",
+    failed = "failed"
+}
+declare enum CurrencyType {
+    Crypto = "crypto",
+    Fiat = "fiat"
+}
+
+interface IHasQueryIdPayload {
+    id: string;
+}
+
 interface IRequestOtpToRegisterPayload {
     email: string;
 }
@@ -200,7 +330,7 @@ interface IBusinessDirector extends IBaseModel {
     lastName: string;
     dateOfBirth: Date;
     residentialAddress: string;
-    verifications: Array<IVerification>;
+    hasVerifiedIdentity: boolean;
 }
 interface IBusinessProfile extends IBaseModel {
     customer: string;
@@ -208,15 +338,15 @@ interface IBusinessProfile extends IBaseModel {
         name: string;
         number: string;
         country: string;
+        isVerified: boolean;
         date: Date;
         type: BusinessRegistrationType;
     };
     creatorIsADirector: boolean;
     agreedToKyc: boolean;
-    isVerified: boolean;
+    hasVerifiedDirector: boolean;
     addresses: Array<IAddress>;
     directors: Array<IBusinessDirector>;
-    verifications: Array<IVerification>;
 }
 
 interface IInitiateVerificationPayload {
@@ -284,148 +414,6 @@ interface IBusinessDirectorResponse {
 declare const CreateBusinessEndpoint: Endpoint;
 declare const CreateBusinessDirectorEndpoint: Endpoint;
 declare const CreateBusinessAddressEndpoint: Endpoint;
-
-interface IVerification extends IBaseModel {
-    entity: VerifiableEntity;
-    applicant: VerificationApplicantType;
-    references?: {
-        linkId?: string;
-        jobId?: string;
-        uploadedDocument?: string;
-    };
-    status: VerificationApplicationStatus;
-    metadata: unknown;
-}
-
-interface IAddress extends IBaseModel {
-    location: {
-        country: string;
-        state: string;
-        city: string;
-        postalCode: string;
-        address: string;
-    };
-    isVerified: boolean;
-    verification?: IVerification;
-}
-interface IPassword {
-    token: string;
-    hint: string;
-    isActive: boolean;
-}
-declare enum UserStatus {
-    Active = "active",
-    Suspended = "suspended",
-    Deactivated = "deactivated"
-}
-declare enum AuthStatus {
-    loggedInWithout2fa = "logged-in-without-2fa",
-    loggedInWith2fa = "logged-in-with-2fa",
-    loggedOutByExpiredToken = "logged-out-by-expired-token",
-    loggedOutManually = "logged-out-manually",
-    neverLoggedIn = "never-logged-in"
-}
-interface IUser extends IBaseModel {
-    fullName: string;
-    invitedBy?: string;
-    dateOfBirth?: Date;
-    email: string;
-    status: UserStatus;
-    roleMatrix: string | IAdminRoleMatrix;
-    passwords?: Array<IPassword>;
-    authStatus?: AuthStatus;
-    authStatusLastChangedAt?: Date;
-    passWordResetToken?: string;
-    passWordResetTokenExpiry?: Date;
-    twoFactorAuthSecret?: string;
-    twoFactorAuthActive?: boolean;
-    agreedToTerms: boolean;
-    verifications: Array<IVerification>;
-    addresses: Array<IAddress>;
-    hasVerifiedIdentity: boolean;
-    businesses: Array<string>;
-}
-interface IUserMethods {
-    updatePassword(newPassword: string, hint?: string): void;
-    updateAuthStatus(status: AuthStatus): void;
-    updatePasswordResetToken(token: string): void;
-}
-
-type ValuesOf<T extends any[]> = T[number];
-interface ApiResponse<T> {
-    statusCode: HttpStatusCode;
-    error?: ScalexError;
-    message: string;
-    data: T;
-}
-declare enum TokenActions {
-    Login = "login",
-    DataAccess = "data-access",
-    SetPassword = "set-password",
-    Refresh = "refresh",
-    ResetPassword = "reset-password"
-}
-declare const TokenExpiry: {
-    [key in TokenActions]: string;
-};
-type DecodedJwtToken = {
-    admin?: Partial<IUser>;
-    action?: TokenActions;
-};
-type ScalexAuthenticatedRequest = Request & DecodedJwtToken;
-
-declare enum Continents {
-    AF = "Africa",
-    AN = "Antarctica",
-    AS = "Asia",
-    EU = "Europe",
-    NA = "North America",
-    OC = "Oceania",
-    SA = "South America"
-}
-interface ILanguage extends IBaseModel {
-    name: string;
-    shortCode: string;
-    native: string;
-}
-interface IPhoneCode extends IBaseModel {
-    code: string;
-}
-interface IFiatCurrency extends IBaseModel {
-    currency: string;
-}
-interface ICountry {
-    name: string;
-    native: string;
-    countryCode: string;
-    phoneCodes: Array<IPhoneCode> | Array<string>;
-    continent: Continents;
-    capital: string;
-    emoji: string;
-    currencies: Array<IFiatCurrency> | Array<string>;
-    languages: Array<ILanguage> | Array<string>;
-}
-
-declare enum ActiveOrInactive {
-    active = "active",
-    inactive = "inactive"
-}
-declare enum IntegrationType {
-    SDK = "sdk",
-    REST = "rest"
-}
-declare enum PassOrFail {
-    passed = "passed",
-    failed = "failed"
-}
-declare enum CurrencyType {
-    Crypto = "crypto",
-    Fiat = "fiat"
-}
-
-interface IHasQueryIdPayload {
-    id: string;
-}
 
 declare enum PercentageChangeTimeframes {
     _1h = "_1h",
@@ -596,4 +584,4 @@ declare const socketChannelsAndEvents: {
     };
 };
 
-export { ActiveOrInactive, type ApiResponse, AuthStatus, BusinessRegistrationType, Continents, CreateBusinessAddressEndpoint, CreateBusinessDirectorEndpoint, CreateBusinessEndpoint, type CurrencyAndAmount, CurrencyType, type DecodedJwtToken, type Endpoint, type Endpoints, FetchJobEndpoint, HttpMethods, type IAddress, type IAdminRoleMatrix, type IBaseModel, type IBusinessDirector, type IBusinessDirectorDetails, type IBusinessDirectorResponse, type IBusinessProfile, type IBusinessResponse, type ICountry, type ICreateBusinessAddressPayload, type ICreateBusinessDirectorPayload, type ICreateBusinessPayload, type IFiatCurrency, type IHasQueryIdPayload, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type IJob, type IJobResponse, type ILanguage, type ILoginResponse, type IPassword, type IPermission, type IPhoneCode, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRetrieveCountriesResponse, type IRole, type ITokenWithUserResponse, type ITransaction, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerification, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, type IViewJobPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, JobClientType, JobStatus, JobTask, type Nuban, PassOrFail, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveCountriesEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, TransactionStatus, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, type VerificationResult, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };
+export { ActiveOrInactive, type ApiResponse, AuthStatus, BusinessRegistrationType, Continents, CreateBusinessAddressEndpoint, CreateBusinessDirectorEndpoint, CreateBusinessEndpoint, type CurrencyAndAmount, CurrencyType, type DecodedJwtToken, type Endpoint, type Endpoints, FetchJobEndpoint, HttpMethods, type IAddress, type IAdminRoleMatrix, type IBaseModel, type IBusinessDirector, type IBusinessDirectorDetails, type IBusinessDirectorResponse, type IBusinessProfile, type IBusinessResponse, type ICountry, type ICreateBusinessAddressPayload, type ICreateBusinessDirectorPayload, type ICreateBusinessPayload, type IFiatCurrency, type IHasQueryIdPayload, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type IJob, type IJobResponse, type ILanguage, type ILoginResponse, type IPassword, type IPermission, type IPhoneCode, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRetrieveCountriesResponse, type IRole, type ITokenWithUserResponse, type ITransaction, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, type IViewJobPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, JobClientType, JobStatus, JobTask, type Nuban, PassOrFail, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, RetrieveCountriesEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, TransactionStatus, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, type VerificationResult, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };

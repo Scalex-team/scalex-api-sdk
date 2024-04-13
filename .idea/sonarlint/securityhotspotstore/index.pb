@@ -85,3 +85,11 @@ S
 #src/types/utils/models/job.model.ts,3/f/3ffe4214c4338a99c2741df2313b403dc8e806e8
 ?
 dist/index.d.ts,c/4/c4710d6913096aa14dd2677307171ae1d9c43b8b
+m
+=src/types/customers/models/verification-application.models.ts,3/9/3959d01acc9042f4293f0d35ae856fb41f912b32
+g
+7src/types/generic/data-models/user/country.interface.ts,b/1/b1bf4b4722fbee7199a0afe6f0e4da377eeccf56
+j
+:src/types/generic/data-models/user/permission.interface.ts,7/e/7e2fcea18e8902bd1ae3a75d7430483e9a16b732
+d
+4src/types/generic/data-models/user/role.interface.ts,9/0/90acdc7be541d19cfe73e0b80d29ef26f25e0793

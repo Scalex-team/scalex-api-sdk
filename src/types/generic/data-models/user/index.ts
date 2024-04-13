@@ -3,4 +3,3 @@ export * from './role.interface';
 export * from './permission.interface';
 export * from './user.interface';
 export * from './country.interface';
-export * from './verification.interface';
