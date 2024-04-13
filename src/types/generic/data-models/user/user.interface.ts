@@ -10,6 +10,7 @@ export interface IAddress extends IBaseModel {
         postalCode: string;
         address: string;
     },
+    isVerified: boolean;
     verification?: IVerification;
 }
 
@@ -50,6 +51,7 @@ export interface IUser extends IBaseModel {
     agreedToTerms: boolean;
     verifications: Array<IVerification>
     addresses: Array<IAddress>;
+    hasVerifiedIdentity: boolean;
     businesses: Array<string>
 }
 

@@ -26,6 +26,7 @@ export interface IBusinessProfile extends IBaseModel {
     }
     creatorIsADirector: boolean;
     agreedToKyc: boolean;
+    isVerified: boolean;
     addresses: Array<IAddress>
     directors: Array<IBusinessDirector>
     verifications: Array<IVerification>;

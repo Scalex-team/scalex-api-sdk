@@ -213,6 +213,7 @@ interface IBusinessProfile extends IBaseModel {
     };
     creatorIsADirector: boolean;
     agreedToKyc: boolean;
+    isVerified: boolean;
     addresses: Array<IAddress>;
     directors: Array<IBusinessDirector>;
     verifications: Array<IVerification>;
@@ -304,6 +305,7 @@ interface IAddress extends IBaseModel {
         postalCode: string;
         address: string;
     };
+    isVerified: boolean;
     verification?: IVerification;
 }
 interface IPassword {
@@ -340,6 +342,7 @@ interface IUser extends IBaseModel {
     agreedToTerms: boolean;
     verifications: Array<IVerification>;
     addresses: Array<IAddress>;
+    hasVerifiedIdentity: boolean;
     businesses: Array<string>;
 }
 interface IUserMethods {
