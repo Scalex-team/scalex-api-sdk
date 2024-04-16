@@ -1,3 +1,4 @@
+import { VerifiableEntity } from "../../../customers";
 import {IBaseModel} from "../base.model";
 import {IAdminRoleMatrix} from "./admin-role-matrix.interface";
 
@@ -10,6 +11,11 @@ export interface IAddress extends IBaseModel {
         address: string;
     },
     isVerified: boolean;
+}
+
+export interface IVerification extends IBaseModel {
+    job: string,
+    entity: VerifiableEntity
 }
 
 export interface IPassword {
@@ -51,7 +57,8 @@ export interface IUser extends IBaseModel {
     hasVerifiedIdentity: boolean;
     hasVerifiedAddress: boolean;
     hasVerifiedBusiness: boolean;
-    businesses: Array<string>
+    businesses: Array<string>;
+    pendingVerifications: Array<IVerification>
 }
 
 export interface IUserMethods {
