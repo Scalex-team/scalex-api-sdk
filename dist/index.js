@@ -297,6 +297,11 @@ var CreateBusinessEndpoint = {
   path: "/businesses",
   fullPath: "/businesses"
 };
+var FetchBusinessEndpoint = {
+  method: "GET" /* Get */,
+  path: "/businesses",
+  fullPath: "/businesses"
+};
 var CreateBusinessDirectorEndpoint = {
   method: "POST" /* Post */,
   path: "/directors",
@@ -570,6 +575,18 @@ var ScalexCustomersSdk = class {
       });
     });
   }
+  retrieveBusiness(businessId, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: FetchBusinessEndpoint,
+        query: {
+          id: businessId
+        },
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
 };
 
 // src/sdks/internal/modules/utils.sdk.ts
@@ -641,6 +658,7 @@ export {
   CreateBusinessDirectorEndpoint,
   CreateBusinessEndpoint,
   CurrencyType,
+  FetchBusinessEndpoint,
   FetchJobEndpoint,
   HttpMethods,
   Initiate2faEndpoint,
