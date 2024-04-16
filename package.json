@@ -25,6 +25,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@scalex-api/sdk": "link:",
     "axios": "^1.6.5"
   }
 }

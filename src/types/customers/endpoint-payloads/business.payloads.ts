@@ -42,6 +42,12 @@ export const CreateBusinessEndpoint: Endpoint = {
 	fullPath: '/businesses'
 };
 
+export const FetchBusinessEndpoint: Endpoint = {
+	method: HttpMethods.Get,
+	path: '/businesses',
+	fullPath: '/businesses'
+};
+
 export const CreateBusinessDirectorEndpoint: Endpoint = {
 	method: HttpMethods.Post,
 	path: '/directors',

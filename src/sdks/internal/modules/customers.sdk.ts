@@ -39,7 +39,9 @@ import {
 	IBusinessResponse,
 	CreateBusinessEndpoint,
 	CreateBusinessAddressEndpoint,
-	ICreateBusinessAddressPayload, IBusinessDirectorResponse, CreateBusinessDirectorEndpoint, IHasQueryIdPayload
+	ICreateBusinessAddressPayload, IBusinessDirectorResponse, CreateBusinessDirectorEndpoint, IHasQueryIdPayload,
+	IBusinessProfile,
+	FetchBusinessEndpoint
 } from "../../../types";
 
 export class ScalexCustomersSdk {
@@ -223,6 +225,20 @@ export class ScalexCustomersSdk {
 			serviceUri: this.apiUrl,
 			endpoint: CreateBusinessAddressEndpoint,
 			body: payload,
+			query: {
+				id: businessId
+			},
+			headers: {
+				...setBearerToken( authToken )
+			}
+		} );
+	}
+
+	async retrieveBusiness( businessId: string, authToken: string )
+        : Promise<ScalexSuccessResponse<IBusinessProfile>> {
+		return callApi<IHasQueryIdPayload, IBusinessProfile>( {
+			serviceUri: this.apiUrl,
+			endpoint: FetchBusinessEndpoint,
 			query: {
 				id: businessId
 			},
