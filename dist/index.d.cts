@@ -295,6 +295,7 @@ interface IAddress extends IBaseModel {
         city: string;
         postalCode: string;
         address: string;
+        utilityBill: string;
     };
     isVerified: boolean;
 }
