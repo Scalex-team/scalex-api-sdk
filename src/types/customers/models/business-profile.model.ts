@@ -15,7 +15,7 @@ export interface IBusinessDirector extends IBaseModel {
     hasVerifiedIdentity: boolean;
 }
 
-export interface IBusinessProfile extends IBaseModel {
+export interface IBusinessProfile<T = unknown> extends IBaseModel {
     customer: string;
     registration: {
         name: string;
@@ -31,4 +31,5 @@ export interface IBusinessProfile extends IBaseModel {
     addresses: Array<IAddress>;
     directors: Array<IBusinessDirector>;
     pendingVerifications: Array<IVerification>;
+    metadata?: T
 }

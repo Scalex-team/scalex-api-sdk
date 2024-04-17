@@ -178,7 +178,7 @@ interface IBusinessDirector extends IBaseModel {
     residentialAddress: string;
     hasVerifiedIdentity: boolean;
 }
-interface IBusinessProfile extends IBaseModel {
+interface IBusinessProfile<T = unknown> extends IBaseModel {
     customer: string;
     registration: {
         name: string;
@@ -194,6 +194,7 @@ interface IBusinessProfile extends IBaseModel {
     addresses: Array<IAddress>;
     directors: Array<IBusinessDirector>;
     pendingVerifications: Array<IVerification>;
+    metadata?: T;
 }
 
 interface IInitiateVerificationPayload {
