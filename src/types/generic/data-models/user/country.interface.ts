@@ -24,7 +24,7 @@ export interface IFiatCurrency extends IBaseModel {
 	currency: string
 }
 
-export interface ICountry {
+export interface ICountry extends IBaseModel {
 	name: string,
     native: string,
     countryCode: string,

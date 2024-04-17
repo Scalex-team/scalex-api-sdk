@@ -391,7 +391,7 @@ interface IPhoneCode extends IBaseModel {
 interface IFiatCurrency extends IBaseModel {
     currency: string;
 }
-interface ICountry {
+interface ICountry extends IBaseModel {
     name: string;
     native: string;
     countryCode: string;
