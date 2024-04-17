@@ -57,7 +57,6 @@ export interface IUser extends IBaseModel {
     addresses: Array<IAddress>;
     hasVerifiedIdentity: boolean;
     hasVerifiedAddress: boolean;
-    hasVerifiedBusiness: boolean;
     businesses: Array<string>;
     pendingVerifications: Array<IVerification>
 }
