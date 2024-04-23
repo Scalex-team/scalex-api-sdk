@@ -470,7 +470,7 @@ interface ITransaction extends IBaseModel {
         id: string;
         isInternal: boolean;
         address?: string;
-        bankAccount?: string;
+        bankAccount?: Nuban;
     };
     product: string;
     fee: {
