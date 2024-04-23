@@ -20,9 +20,16 @@ export type CurrencyAndAmount = {
     currencyType: CurrencyType;
     currency: {
         id: string;
-        networkId: string;
+        networkId?: string;
     }
     amount: number;
+}
+
+export type TransactionRecipient = {
+    id: string;
+    isInternal: boolean;
+    address?: string;
+    bankAccount?: Nuban;
 }
 
 export interface ITransaction extends IBaseModel {
@@ -31,12 +38,7 @@ export interface ITransaction extends IBaseModel {
     status: TransactionStatus;
     amount: CurrencyAndAmount;
     request: CurrencyAndAmount;
-    recipient: {
-        id: string;
-        isInternal: boolean;
-        address?: string;
-        bankAccount?: Nuban;
-    }
+    recipient: TransactionRecipient
     product: string;
     fee: {
         id: string;
