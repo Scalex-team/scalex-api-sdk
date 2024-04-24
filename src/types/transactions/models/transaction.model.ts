@@ -7,6 +7,12 @@ export type Nuban = {
     name: string;
 }
 
+export enum TransactionType {
+    onramp = 'onramp',
+    offramp = 'offramp',
+    transfer = 'transfer'
+}
+
 export enum TransactionStatus {
     initiated = 'initiated',
     processing = 'processing',
@@ -35,6 +41,7 @@ export type TransactionRecipient = {
 export interface ITransaction extends IBaseModel {
     reference: string;
     initiator: string;
+    type: TransactionType;
     status: TransactionStatus;
     amount: CurrencyAndAmount;
     request: CurrencyAndAmount;

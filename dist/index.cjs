@@ -94,6 +94,7 @@ __export(src_exports, {
   TokenActions: () => TokenActions,
   TokenExpiry: () => TokenExpiry,
   TransactionStatus: () => TransactionStatus,
+  TransactionType: () => TransactionType,
   UpdateAddressEndpoint: () => UpdateAddressEndpoint,
   UpdateProfileEndpoint: () => UpdateProfileEndpoint,
   UserStatus: () => UserStatus,
@@ -438,6 +439,12 @@ var BusinessRegistrationType = /* @__PURE__ */ ((BusinessRegistrationType2) => {
 })(BusinessRegistrationType || {});
 
 // src/types/transactions/models/transaction.model.ts
+var TransactionType = /* @__PURE__ */ ((TransactionType2) => {
+  TransactionType2["onramp"] = "onramp";
+  TransactionType2["offramp"] = "offramp";
+  TransactionType2["transfer"] = "transfer";
+  return TransactionType2;
+})(TransactionType || {});
 var TransactionStatus = /* @__PURE__ */ ((TransactionStatus2) => {
   TransactionStatus2["initiated"] = "initiated";
   TransactionStatus2["processing"] = "processing";
@@ -757,6 +764,7 @@ var socketChannelsAndEvents = {
   TokenActions,
   TokenExpiry,
   TransactionStatus,
+  TransactionType,
   UpdateAddressEndpoint,
   UpdateProfileEndpoint,
   UserStatus,
