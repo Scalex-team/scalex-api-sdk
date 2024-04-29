@@ -1,19 +1,11 @@
 import {CurrencyType, IBaseModel} from "../../generic";
+import { IBankAccount } from "./bank-account.model";
 import {IRate} from "./rate.model";
 
 export enum CrytpoProviders {
 	Shyft = 'Shyft',
 	Liminal = 'Liminal',
 	Bitnob = 'Bitnob',
-}
-
-export type INuban = {
-    nuban: string;
-    bank: string;
-    meta: {
-        bankName: string;
-        accountName: string;
-    }
 }
 
 export enum TransactionType {
@@ -47,7 +39,7 @@ export type ITransactionRecipient = {
     isInternal: boolean;
     address?: string;
     addressPassword?: string;
-    bankAccount?: INuban;
+    bankAccount?: IBankAccount;
 }
 
 export interface ITransaction extends IBaseModel {
