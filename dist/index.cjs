@@ -87,6 +87,7 @@ __export(src_exports, {
   RequestOtpToRegisterEndpoint: () => RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint: () => RequestPasswordResetEndpoint,
   ResetPasswordEndpoint: () => ResetPasswordEndpoint,
+  ResourceOwner: () => ResourceOwner,
   RetrieveCountriesEndpoint: () => RetrieveCountriesEndpoint,
   RetrieveProfileEndpoint: () => RetrieveProfileEndpoint,
   ScalexInternalAPI: () => ScalexInternalAPI,
@@ -293,6 +294,11 @@ var CurrencyType = /* @__PURE__ */ ((CurrencyType2) => {
   CurrencyType2["Fiat"] = "fiat";
   return CurrencyType2;
 })(CurrencyType || {});
+var ResourceOwner = /* @__PURE__ */ ((ResourceOwner2) => {
+  ResourceOwner2["business"] = "business";
+  ResourceOwner2["individual"] = "individual";
+  return ResourceOwner2;
+})(ResourceOwner || {});
 
 // src/types/customers/endpoint-payloads/create-account.payloads.ts
 var RequestOtpToRegisterEndpoint = {
@@ -765,6 +771,7 @@ var socketChannelsAndEvents = {
   RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint,
   ResetPasswordEndpoint,
+  ResourceOwner,
   RetrieveCountriesEndpoint,
   RetrieveProfileEndpoint,
   ScalexInternalAPI,

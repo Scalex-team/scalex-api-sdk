@@ -17,3 +17,8 @@ export enum CurrencyType {
     Crypto = 'crypto',
     Fiat = 'fiat'
 }
+
+export enum ResourceOwner {
+    business = 'business',
+    individual = 'individual'
+}

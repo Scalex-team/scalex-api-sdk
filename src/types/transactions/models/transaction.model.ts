@@ -1,4 +1,4 @@
-import {CurrencyType, IBaseModel} from "../../generic";
+import {CurrencyType, IBaseModel, ResourceOwner} from "../../generic";
 import { IBankAccount } from "./bank-account.model";
 import {IRate} from "./rate.model";
 
@@ -35,6 +35,7 @@ export type ICurrencyAndAmount = {
 }
 
 export type ITransactionRecipient = {
+    type?: ResourceOwner;
     id?: string;
     isInternal: boolean;
     address?: string;
