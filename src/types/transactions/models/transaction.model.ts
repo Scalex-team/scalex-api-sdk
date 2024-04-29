@@ -7,7 +7,7 @@ export enum CrytpoProviders {
 	Bitnob = 'Bitnob',
 }
 
-export type Nuban = {
+export type INuban = {
     nuban: string;
     bank: string;
     meta: {
@@ -32,7 +32,7 @@ export enum TransactionStatus {
     cancelled = 'cancelled'
 }
 
-export type CurrencyAndAmount = {
+export type ICurrencyAndAmount = {
     currencyType: CurrencyType;
     currency: {
         id: string;
@@ -42,30 +42,30 @@ export type CurrencyAndAmount = {
     amount: number;
 }
 
-export type TransactionRecipient = {
+export type ITransactionRecipient = {
     id?: string;
     isInternal: boolean;
     address?: string;
     addressPassword?: string;
-    bankAccount?: Nuban;
+    bankAccount?: INuban;
 }
 
 export interface ITransaction extends IBaseModel {
     reference: string;
-    initiator?: TransactionRecipient;
+    initiator?: ITransactionRecipient;
     type: TransactionType;
     status: TransactionStatus;
     volume: {
-        initiated?: CurrencyAndAmount;
-        toBeConsumated?: CurrencyAndAmount;
-        consumated?: CurrencyAndAmount;
+        initiated?: ICurrencyAndAmount;
+        toBeConsumated?: ICurrencyAndAmount;
+        consumated?: ICurrencyAndAmount;
     };
     hash: string;
-    recipient: TransactionRecipient
+    recipient: ITransactionRecipient
     product: string;
     fee: {
         id?: string;
-        charge: CurrencyAndAmount
+        charge: ICurrencyAndAmount
     }
     meta: {
         revenue?: string;
