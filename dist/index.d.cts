@@ -437,7 +437,6 @@ interface IBankAccount extends IBaseModel {
     currency?: string;
     status: ActiveOrInactive;
     meta: {
-        bankName: string;
         accountName: string;
     };
 }
