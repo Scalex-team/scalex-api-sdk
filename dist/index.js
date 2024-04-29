@@ -362,6 +362,12 @@ var BusinessRegistrationType = /* @__PURE__ */ ((BusinessRegistrationType2) => {
 })(BusinessRegistrationType || {});
 
 // src/types/transactions/models/transaction.model.ts
+var CrytpoProviders = /* @__PURE__ */ ((CrytpoProviders2) => {
+  CrytpoProviders2["Shyft"] = "Shyft";
+  CrytpoProviders2["Liminal"] = "Liminal";
+  CrytpoProviders2["Bitnob"] = "Bitnob";
+  return CrytpoProviders2;
+})(CrytpoProviders || {});
 var TransactionType = /* @__PURE__ */ ((TransactionType2) => {
   TransactionType2["onramp"] = "onramp";
   TransactionType2["offramp"] = "offramp";
@@ -370,8 +376,9 @@ var TransactionType = /* @__PURE__ */ ((TransactionType2) => {
 })(TransactionType || {});
 var TransactionStatus = /* @__PURE__ */ ((TransactionStatus2) => {
   TransactionStatus2["initiated"] = "initiated";
+  TransactionStatus2["awaitingConsumation"] = "awaiting-consumation";
   TransactionStatus2["processing"] = "processing";
-  TransactionStatus2["completed"] = "completed";
+  TransactionStatus2["successful"] = "successful";
   TransactionStatus2["failed"] = "failed";
   TransactionStatus2["expired"] = "expired";
   TransactionStatus2["cancelled"] = "cancelled";
@@ -663,6 +670,7 @@ export {
   CreateBusinessAddressEndpoint,
   CreateBusinessDirectorEndpoint,
   CreateBusinessEndpoint,
+  CrytpoProviders,
   CurrencyType,
   FetchBusinessEndpoint,
   FetchJobEndpoint,
