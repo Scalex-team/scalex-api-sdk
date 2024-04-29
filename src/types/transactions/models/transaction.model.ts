@@ -3,9 +3,9 @@ import { IBankAccount } from "./bank-account.model";
 import {IRate} from "./rate.model";
 
 export enum CrytpoProviders {
-	Shyft = 'Shyft',
-	Liminal = 'Liminal',
-	Bitnob = 'Bitnob',
+	shyft = 'shyft',
+	liminal = 'liminal',
+	bitnob = 'bitnob',
 }
 
 export enum TransactionType {

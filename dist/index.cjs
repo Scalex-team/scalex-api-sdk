@@ -447,9 +447,9 @@ var BusinessRegistrationType = /* @__PURE__ */ ((BusinessRegistrationType2) => {
 
 // src/types/transactions/models/transaction.model.ts
 var CrytpoProviders = /* @__PURE__ */ ((CrytpoProviders2) => {
-  CrytpoProviders2["Shyft"] = "Shyft";
-  CrytpoProviders2["Liminal"] = "Liminal";
-  CrytpoProviders2["Bitnob"] = "Bitnob";
+  CrytpoProviders2["shyft"] = "shyft";
+  CrytpoProviders2["liminal"] = "liminal";
+  CrytpoProviders2["bitnob"] = "bitnob";
   return CrytpoProviders2;
 })(CrytpoProviders || {});
 var TransactionType = /* @__PURE__ */ ((TransactionType2) => {
