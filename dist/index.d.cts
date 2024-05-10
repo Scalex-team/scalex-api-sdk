@@ -325,6 +325,7 @@ interface IUser extends IBaseModel {
     invitedBy?: string;
     dateOfBirth?: Date;
     email: string;
+    phone: string;
     status: UserStatus;
     roleMatrix: string | IAdminRoleMatrix;
     passwords?: Array<IPassword>;
