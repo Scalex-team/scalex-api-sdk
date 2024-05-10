@@ -11,7 +11,8 @@ export enum CrytpoProviders {
 export enum TransactionType {
     onramp = 'onramp',
     offramp = 'offramp',
-    transfer = 'transfer'
+    transfer = 'transfer',
+    deposit = 'deposit'
 }
 
 export enum TransactionStatus {

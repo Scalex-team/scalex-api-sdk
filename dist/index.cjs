@@ -456,6 +456,7 @@ var TransactionType = /* @__PURE__ */ ((TransactionType2) => {
   TransactionType2["onramp"] = "onramp";
   TransactionType2["offramp"] = "offramp";
   TransactionType2["transfer"] = "transfer";
+  TransactionType2["deposit"] = "deposit";
   return TransactionType2;
 })(TransactionType || {});
 var TransactionStatus = /* @__PURE__ */ ((TransactionStatus2) => {

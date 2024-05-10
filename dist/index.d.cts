@@ -466,7 +466,8 @@ declare enum CrytpoProviders {
 declare enum TransactionType {
     onramp = "onramp",
     offramp = "offramp",
-    transfer = "transfer"
+    transfer = "transfer",
+    deposit = "deposit"
 }
 declare enum TransactionStatus {
     initiated = "initiated",
