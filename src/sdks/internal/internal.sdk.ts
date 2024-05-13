@@ -1,4 +1,4 @@
-import {ScalexCustomersSdk, ScalexUtilsSdk} from "./modules";
+import {ScalexCustomersSdk, ScalexTransactionsSdk, ScalexUtilsSdk} from "./modules";
 
 export enum ScalexInternalEnvironments {
     local = 'local',
@@ -21,8 +21,8 @@ const InternalEnvironmentUrls: {
 export class ScalexInternalAPI {
 	private readonly apiUrl: string;
 	customers: ScalexCustomersSdk;
+	transaction: ScalexTransactionsSdk;
 	utils: ScalexUtilsSdk;
-
 
 	constructor(
 		environment: ScalexInternalEnvironments = ScalexInternalEnvironments.dev,
@@ -30,6 +30,7 @@ export class ScalexInternalAPI {
 	) {
 		this.apiUrl = InternalEnvironmentUrls[environment] + version;
 		this.customers = new ScalexCustomersSdk( this.apiUrl );
+		this.transaction = new ScalexTransactionsSdk( this.apiUrl );
 		this.utils = new ScalexUtilsSdk( this.apiUrl );
 	}
 }

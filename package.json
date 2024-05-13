@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@scalex-api/sdk": "link:",
-    "axios": "^1.6.5"
+    "axios": "^1.6.5",
+    "mongoose": "^8.3.4"
   }
 }
