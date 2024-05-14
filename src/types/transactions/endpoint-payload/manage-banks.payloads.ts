@@ -15,3 +15,20 @@ export const RetrieveBankListsEndpoint: Endpoint = {
 	path: '',
 	fullPath: '/list-banks'
 };
+
+export interface IResolveBankAccountInfoPayload {
+    bankCode: string;
+    accountNumber: string;
+    currency: string;
+    product: string;
+}
+
+export interface IResolveBankAccountInfoResponse {
+    bank: IBank; // TODO: Update this in FiatModules
+}
+
+export const ResolveBankAccountInfoEndpoint: Endpoint = {
+	method: HttpMethods.Post,
+	path: '',
+	fullPath: '/resolve-bank-account'
+};

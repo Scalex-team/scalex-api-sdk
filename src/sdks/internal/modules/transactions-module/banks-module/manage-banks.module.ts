@@ -1,5 +1,5 @@
 import { ScalexSuccessResponse, callApi } from "../../../../../functions";
-import { IRetrieveBankListsPayload, IRetrieveBankListsResponse, RetrieveBankListsEndpoint } from "../../../../../types";
+import { IResolveBankAccountInfoPayload, IResolveBankAccountInfoResponse, IRetrieveBankListsPayload, IRetrieveBankListsResponse, ResolveBankAccountInfoEndpoint, RetrieveBankListsEndpoint } from "../../../../../types";
 
 
 export class BanksModule {
@@ -11,6 +11,15 @@ export class BanksModule {
 			serviceUri: this.apiUrl,
 			endpoint: RetrieveBankListsEndpoint,
 			query: payload
+		} );
+	}
+
+	async resolveBankAccount( payload: IResolveBankAccountInfoPayload )
+    : Promise<ScalexSuccessResponse<IResolveBankAccountInfoResponse>> {
+		return callApi<IResolveBankAccountInfoPayload, IResolveBankAccountInfoResponse>( {
+			serviceUri: this.apiUrl,
+			endpoint: ResolveBankAccountInfoEndpoint,
+			body: payload
 		} );
 	}
     

@@ -553,6 +553,144 @@ interface IBank extends IBaseModel {
     };
 }
 
+declare enum LpPaymentMethod {
+    Crypto = "Crypto",
+    Bank = "Bank"
+}
+declare enum LpFiatCurrencyNetwork {
+    Local = "LOCAL"
+}
+interface LpApiKeys {
+    secretKey: string;
+    staticUrl: string;
+}
+declare enum LpProviders {
+    XendBridge = "XendBridge"
+}
+
+interface iNetwork {
+    id: string;
+    isActive?: boolean;
+}
+declare enum CoinSymbols {
+    USDT = "USDT",
+    USDC = "USDC",
+    BTC = "BTC"
+}
+declare const CoinFulNames: Record<CoinSymbols, string>;
+type CoinFulNamesTypes = keyof typeof CoinFulNames;
+interface ICoin extends IBaseModel {
+    symbol: string;
+    fullName?: string;
+    logo: string;
+    isActive?: boolean;
+    alias: {
+        [K in keyof typeof LpProviders]?: string;
+    };
+    rates?: Array<IRate> | Array<string>;
+    networks: Array<iNetwork> | Array<string>;
+}
+
+interface IFiat {
+    symbol: string;
+    abbr: string;
+    shortName: string;
+    fullName: string;
+    logo: string;
+    rates: Array<IRate> | Array<string>;
+    isActive: boolean;
+    country: ICountry | string;
+}
+declare enum AssetStatus {
+    Active = "active",
+    Suspended = "suspended",
+    Locked = "locked",
+    Destroyed = "destroyed"
+}
+interface Nuban {
+    accountNumber: string;
+    provider: string;
+    bank: string;
+    isActive: boolean;
+}
+interface IFiatWallet {
+    customerId: string;
+    fiatId: string;
+    ledgerBalance: number;
+    lockedBalance: number;
+    status: AssetStatus;
+    nuban: Nuban;
+}
+interface FiatFunctions {
+    name: string;
+    provider: string;
+    product: string;
+    isActive: boolean;
+}
+declare enum FiatProviders {
+    Paga = "Paga",
+    Payaza = "Payaza",
+    Polaris = "Polaris",
+    Bani = "Bani"
+}
+interface IFiatDependencyApiKeys {
+    [provider: string]: {
+        apiKey: string;
+        secretKey?: string;
+        pin?: string;
+        accountReference?: string;
+        hmac?: string;
+        staticUrl?: string;
+        tribe_account_ref?: string;
+        access_token?: string;
+    };
+}
+
+interface IRetrieveCryptoTokensResponse {
+    coins: Array<ICoin>;
+}
+declare const RetrieveCryptoTokensEndpoint: Endpoint;
+
+interface IRetrieveFiatCurrenciesResponse {
+    currencies: Array<IFiat>;
+}
+declare const RetrieveFiatCurrenciesEndpoint: Endpoint;
+
+interface IRetrieveBankListsPayload {
+    currency: string;
+    product: string;
+}
+interface IRetrieveBankListsResponse {
+    banks: Array<Partial<IBank>>;
+}
+declare const RetrieveBankListsEndpoint: Endpoint;
+interface IResolveBankAccountInfoPayload {
+    bankCode: string;
+    accountNumber: string;
+    currency: string;
+    product: string;
+}
+interface IResolveBankAccountInfoResponse {
+    bank: IBank;
+}
+declare const ResolveBankAccountInfoEndpoint: Endpoint;
+
+interface IRetrievePersistentNubanPayload {
+    transactionId: string;
+    amount: number;
+    currency: string;
+    countryCode?: string;
+    holder: {
+        name: string;
+        email: string;
+        phone?: string;
+    };
+}
+interface IRetrievePersistentNubanResponse {
+    nuban: IFiat;
+}
+declare const RetrievePersistentNubanEndpoint: Endpoint;
+
 declare enum JobStatus {
     initiated = "initiated",
     pending = "pending",
@@ -631,6 +769,27 @@ declare class ScalexUtilsSdk {
     fetchJob(jobId: string, authToken: string): Promise<ScalexSuccessResponse<IJobResponse<unknown>>>;
 }
 
+declare class AssetsModule {
+    protected apiUrl: string;
+    constructor(apiUrl: string);
+    retrieveCryptoTokens(): Promise<ScalexSuccessResponse<IRetrieveCryptoTokensResponse>>;
+    retrieveFiatCurrencies(): Promise<ScalexSuccessResponse<IRetrieveFiatCurrenciesResponse>>;
+}
+
+declare class BanksModule {
+    protected apiUrl: string;
+    constructor(apiUrl: string);
+    retrieveBankLists(payload: IRetrieveBankListsPayload): Promise<ScalexSuccessResponse<IRetrieveBankListsResponse>>;
+    resolveBankAccount(payload: IResolveBankAccountInfoPayload): Promise<ScalexSuccessResponse<IResolveBankAccountInfoResponse>>;
+}
+
+declare class ScalexTransactionsSdk {
+    protected apiUrl: string;
+    readonly assets: AssetsModule;
+    readonly banks: BanksModule;
+    constructor(apiUrl: string);
+}
+
 declare enum ScalexInternalEnvironments {
     local = "local",
     dev = "dev",
@@ -642,6 +801,7 @@ declare enum ScalexInternalApiVersions {
 declare class ScalexInternalAPI {
     private readonly apiUrl;
     customers: ScalexCustomersSdk;
+    transaction: ScalexTransactionsSdk;
     utils: ScalexUtilsSdk;
     constructor(environment?: ScalexInternalEnvironments, version?: ScalexInternalApiVersions);
 }
@@ -655,4 +815,4 @@ declare const socketChannelsAndEvents: {
     };
 };
 
-export { ActiveOrInactive, type ApiResponse, AuthStatus, BusinessRegistrationType, Continents, CreateBusinessAddressEndpoint, CreateBusinessDirectorEndpoint, CreateBusinessEndpoint, CrytpoProviders, CurrencyType, type DecodedJwtToken, type Endpoint, type Endpoints, FetchBusinessEndpoint, FetchJobEndpoint, HttpMethods, type IAddress, type IAdminRoleMatrix, type IBank, type IBankAccount, type IBaseModel, type IBusinessDirector, type IBusinessDirectorDetails, type IBusinessDirectorResponse, type IBusinessProfile, type IBusinessResponse, type ICountry, type ICreateBusinessAddressPayload, type ICreateBusinessDirectorPayload, type ICreateBusinessPayload, type ICurrencyAndAmount, type IFiatCurrency, type IHasQueryIdPayload, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type IJob, type IJobResponse, type ILanguage, type ILoginResponse, type IPassword, type IPermission, type IPhoneCode, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IRetrieveCountriesResponse, type IRole, type ITokenWithUserResponse, type ITransaction, type ITransactionRecipient, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerification, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, type IViewJobPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, JobClientType, JobStatus, JobTask, PassOrFail, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, ResourceOwner, RetrieveCountriesEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, TransactionStatus, TransactionType, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, type VerificationResult, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, socketChannelsAndEvents };
+export { ActiveOrInactive, type ApiResponse, AssetStatus, AuthStatus, BusinessRegistrationType, CoinFulNames, type CoinFulNamesTypes, CoinSymbols, Continents, CreateBusinessAddressEndpoint, CreateBusinessDirectorEndpoint, CreateBusinessEndpoint, CrytpoProviders, CurrencyType, type DecodedJwtToken, type Endpoint, type Endpoints, FetchBusinessEndpoint, FetchJobEndpoint, type FiatFunctions, FiatProviders, HttpMethods, type IAddress, type IAdminRoleMatrix, type IBank, type IBankAccount, type IBaseModel, type IBusinessDirector, type IBusinessDirectorDetails, type IBusinessDirectorResponse, type IBusinessProfile, type IBusinessResponse, type ICoin, type ICountry, type ICreateBusinessAddressPayload, type ICreateBusinessDirectorPayload, type ICreateBusinessPayload, type ICurrencyAndAmount, type IFiat, type IFiatCurrency, type IFiatDependencyApiKeys, type IFiatWallet, type IHasQueryIdPayload, type IInitiate2faResponse, type IInitiateVerificationPayload, type IInitiateVerificationResponse, type IJob, type IJobResponse, type ILanguage, type ILoginResponse, type IPassword, type IPermission, type IPhoneCode, type IRequestOtpForLoginPayload, type IRequestOtpToRegisterPayload, type IRequestOtpToRegisterResponse, type IRequestPasswordResetPayload, type IRequestPasswordResetResponse, type IResetPasswordPayload, type IResolveBankAccountInfoPayload, type IResolveBankAccountInfoResponse, type IRetrieveBankListsPayload, type IRetrieveBankListsResponse, type IRetrieveCountriesResponse, type IRetrieveCryptoTokensResponse, type IRetrieveFiatCurrenciesResponse, type IRetrievePersistentNubanPayload, type IRetrievePersistentNubanResponse, type IRole, type ITokenWithUserResponse, type ITransaction, type ITransactionRecipient, type IUpdateAddressPayload, type IUpdateAddressResponse, type IUpdateProfilePayload, type IUpdateProfileResponse, type IUser, type IUserMethods, type IVerification, type IVerificationApplication, type IVerificationPartner, type IVerify2faForLoginPayload, type IVerify2faTokenPayload, type IVerifyOtpAndCreatePasswordPayload, type IVerifyOtpAndCreatePasswordResponse, type IVerifyOtpAndPasswordForLoginPayload, type IViewJobPayload, Initiate2faEndpoint, InitiateVerificationEndpoint, IntegrationType, JobClientType, JobStatus, JobTask, type LpApiKeys, LpFiatCurrencyNetwork, LpPaymentMethod, LpProviders, type Nuban, PassOrFail, RequestOtpForLoginEndpoint, RequestOtpToRegisterEndpoint, RequestPasswordResetEndpoint, ResetPasswordEndpoint, ResolveBankAccountInfoEndpoint, ResourceOwner, RetrieveBankListsEndpoint, RetrieveCountriesEndpoint, RetrieveCryptoTokensEndpoint, RetrieveFiatCurrenciesEndpoint, RetrievePersistentNubanEndpoint, RetrieveProfileEndpoint, type ScalexAuthenticatedRequest, type ScalexError, ScalexInternalAPI, ScalexInternalApiVersions, ScalexInternalEnvironments, TokenActions, TokenExpiry, TransactionStatus, TransactionType, UpdateAddressEndpoint, UpdateProfileEndpoint, UserStatus, type ValuesOf, VerifiableEntity, VerificationAction, VerificationApplicantType, VerificationApplicationStatus, type VerificationFlow, VerificationRequirementStatus, type VerificationResult, VerificationStepType, Verify2faEndpoint, Verify2faForLoginEndpoint, VerifyOtpAndCreatePasswordEndpoint, VerifyOtpAndPasswordForLoginEndpoint, type iNetwork, socketChannelsAndEvents };

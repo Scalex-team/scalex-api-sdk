@@ -391,6 +391,83 @@ var TransactionStatus = /* @__PURE__ */ ((TransactionStatus2) => {
   return TransactionStatus2;
 })(TransactionStatus || {});
 
+// src/types/transactions/models/coin.model.ts
+var CoinSymbols = /* @__PURE__ */ ((CoinSymbols2) => {
+  CoinSymbols2["USDT"] = "USDT";
+  CoinSymbols2["USDC"] = "USDC";
+  CoinSymbols2["BTC"] = "BTC";
+  return CoinSymbols2;
+})(CoinSymbols || {});
+var CoinFulNames = {
+  USDT: "Tether USD",
+  USDC: "USD Coin",
+  BTC: "Bitcoin"
+};
+
+// src/types/transactions/models/fiat.model.ts
+var AssetStatus = /* @__PURE__ */ ((AssetStatus2) => {
+  AssetStatus2["Active"] = "active";
+  AssetStatus2["Suspended"] = "suspended";
+  AssetStatus2["Locked"] = "locked";
+  AssetStatus2["Destroyed"] = "destroyed";
+  return AssetStatus2;
+})(AssetStatus || {});
+var FiatProviders = /* @__PURE__ */ ((FiatProviders2) => {
+  FiatProviders2["Paga"] = "Paga";
+  FiatProviders2["Payaza"] = "Payaza";
+  FiatProviders2["Polaris"] = "Polaris";
+  FiatProviders2["Bani"] = "Bani";
+  return FiatProviders2;
+})(FiatProviders || {});
+
+// src/types/transactions/models/third-party-lp.model.ts
+var LpPaymentMethod = /* @__PURE__ */ ((LpPaymentMethod2) => {
+  LpPaymentMethod2["Crypto"] = "Crypto";
+  LpPaymentMethod2["Bank"] = "Bank";
+  return LpPaymentMethod2;
+})(LpPaymentMethod || {});
+var LpFiatCurrencyNetwork = /* @__PURE__ */ ((LpFiatCurrencyNetwork2) => {
+  LpFiatCurrencyNetwork2["Local"] = "LOCAL";
+  return LpFiatCurrencyNetwork2;
+})(LpFiatCurrencyNetwork || {});
+var LpProviders = /* @__PURE__ */ ((LpProviders2) => {
+  LpProviders2["XendBridge"] = "XendBridge";
+  return LpProviders2;
+})(LpProviders || {});
+
+// src/types/transactions/endpoint-payload/retrieve-crypto-assets.payloads.ts
+var RetrieveCryptoTokensEndpoint = {
+  method: "GET" /* Get */,
+  path: "",
+  fullPath: "/list-coins"
+};
+
+// src/types/transactions/endpoint-payload/retrieve-fiat-assets.payloads.ts
+var RetrieveFiatCurrenciesEndpoint = {
+  method: "GET" /* Get */,
+  path: "",
+  fullPath: "/list-fiat-currencies"
+};
+
+// src/types/transactions/endpoint-payload/manage-banks.payloads.ts
+var RetrieveBankListsEndpoint = {
+  method: "GET" /* Get */,
+  path: "",
+  fullPath: "/list-banks"
+};
+var ResolveBankAccountInfoEndpoint = {
+  method: "POST" /* Post */,
+  path: "",
+  fullPath: "/resolve-bank-account"
+};
+
+// src/types/transactions/endpoint-payload/manage-nubans.payloads.ts
+var RetrievePersistentNubanEndpoint = {
+  method: "POST" /* Post */,
+  path: "",
+  fullPath: "/retrieve-persistent-nuban"
+};
+
 // src/types/utils/models/job.model.ts
 var JobStatus = /* @__PURE__ */ ((JobStatus2) => {
   JobStatus2["initiated"] = "initiated";
@@ -635,6 +712,63 @@ var ScalexUtilsSdk = class {
   }
 };
 
+// src/sdks/internal/modules/transactions-module/assets-module/retrieve-assets.module.ts
+var AssetsModule = class {
+  constructor(apiUrl) {
+    this.apiUrl = apiUrl;
+  }
+  retrieveCryptoTokens() {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveCryptoTokensEndpoint
+      });
+    });
+  }
+  retrieveFiatCurrencies() {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveFiatCurrenciesEndpoint
+      });
+    });
+  }
+};
+
+// src/sdks/internal/modules/transactions-module/banks-module/manage-banks.module.ts
+var BanksModule = class {
+  constructor(apiUrl) {
+    this.apiUrl = apiUrl;
+  }
+  retrieveBankLists(payload) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveBankListsEndpoint,
+        query: payload
+      });
+    });
+  }
+  resolveBankAccount(payload) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: ResolveBankAccountInfoEndpoint,
+        body: payload
+      });
+    });
+  }
+};
+
+// src/sdks/internal/modules/transactions-module/transactions.sdk.ts
+var ScalexTransactionsSdk = class {
+  constructor(apiUrl) {
+    this.apiUrl = apiUrl;
+    this.assets = new AssetsModule(apiUrl);
+    this.banks = new BanksModule(apiUrl);
+  }
+};
+
 // src/sdks/internal/internal.sdk.ts
 var ScalexInternalEnvironments = /* @__PURE__ */ ((ScalexInternalEnvironments2) => {
   ScalexInternalEnvironments2["local"] = "local";
@@ -655,6 +789,7 @@ var ScalexInternalAPI = class {
   constructor(environment = "dev" /* dev */, version = "/v1" /* v1 */) {
     this.apiUrl = InternalEnvironmentUrls[environment] + version;
     this.customers = new ScalexCustomersSdk(this.apiUrl);
+    this.transaction = new ScalexTransactionsSdk(this.apiUrl);
     this.utils = new ScalexUtilsSdk(this.apiUrl);
   }
 };
@@ -670,8 +805,11 @@ var socketChannelsAndEvents = {
 };
 export {
   ActiveOrInactive,
+  AssetStatus,
   AuthStatus,
   BusinessRegistrationType,
+  CoinFulNames,
+  CoinSymbols,
   Continents,
   CreateBusinessAddressEndpoint,
   CreateBusinessDirectorEndpoint,
@@ -680,6 +818,7 @@ export {
   CurrencyType,
   FetchBusinessEndpoint,
   FetchJobEndpoint,
+  FiatProviders,
   HttpMethods,
   Initiate2faEndpoint,
   InitiateVerificationEndpoint,
@@ -687,13 +826,21 @@ export {
   JobClientType,
   JobStatus,
   JobTask,
+  LpFiatCurrencyNetwork,
+  LpPaymentMethod,
+  LpProviders,
   PassOrFail,
   RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint,
   ResetPasswordEndpoint,
+  ResolveBankAccountInfoEndpoint,
   ResourceOwner,
+  RetrieveBankListsEndpoint,
   RetrieveCountriesEndpoint,
+  RetrieveCryptoTokensEndpoint,
+  RetrieveFiatCurrenciesEndpoint,
+  RetrievePersistentNubanEndpoint,
   RetrieveProfileEndpoint,
   ScalexInternalAPI,
   ScalexInternalApiVersions,
