@@ -1,5 +1,5 @@
 import { Endpoint, HttpMethods } from "../../generic";
-import { IFiat } from "../models";
+import { IFiatWallet } from "../models";
 
 export interface IRetrievePersistentNubanPayload {
     transactionId: string,
@@ -14,7 +14,7 @@ export interface IRetrievePersistentNubanPayload {
 }
 
 export interface IRetrievePersistentNubanResponse {
-    nuban: IFiat
+    nuban: IFiatWallet
 }
 
 export const RetrievePersistentNubanEndpoint: Endpoint = {

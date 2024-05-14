@@ -687,7 +687,7 @@ interface IRetrievePersistentNubanPayload {
     };
 }
 interface IRetrievePersistentNubanResponse {
-    nuban: IFiat;
+    nuban: IFiatWallet;
 }
 declare const RetrievePersistentNubanEndpoint: Endpoint;
 
