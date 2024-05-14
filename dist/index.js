@@ -453,7 +453,7 @@ var RetrieveFiatCurrenciesEndpoint = {
 };
 
 // src/types/transactions/endpoint-payload/retrieve-transactions.payloads.ts
-var RetrieveDepositsEndpoint = {
+var RetrieveTransactionsEndpoint = {
   method: "GET" /* Get */,
   path: "",
   fullPath: "/retrieve-tx"
@@ -784,9 +784,20 @@ var TransactionsModule = class {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
-        endpoint: RetrieveDepositsEndpoint,
+        endpoint: RetrieveTransactionsEndpoint,
         query: __spreadProps(__spreadValues({}, payload), {
           type: "deposit" /* deposit */
+        })
+      });
+    });
+  }
+  retrieveWithdrawals(payload) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveTransactionsEndpoint,
+        query: __spreadProps(__spreadValues({}, payload), {
+          type: "transfer" /* transfer */
         })
       });
     });
@@ -916,10 +927,10 @@ export {
   RetrieveCountriesEndpoint,
   RetrieveCryptoTokensEndpoint,
   RetrieveCryptoWalletAddressEndpoint,
-  RetrieveDepositsEndpoint,
   RetrieveFiatCurrenciesEndpoint,
   RetrieveFiatWalletEndpoint,
   RetrieveProfileEndpoint,
+  RetrieveTransactionsEndpoint,
   ScalexInternalAPI,
   ScalexInternalApiVersions,
   ScalexInternalEnvironments,

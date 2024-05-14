@@ -2,7 +2,7 @@ import { Endpoint, HttpMethods } from "../../generic";
 import { ITransaction, TransactionStatus, TransactionType } from "../models";
 
 
-export interface IRetrieveDepositsPayload {
+export interface IRetrieveTransactionPayload {
     ref?: string;
     status?: TransactionStatus;
     type?: TransactionType;
@@ -14,7 +14,7 @@ export interface IRetrieveDepositsPayload {
     page?: number;
 }
 
-export interface IRetrieveDepositsResponse {
+export interface IRetrieveTransactionResponse {
     paginatedData: Array<ITransaction>;
     meta: {
         page: number;
@@ -24,7 +24,7 @@ export interface IRetrieveDepositsResponse {
     };
 }
 
-export const RetrieveDepositsEndpoint: Endpoint = {
+export const RetrieveTransactionsEndpoint: Endpoint = {
 	method: HttpMethods.Get,
 	path: '',
 	fullPath: '/retrieve-tx'

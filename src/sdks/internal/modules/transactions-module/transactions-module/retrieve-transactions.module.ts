@@ -1,17 +1,29 @@
 import { ScalexSuccessResponse, callApi } from "../../../../../functions";
-import { IRetrieveDepositsPayload, IRetrieveDepositsResponse, RetrieveDepositsEndpoint, TransactionType } from "../../../../../types";
+import { IRetrieveTransactionPayload, IRetrieveTransactionResponse, RetrieveTransactionsEndpoint, TransactionType } from "../../../../../types";
 
 export class TransactionsModule {
 	constructor( protected apiUrl: string ) {}
 
-	async retrieveDeposits( payload: IRetrieveDepositsPayload )
-    : Promise<ScalexSuccessResponse<IRetrieveDepositsResponse>> {
-		return callApi<IRetrieveDepositsPayload, IRetrieveDepositsResponse>( {
+	async retrieveDeposits( payload: IRetrieveTransactionPayload )
+    : Promise<ScalexSuccessResponse<IRetrieveTransactionResponse>> {
+		return callApi<IRetrieveTransactionPayload, IRetrieveTransactionResponse>( {
 			serviceUri: this.apiUrl,
-			endpoint: RetrieveDepositsEndpoint,
+			endpoint: RetrieveTransactionsEndpoint,
 			query: {
 				...payload,
 				type: TransactionType.deposit
+			}
+		} );
+	}
+
+	async retrieveWithdrawals( payload: IRetrieveTransactionPayload )
+    : Promise<ScalexSuccessResponse<IRetrieveTransactionResponse>> {
+		return callApi<IRetrieveTransactionPayload, IRetrieveTransactionResponse>( {
+			serviceUri: this.apiUrl,
+			endpoint: RetrieveTransactionsEndpoint,
+			query: {
+				...payload,
+				type: TransactionType.transfer
 			}
 		} );
 	}
