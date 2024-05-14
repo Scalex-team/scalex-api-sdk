@@ -698,9 +698,8 @@ interface IResolveBankAccountInfoResponse {
 declare const ResolveBankAccountInfoEndpoint: Endpoint;
 
 interface IRetrieveFiatWalletPayload {
-    transactionId: string;
-    amount: number;
     currency: string;
+    product: string;
     countryCode?: string;
     holder: {
         name: string;

@@ -2,9 +2,8 @@ import { Endpoint, HttpMethods } from "../../generic";
 import { IFiatWallet } from "../models";
 
 export interface IRetrieveFiatWalletPayload {
-    transactionId: string,
-	amount: number,
 	currency: string,
+	product: string,
 	countryCode?: string,
 	holder: {
 		name: string,
