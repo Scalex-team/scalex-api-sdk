@@ -1,7 +1,7 @@
 import { Endpoint, HttpMethods } from "../../generic";
 import { IFiatWallet } from "../models";
 
-export interface IRetrievePersistentNubanPayload {
+export interface IRetrieveFiatWalletPayload {
     transactionId: string,
 	amount: number,
 	currency: string,
@@ -13,12 +13,28 @@ export interface IRetrievePersistentNubanPayload {
 	}
 }
 
-export interface IRetrievePersistentNubanResponse {
+export interface IRetrieveFiatWalletResponse {
     nuban: IFiatWallet
 }
 
-export const RetrievePersistentNubanEndpoint: Endpoint = {
+export const RetrieveFiatWalletEndpoint: Endpoint = {
 	method: HttpMethods.Post,
 	path: '',
 	fullPath: '/retrieve-persistent-nuban'
+};
+
+export interface IRetrieveCryptoWalletAddressPayload {
+    coin: string,
+	network: number,
+}
+
+export interface IRetrieveCryptoWalletAddressResponse {
+    address: string
+    addressType: string
+}
+
+export const RetrieveCryptoWalletAddressEndpoint: Endpoint = {
+	method: HttpMethods.Post,
+	path: '',
+	fullPath: '/retrieve-wallet-address'
 };

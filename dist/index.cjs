@@ -1,7 +1,9 @@
 "use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
@@ -19,6 +21,7 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
@@ -99,8 +102,10 @@ __export(src_exports, {
   RetrieveBankListsEndpoint: () => RetrieveBankListsEndpoint,
   RetrieveCountriesEndpoint: () => RetrieveCountriesEndpoint,
   RetrieveCryptoTokensEndpoint: () => RetrieveCryptoTokensEndpoint,
+  RetrieveCryptoWalletAddressEndpoint: () => RetrieveCryptoWalletAddressEndpoint,
+  RetrieveDepositsEndpoint: () => RetrieveDepositsEndpoint,
   RetrieveFiatCurrenciesEndpoint: () => RetrieveFiatCurrenciesEndpoint,
-  RetrievePersistentNubanEndpoint: () => RetrievePersistentNubanEndpoint,
+  RetrieveFiatWalletEndpoint: () => RetrieveFiatWalletEndpoint,
   RetrieveProfileEndpoint: () => RetrieveProfileEndpoint,
   ScalexInternalAPI: () => ScalexInternalAPI,
   ScalexInternalApiVersions: () => ScalexInternalApiVersions,
@@ -540,6 +545,13 @@ var RetrieveFiatCurrenciesEndpoint = {
   fullPath: "/list-fiat-currencies"
 };
 
+// src/types/transactions/endpoint-payload/retrieve-transactions.payloads.ts
+var RetrieveDepositsEndpoint = {
+  method: "GET" /* Get */,
+  path: "",
+  fullPath: "/retrieve-tx"
+};
+
 // src/types/transactions/endpoint-payload/manage-banks.payloads.ts
 var RetrieveBankListsEndpoint = {
   method: "GET" /* Get */,
@@ -553,10 +565,15 @@ var ResolveBankAccountInfoEndpoint = {
 };
 
 // src/types/transactions/endpoint-payload/manage-nubans.payloads.ts
-var RetrievePersistentNubanEndpoint = {
+var RetrieveFiatWalletEndpoint = {
   method: "POST" /* Post */,
   path: "",
   fullPath: "/retrieve-persistent-nuban"
+};
+var RetrieveCryptoWalletAddressEndpoint = {
+  method: "POST" /* Post */,
+  path: "",
+  fullPath: "/retrieve-wallet-address"
 };
 
 // src/types/utils/models/job.model.ts
@@ -851,12 +868,73 @@ var BanksModule = class {
   }
 };
 
+// src/sdks/internal/modules/transactions-module/transactions-module/retrieve-transactions.module.ts
+var TransactionsModule = class {
+  constructor(apiUrl) {
+    this.apiUrl = apiUrl;
+  }
+  retrieveDeposits(payload) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveDepositsEndpoint,
+        query: __spreadProps(__spreadValues({}, payload), {
+          type: "deposit" /* deposit */
+        })
+      });
+    });
+  }
+};
+
+// src/sdks/internal/modules/transactions-module/utils-module/manage-nuban.module.ts
+var UtilsModule = class {
+  constructor(apiUrl) {
+    this.apiUrl = apiUrl;
+  }
+  // async retrievePersistentNuban( payload: IRetrievePersistentNubanPayload )
+  // : Promise<ScalexSuccessResponse<IRetrievePersistentNubanResponse>> {
+  // return callApi<IRetrievePersistentNubanPayload, IRetrievePersistentNubanResponse>( {
+  // serviceUri: this.apiUrl,
+  // endpoint: RetrievePersistentNubanEndpoint,
+  // query: payload
+  // } );
+  // }
+};
+
+// src/sdks/internal/modules/transactions-module/wallets-module/wallet.module.ts
+var WalletsModule = class {
+  constructor(apiUrl) {
+    this.apiUrl = apiUrl;
+  }
+  retrieveFiatWallet(payload) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveFiatWalletEndpoint,
+        query: payload
+      });
+    });
+  }
+  retrieveCryptoWallet(payload) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveCryptoWalletAddressEndpoint,
+        query: payload
+      });
+    });
+  }
+};
+
 // src/sdks/internal/modules/transactions-module/transactions.sdk.ts
 var ScalexTransactionsSdk = class {
   constructor(apiUrl) {
     this.apiUrl = apiUrl;
     this.assets = new AssetsModule(apiUrl);
     this.banks = new BanksModule(apiUrl);
+    this.utils = new UtilsModule(apiUrl);
+    this.wallets = new WalletsModule(apiUrl);
+    this.transactions = new TransactionsModule(apiUrl);
   }
 };
 
@@ -931,8 +1009,10 @@ var socketChannelsAndEvents = {
   RetrieveBankListsEndpoint,
   RetrieveCountriesEndpoint,
   RetrieveCryptoTokensEndpoint,
+  RetrieveCryptoWalletAddressEndpoint,
+  RetrieveDepositsEndpoint,
   RetrieveFiatCurrenciesEndpoint,
-  RetrievePersistentNubanEndpoint,
+  RetrieveFiatWalletEndpoint,
   RetrieveProfileEndpoint,
   ScalexInternalAPI,
   ScalexInternalApiVersions,
