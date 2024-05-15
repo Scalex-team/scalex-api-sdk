@@ -449,7 +449,7 @@ var RetrieveCryptoTokensEndpoint = {
 var RetrieveFiatCurrenciesEndpoint = {
   method: "GET" /* Get */,
   path: "/list-fiat-currencies",
-  fullPath: "/iat-management/list-fiat-currencies"
+  fullPath: "/fiat-management/list-fiat-currencies"
 };
 
 // src/types/transactions/endpoint-payload/retrieve-transactions.payloads.ts
@@ -478,7 +478,7 @@ var RetrieveFiatWalletEndpoint = {
   fullPath: "/fiat-management/retrieve-persistent-nuban"
 };
 var RetrieveCryptoWalletAddressEndpoint = {
-  method: "POST" /* Post */,
+  method: "GET" /* Get */,
   path: "/retrieve-wallet-address",
   fullPath: "/crypto-management/retrieve-wallet-address"
 };

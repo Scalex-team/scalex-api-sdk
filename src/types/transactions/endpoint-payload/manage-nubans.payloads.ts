@@ -33,7 +33,7 @@ export interface IRetrieveCryptoWalletAddressResponse {
 }
 
 export const RetrieveCryptoWalletAddressEndpoint: Endpoint = {
-	method: HttpMethods.Post,
+	method: HttpMethods.Get,
 	path: '/retrieve-wallet-address',
 	fullPath: '/crypto-management/retrieve-wallet-address'
 };
