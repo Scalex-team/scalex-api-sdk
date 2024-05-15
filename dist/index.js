@@ -130,6 +130,7 @@ function callApi(requestParams) {
       });
       return notifyClientOfSuccess(response.data);
     } catch (e) {
+      console.log({ sdkError: e });
       throw notifyClientOfFailure({
         error: e
       });

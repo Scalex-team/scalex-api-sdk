@@ -73,6 +73,8 @@ export async function callApi<Input, Output, Query = Input>( requestParams: {
 		} );
 		return notifyClientOfSuccess<Output>( response.data );
 	} catch ( e: unknown ) {
+		// eslint-disable-next-line no-console
+		console.log( {sdkError: e} );
 		throw notifyClientOfFailure( {
 			error: e as ScalexError
 		} );
