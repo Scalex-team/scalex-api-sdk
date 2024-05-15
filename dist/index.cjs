@@ -213,6 +213,7 @@ function makeHttpRequest(_0) {
 function callApi(requestParams) {
   return __async(this, null, function* () {
     try {
+      console.log("Sdk request", requestParams);
       const response = yield makeHttpRequest({
         method: requestParams.endpoint.method,
         body: requestParams.body,

@@ -63,6 +63,8 @@ export async function callApi<Input, Output, Query = Input>( requestParams: {
   query?: Query;
 } ): Promise<ApiResponse<Output>> {
 	try {
+		// eslint-disable-next-line no-console
+		console.log( 'Sdk request', requestParams );
 		const response = await makeHttpRequest( {
 			method: requestParams.endpoint.method,
 			body: requestParams.body,
