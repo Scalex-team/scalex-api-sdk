@@ -26,6 +26,6 @@ export interface IRetrieveTransactionResponse {
 
 export const RetrieveTransactionsEndpoint: Endpoint = {
 	method: HttpMethods.Get,
-	path: '',
-	fullPath: '/retrieve-tx'
+	path: '/retrieve-tx',
+	fullPath: '/transactions/retrieve-tx'
 };

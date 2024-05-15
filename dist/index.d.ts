@@ -802,22 +802,22 @@ declare class ScalexUtilsSdk {
 declare class AssetsModule {
     protected apiUrl: string;
     constructor(apiUrl: string);
-    retrieveCryptoTokens(): Promise<ScalexSuccessResponse<IRetrieveCryptoTokensResponse>>;
-    retrieveFiatCurrencies(): Promise<ScalexSuccessResponse<IRetrieveFiatCurrenciesResponse>>;
+    retrieveCryptoTokens(authToken: string): Promise<ScalexSuccessResponse<IRetrieveCryptoTokensResponse>>;
+    retrieveFiatCurrencies(authToken: string): Promise<ScalexSuccessResponse<IRetrieveFiatCurrenciesResponse>>;
 }
 
 declare class BanksModule {
     protected apiUrl: string;
     constructor(apiUrl: string);
-    retrieveBankLists(payload: IRetrieveBankListsPayload): Promise<ScalexSuccessResponse<IRetrieveBankListsResponse>>;
-    resolveBankAccount(payload: IResolveBankAccountInfoPayload): Promise<ScalexSuccessResponse<IResolveBankAccountInfoResponse>>;
+    retrieveBankLists(payload: IRetrieveBankListsPayload, authToken: string): Promise<ScalexSuccessResponse<IRetrieveBankListsResponse>>;
+    resolveBankAccount(payload: IResolveBankAccountInfoPayload, authToken: string): Promise<ScalexSuccessResponse<IResolveBankAccountInfoResponse>>;
 }
 
 declare class TransactionsModule {
     protected apiUrl: string;
     constructor(apiUrl: string);
-    retrieveDeposits(payload: IRetrieveTransactionPayload): Promise<ScalexSuccessResponse<IRetrieveTransactionResponse>>;
-    retrieveWithdrawals(payload: IRetrieveTransactionPayload): Promise<ScalexSuccessResponse<IRetrieveTransactionResponse>>;
+    retrieveDeposits(payload: IRetrieveTransactionPayload, authToken: string): Promise<ScalexSuccessResponse<IRetrieveTransactionResponse>>;
+    retrieveWithdrawals(payload: IRetrieveTransactionPayload, authToken: string): Promise<ScalexSuccessResponse<IRetrieveTransactionResponse>>;
 }
 
 declare class UtilsModule {
@@ -828,8 +828,8 @@ declare class UtilsModule {
 declare class WalletsModule {
     protected apiUrl: string;
     constructor(apiUrl: string);
-    retrieveFiatWallet(payload: IRetrieveFiatWalletPayload): Promise<ScalexSuccessResponse<IRetrieveFiatWalletResponse>>;
-    retrieveCryptoWallet(payload: IRetrieveCryptoWalletAddressPayload): Promise<ScalexSuccessResponse<IRetrieveCryptoWalletAddressResponse>>;
+    retrieveFiatWallet(payload: IRetrieveFiatWalletPayload, authToken: string): Promise<ScalexSuccessResponse<IRetrieveFiatWalletResponse>>;
+    retrieveCryptoWallet(payload: IRetrieveCryptoWalletAddressPayload, authToken: string): Promise<ScalexSuccessResponse<IRetrieveCryptoWalletAddressResponse>>;
 }
 
 declare class ScalexTransactionsSdk {

@@ -534,46 +534,46 @@ var LpProviders = /* @__PURE__ */ ((LpProviders2) => {
 // src/types/transactions/endpoint-payload/retrieve-crypto-assets.payloads.ts
 var RetrieveCryptoTokensEndpoint = {
   method: "GET" /* Get */,
-  path: "",
-  fullPath: "/list-coins"
+  path: "/list-active-coins",
+  fullPath: "/coin-management/list-active-coins"
 };
 
 // src/types/transactions/endpoint-payload/retrieve-fiat-assets.payloads.ts
 var RetrieveFiatCurrenciesEndpoint = {
   method: "GET" /* Get */,
-  path: "",
-  fullPath: "/list-fiat-currencies"
+  path: "/list-fiat-currencies",
+  fullPath: "/iat-management/list-fiat-currencies"
 };
 
 // src/types/transactions/endpoint-payload/retrieve-transactions.payloads.ts
 var RetrieveTransactionsEndpoint = {
   method: "GET" /* Get */,
-  path: "",
-  fullPath: "/retrieve-tx"
+  path: "/retrieve-tx",
+  fullPath: "/transactions/retrieve-tx"
 };
 
 // src/types/transactions/endpoint-payload/manage-banks.payloads.ts
 var RetrieveBankListsEndpoint = {
   method: "GET" /* Get */,
-  path: "",
-  fullPath: "/list-banks"
+  path: "/list-banks",
+  fullPath: "/fiat-management/list-banks"
 };
 var ResolveBankAccountInfoEndpoint = {
   method: "POST" /* Post */,
-  path: "",
-  fullPath: "/resolve-bank-account"
+  path: "/resolve-bank-account",
+  fullPath: "/fiat-management/resolve-bank-account"
 };
 
 // src/types/transactions/endpoint-payload/manage-nubans.payloads.ts
 var RetrieveFiatWalletEndpoint = {
   method: "POST" /* Post */,
-  path: "",
-  fullPath: "/retrieve-persistent-nuban"
+  path: "/retrieve-persistent-nuban",
+  fullPath: "/fiat-management/retrieve-persistent-nuban"
 };
 var RetrieveCryptoWalletAddressEndpoint = {
   method: "POST" /* Post */,
-  path: "",
-  fullPath: "/retrieve-wallet-address"
+  path: "/retrieve-wallet-address",
+  fullPath: "/crypto-management/retrieve-wallet-address"
 };
 
 // src/types/utils/models/job.model.ts
@@ -825,19 +825,21 @@ var AssetsModule = class {
   constructor(apiUrl) {
     this.apiUrl = apiUrl;
   }
-  retrieveCryptoTokens() {
+  retrieveCryptoTokens(authToken) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
-        endpoint: RetrieveCryptoTokensEndpoint
+        endpoint: RetrieveCryptoTokensEndpoint,
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }
-  retrieveFiatCurrencies() {
+  retrieveFiatCurrencies(authToken) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
-        endpoint: RetrieveFiatCurrenciesEndpoint
+        endpoint: RetrieveFiatCurrenciesEndpoint,
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }
@@ -848,21 +850,23 @@ var BanksModule = class {
   constructor(apiUrl) {
     this.apiUrl = apiUrl;
   }
-  retrieveBankLists(payload) {
+  retrieveBankLists(payload, authToken) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: RetrieveBankListsEndpoint,
-        query: payload
+        query: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }
-  resolveBankAccount(payload) {
+  resolveBankAccount(payload, authToken) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: ResolveBankAccountInfoEndpoint,
-        body: payload
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }
@@ -873,25 +877,27 @@ var TransactionsModule = class {
   constructor(apiUrl) {
     this.apiUrl = apiUrl;
   }
-  retrieveDeposits(payload) {
+  retrieveDeposits(payload, authToken) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: RetrieveTransactionsEndpoint,
         query: __spreadProps(__spreadValues({}, payload), {
           type: "deposit" /* deposit */
-        })
+        }),
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }
-  retrieveWithdrawals(payload) {
+  retrieveWithdrawals(payload, authToken) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: RetrieveTransactionsEndpoint,
         query: __spreadProps(__spreadValues({}, payload), {
           type: "transfer" /* transfer */
-        })
+        }),
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }
@@ -917,21 +923,23 @@ var WalletsModule = class {
   constructor(apiUrl) {
     this.apiUrl = apiUrl;
   }
-  retrieveFiatWallet(payload) {
+  retrieveFiatWallet(payload, authToken) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: RetrieveFiatWalletEndpoint,
-        query: payload
+        query: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }
-  retrieveCryptoWallet(payload) {
+  retrieveCryptoWallet(payload, authToken) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: RetrieveCryptoWalletAddressEndpoint,
-        query: payload
+        query: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
       });
     });
   }

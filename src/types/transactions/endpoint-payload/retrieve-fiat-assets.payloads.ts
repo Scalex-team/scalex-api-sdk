@@ -8,6 +8,6 @@ export interface IRetrieveFiatCurrenciesResponse {
 
 export const RetrieveFiatCurrenciesEndpoint: Endpoint = {
 	method: HttpMethods.Get,
-	path: '',
-	fullPath: '/list-fiat-currencies'
+	path: '/list-fiat-currencies',
+	fullPath: '/iat-management/list-fiat-currencies'
 };

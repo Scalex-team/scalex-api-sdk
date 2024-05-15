@@ -18,8 +18,8 @@ export interface IRetrieveFiatWalletResponse {
 
 export const RetrieveFiatWalletEndpoint: Endpoint = {
 	method: HttpMethods.Post,
-	path: '',
-	fullPath: '/retrieve-persistent-nuban'
+	path: '/retrieve-persistent-nuban',
+	fullPath: '/fiat-management/retrieve-persistent-nuban'
 };
 
 export interface IRetrieveCryptoWalletAddressPayload {
@@ -34,6 +34,6 @@ export interface IRetrieveCryptoWalletAddressResponse {
 
 export const RetrieveCryptoWalletAddressEndpoint: Endpoint = {
 	method: HttpMethods.Post,
-	path: '',
-	fullPath: '/retrieve-wallet-address'
+	path: '/retrieve-wallet-address',
+	fullPath: '/crypto-management/retrieve-wallet-address'
 };

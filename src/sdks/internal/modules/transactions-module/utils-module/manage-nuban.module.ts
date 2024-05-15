@@ -1,5 +1,3 @@
-// import { ScalexSuccessResponse, callApi } from "../../../../../functions";
-
 export class UtilsModule {
 	constructor( protected apiUrl: string ) {}
 

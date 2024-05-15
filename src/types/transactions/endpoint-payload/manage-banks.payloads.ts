@@ -12,8 +12,8 @@ export interface IRetrieveBankListsResponse {
 
 export const RetrieveBankListsEndpoint: Endpoint = {
 	method: HttpMethods.Get,
-	path: '',
-	fullPath: '/list-banks'
+	path: '/list-banks',
+	fullPath: '/fiat-management/list-banks'
 };
 
 export interface IResolveBankAccountInfoPayload {
@@ -29,6 +29,6 @@ export interface IResolveBankAccountInfoResponse {
 
 export const ResolveBankAccountInfoEndpoint: Endpoint = {
 	method: HttpMethods.Post,
-	path: '',
-	fullPath: '/resolve-bank-account'
+	path: '/resolve-bank-account',
+	fullPath: '/fiat-management/resolve-bank-account'
 };

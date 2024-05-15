@@ -7,6 +7,6 @@ export interface IRetrieveCryptoTokensResponse {
 
 export const RetrieveCryptoTokensEndpoint: Endpoint = {
 	method: HttpMethods.Get,
-	path: '',
-	fullPath: '/list-coins'
+	path: '/list-active-coins',
+	fullPath: '/coin-management/list-active-coins'
 };
