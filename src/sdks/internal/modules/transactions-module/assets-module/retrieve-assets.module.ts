@@ -14,7 +14,7 @@ export class AssetsModule {
 				...setBearerToken( authToken )
 			}
 		} );
-	}
+	} 
 
 	async retrieveFiatCurrencies( authToken: string )
     : Promise<ScalexSuccessResponse<IRetrieveFiatCurrenciesResponse>> {
