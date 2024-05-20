@@ -857,7 +857,7 @@ var BanksModule = class {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: RetrieveBankListsEndpoint,
-        query: payload,
+        params: [payload.currency, payload.product],
         headers: __spreadValues({}, setBearerToken(authToken))
       });
     });

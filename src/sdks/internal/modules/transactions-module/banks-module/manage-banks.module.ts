@@ -10,7 +10,7 @@ export class BanksModule {
 		return callApi<IRetrieveBankListsPayload, IRetrieveBankListsResponse>( {
 			serviceUri: this.apiUrl,
 			endpoint: RetrieveBankListsEndpoint,
-			query: payload,
+			params: [ payload.currency, payload.product ],
 			headers: {
 				...setBearerToken( authToken )
 			}
