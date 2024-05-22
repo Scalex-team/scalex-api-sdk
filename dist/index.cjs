@@ -852,11 +852,12 @@ var BanksModule = class {
   constructor(apiUrl) {
     this.apiUrl = apiUrl;
   }
-  retrieveBankLists(payload, authToken) {
+  retrieveBankLists(authToken, payload) {
     return __async(this, null, function* () {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: RetrieveBankListsEndpoint,
+        query: payload,
         headers: __spreadValues({}, setBearerToken(authToken))
       });
     });

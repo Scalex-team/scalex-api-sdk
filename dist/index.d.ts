@@ -814,7 +814,7 @@ declare class AssetsModule {
 declare class BanksModule {
     protected apiUrl: string;
     constructor(apiUrl: string);
-    retrieveBankLists(payload: IRetrieveBankListsPayload, authToken: string): Promise<ScalexSuccessResponse<IRetrieveBankListsResponse>>;
+    retrieveBankLists(authToken: string, payload?: IRetrieveBankListsPayload): Promise<ScalexSuccessResponse<IRetrieveBankListsResponse>>;
     resolveBankAccount(payload: IResolveBankAccountInfoPayload, authToken: string): Promise<ScalexSuccessResponse<IResolveBankAccountInfoResponse>>;
 }
 

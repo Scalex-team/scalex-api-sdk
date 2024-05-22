@@ -5,11 +5,12 @@ import { IResolveBankAccountInfoPayload, IResolveBankAccountInfoResponse, IRetri
 export class BanksModule {
 	constructor( protected apiUrl: string ) {}
 
-	async retrieveBankLists( payload: IRetrieveBankListsPayload, authToken: string )
+	async retrieveBankLists( authToken: string, payload?: IRetrieveBankListsPayload )
     : Promise<ScalexSuccessResponse<IRetrieveBankListsResponse>> {
 		return callApi<IRetrieveBankListsPayload, IRetrieveBankListsResponse>( {
 			serviceUri: this.apiUrl,
 			endpoint: RetrieveBankListsEndpoint,
+			query: payload,
 			headers: {
 				...setBearerToken( authToken )
 			}
