@@ -557,8 +557,8 @@ var RetrieveTransactionsEndpoint = {
 // src/types/transactions/endpoint-payload/manage-banks.payloads.ts
 var RetrieveBankListsEndpoint = {
   method: "GET" /* Get */,
-  path: "/list-banks",
-  fullPath: "/fiat-management/list-banks"
+  path: "/banks",
+  fullPath: "/banks"
 };
 var ResolveBankAccountInfoEndpoint = {
   method: "POST" /* Post */,
@@ -857,7 +857,6 @@ var BanksModule = class {
       return callApi({
         serviceUri: this.apiUrl,
         endpoint: RetrieveBankListsEndpoint,
-        params: [payload.currency, payload.product],
         headers: __spreadValues({}, setBearerToken(authToken))
       });
     });

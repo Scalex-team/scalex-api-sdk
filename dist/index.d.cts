@@ -679,8 +679,13 @@ interface IRetrieveTransactionResponse {
 declare const RetrieveTransactionsEndpoint: Endpoint;
 
 interface IRetrieveBankListsPayload {
-    currency: string;
-    product: string;
+    id?: string;
+    name?: string;
+    shortName?: string;
+    payazaCode?: string;
+    baniCode?: string;
+    pagaCode?: string;
+    polarisCode?: string;
 }
 interface IRetrieveBankListsResponse {
     banks: Array<Partial<IBank>>;

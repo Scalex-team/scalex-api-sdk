@@ -2,8 +2,13 @@ import { Endpoint, HttpMethods } from "../../generic";
 import { IBank } from "../models";
 
 export interface IRetrieveBankListsPayload {
-    currency: string;
-    product: string;
+    id?: string;
+    name?: string;
+    shortName?: string;
+    payazaCode?: string;
+    baniCode?: string;
+    pagaCode?: string;
+    polarisCode?: string;
 }
 
 export interface IRetrieveBankListsResponse {
@@ -12,8 +17,8 @@ export interface IRetrieveBankListsResponse {
 
 export const RetrieveBankListsEndpoint: Endpoint = {
 	method: HttpMethods.Get,
-	path: '/list-banks',
-	fullPath: '/fiat-management/list-banks'
+	path: '/banks',
+	fullPath: '/banks'
 };
 
 export interface IResolveBankAccountInfoPayload {
