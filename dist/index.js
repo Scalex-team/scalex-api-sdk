@@ -223,6 +223,7 @@ var CurrencyType = /* @__PURE__ */ ((CurrencyType2) => {
 var ResourceOwner = /* @__PURE__ */ ((ResourceOwner2) => {
   ResourceOwner2["business"] = "business";
   ResourceOwner2["individual"] = "individual";
+  ResourceOwner2["orphan"] = "orphan";
   return ResourceOwner2;
 })(ResourceOwner || {});
 

@@ -421,7 +421,8 @@ declare enum CurrencyType {
 }
 declare enum ResourceOwner {
     business = "business",
-    individual = "individual"
+    individual = "individual",
+    orphan = "orphan"
 }
 
 interface IHasQueryIdPayload {
@@ -429,15 +430,15 @@ interface IHasQueryIdPayload {
 }
 
 interface IBankAccount extends IBaseModel {
-    owner: {
+    owner?: {
         type: ResourceOwner;
         id: string;
     };
     nuban: string;
     bank: string;
-    currency?: string;
-    status: ActiveOrInactive;
-    meta: {
+    currency: string;
+    status?: ActiveOrInactive;
+    meta?: {
         accountName: string;
     };
 }
@@ -491,6 +492,7 @@ type ITransactionRecipient = {
     type?: ResourceOwner;
     id?: string;
     isInternal: boolean;
+    isWalletTx: boolean;
     address?: string;
     addressPassword?: string;
     bankAccount?: IBankAccount;
@@ -498,6 +500,7 @@ type ITransactionRecipient = {
 interface ITransaction extends IBaseModel {
     reference: string;
     initiator?: ITransactionRecipient;
+    recipient: ITransactionRecipient;
     type: TransactionType;
     status: TransactionStatus;
     volume: {
@@ -506,7 +509,6 @@ interface ITransaction extends IBaseModel {
         consumated?: ICurrencyAndAmount;
     };
     hash: string;
-    recipient: ITransactionRecipient;
     product: string;
     fee: {
         id?: string;
