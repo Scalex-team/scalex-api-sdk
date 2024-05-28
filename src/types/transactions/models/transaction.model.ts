@@ -1,6 +1,7 @@
 import {CurrencyType, IBaseModel, ResourceOwner} from "../../generic";
 import { IBankAccount } from "./bank-account.model";
 import {IRate} from "./rate.model";
+import { TransactionStatus } from "./transaction-status.enum";
 
 export enum CrytpoProviders {
 	shyft = 'shyft',
@@ -9,20 +10,8 @@ export enum CrytpoProviders {
 }
 
 export enum TransactionType {
-    onramp = 'onramp',
-    offramp = 'offramp',
     transfer = 'transfer',
     deposit = 'deposit'
-}
-
-export enum TransactionStatus {
-    initiated = 'initiated',
-    awaitingConsumation = 'awaiting-consumation',
-    processing = 'processing',
-    successful = 'successful',
-    failed = 'failed',
-    expired = 'expired',
-    cancelled = 'cancelled'
 }
 
 export type ICurrencyAndAmount = {

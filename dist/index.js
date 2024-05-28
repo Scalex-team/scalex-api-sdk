@@ -380,22 +380,10 @@ var CrytpoProviders = /* @__PURE__ */ ((CrytpoProviders2) => {
   return CrytpoProviders2;
 })(CrytpoProviders || {});
 var TransactionType = /* @__PURE__ */ ((TransactionType2) => {
-  TransactionType2["onramp"] = "onramp";
-  TransactionType2["offramp"] = "offramp";
   TransactionType2["transfer"] = "transfer";
   TransactionType2["deposit"] = "deposit";
   return TransactionType2;
 })(TransactionType || {});
-var TransactionStatus = /* @__PURE__ */ ((TransactionStatus2) => {
-  TransactionStatus2["initiated"] = "initiated";
-  TransactionStatus2["awaitingConsumation"] = "awaiting-consumation";
-  TransactionStatus2["processing"] = "processing";
-  TransactionStatus2["successful"] = "successful";
-  TransactionStatus2["failed"] = "failed";
-  TransactionStatus2["expired"] = "expired";
-  TransactionStatus2["cancelled"] = "cancelled";
-  return TransactionStatus2;
-})(TransactionStatus || {});
 
 // src/types/transactions/models/coin.model.ts
 var CoinSymbols = /* @__PURE__ */ ((CoinSymbols2) => {
@@ -440,6 +428,26 @@ var LpProviders = /* @__PURE__ */ ((LpProviders2) => {
   LpProviders2["XendBridge"] = "XendBridge";
   return LpProviders2;
 })(LpProviders || {});
+
+// src/types/transactions/models/ramp-transaction.model.ts
+var RampTxType = /* @__PURE__ */ ((RampTxType2) => {
+  RampTxType2["onramp"] = "onramp";
+  RampTxType2["offramp"] = "offramp";
+  RampTxType2["turnover"] = "turnover";
+  return RampTxType2;
+})(RampTxType || {});
+
+// src/types/transactions/models/transaction-status.enum.ts
+var TransactionStatus = /* @__PURE__ */ ((TransactionStatus2) => {
+  TransactionStatus2["initiated"] = "initiated";
+  TransactionStatus2["awaitingConsumation"] = "awaiting-consumation";
+  TransactionStatus2["processing"] = "processing";
+  TransactionStatus2["successful"] = "successful";
+  TransactionStatus2["failed"] = "failed";
+  TransactionStatus2["expired"] = "expired";
+  TransactionStatus2["cancelled"] = "cancelled";
+  return TransactionStatus2;
+})(TransactionStatus || {});
 
 // src/types/transactions/endpoint-payload/retrieve-crypto-assets.payloads.ts
 var RetrieveCryptoTokensEndpoint = {
@@ -928,6 +936,7 @@ export {
   LpPaymentMethod,
   LpProviders,
   PassOrFail,
+  RampTxType,
   RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint,
   RequestPasswordResetEndpoint,
