@@ -503,6 +503,7 @@ interface ITransaction extends IBaseModel {
     type: TransactionType;
     status: TransactionStatus;
     volume: {
+        requested?: ICurrencyAndAmount;
         initiated?: ICurrencyAndAmount;
         toBeConsumated?: ICurrencyAndAmount;
         consumated?: ICurrencyAndAmount;
