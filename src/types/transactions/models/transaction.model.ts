@@ -31,7 +31,7 @@ export interface ITransaction extends IBaseModel {
     type: TransactionType;
     asset: {
         id: string;
-        type: CurrencyType;
+        currencyType: CurrencyType;
         networkId?: string;
         chainId?: string;
     }
