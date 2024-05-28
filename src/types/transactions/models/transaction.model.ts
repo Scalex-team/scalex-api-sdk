@@ -1,4 +1,4 @@
-import {CurrencyType, IBaseModel, ResourceOwner} from "../../generic";
+import { CurrencyType, IBaseModel, ResourceOwner } from "../../generic";
 import { IBankAccount } from "./bank-account.model";
 import {IRate} from "./rate.model";
 import { TransactionStatus } from "./transaction-status.enum";
@@ -12,16 +12,6 @@ export enum CrytpoProviders {
 export enum TransactionType {
     transfer = 'transfer',
     deposit = 'deposit'
-}
-
-export type ICurrencyAndAmount = {
-    currencyType: CurrencyType;
-    currency: {
-        id: string;
-        networkId?: string;
-        chainId?: string;
-    }
-    amount: number;
 }
 
 export type ITransactionRecipient = {
@@ -39,18 +29,24 @@ export interface ITransaction extends IBaseModel {
     initiator?: ITransactionRecipient;
     recipient: ITransactionRecipient;
     type: TransactionType;
+    asset: {
+        id: string;
+        type: CurrencyType;
+        networkId?: string;
+        chainId?: string;
+    }
     status: TransactionStatus;
     volume: {
-        requested?: ICurrencyAndAmount;
-        initiated?: ICurrencyAndAmount;
-        toBeConsumated?: ICurrencyAndAmount;
-        consumated?: ICurrencyAndAmount;
+        requested?: number;
+        initiated?: number;
+        toBeConsumated?: number;
+        consumated?: number;
     };
     hash: string;
     product: string;
     fee: {
         id?: string;
-        charge: ICurrencyAndAmount
+        charge: number
     }
     meta: {
         revenue?: string;
