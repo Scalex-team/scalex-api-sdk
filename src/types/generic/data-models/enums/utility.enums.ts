@@ -20,5 +20,6 @@ export enum CurrencyType {
 
 export enum ResourceOwner {
     business = 'business',
-    individual = 'individual'
+    individual = 'individual',
+    orphan = 'orphan'
 }

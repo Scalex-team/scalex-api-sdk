@@ -39,6 +39,7 @@ export type ITransactionRecipient = {
     type?: ResourceOwner;
     id?: string;
     isInternal: boolean;
+    isWalletTx: boolean;
     address?: string;
     addressPassword?: string;
     bankAccount?: IBankAccount;
@@ -47,6 +48,7 @@ export type ITransactionRecipient = {
 export interface ITransaction extends IBaseModel {
     reference: string;
     initiator?: ITransactionRecipient;
+    recipient: ITransactionRecipient;
     type: TransactionType;
     status: TransactionStatus;
     volume: {
@@ -55,7 +57,6 @@ export interface ITransaction extends IBaseModel {
         consumated?: ICurrencyAndAmount;
     };
     hash: string;
-    recipient: ITransactionRecipient
     product: string;
     fee: {
         id?: string;
