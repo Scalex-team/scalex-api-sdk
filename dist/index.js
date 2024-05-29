@@ -215,10 +215,10 @@ var PassOrFail = /* @__PURE__ */ ((PassOrFail2) => {
   PassOrFail2["failed"] = "failed";
   return PassOrFail2;
 })(PassOrFail || {});
-var CurrencyType = /* @__PURE__ */ ((CurrencyType2) => {
-  CurrencyType2["Crypto"] = "crypto";
-  CurrencyType2["Fiat"] = "fiat";
-  return CurrencyType2;
+var CurrencyType = /* @__PURE__ */ ((CurrencyType3) => {
+  CurrencyType3["Crypto"] = "crypto";
+  CurrencyType3["Fiat"] = "fiat";
+  return CurrencyType3;
 })(CurrencyType || {});
 var ResourceOwner = /* @__PURE__ */ ((ResourceOwner2) => {
   ResourceOwner2["business"] = "business";
@@ -449,6 +449,14 @@ var TransactionStatus = /* @__PURE__ */ ((TransactionStatus2) => {
   return TransactionStatus2;
 })(TransactionStatus || {});
 
+// src/types/transactions/models/rate.model.ts
+var PercentageChangeTimeframes = /* @__PURE__ */ ((PercentageChangeTimeframes2) => {
+  PercentageChangeTimeframes2["_1h"] = "_1h";
+  PercentageChangeTimeframes2["_1d"] = "_1d";
+  PercentageChangeTimeframes2["_1w"] = "_1w";
+  return PercentageChangeTimeframes2;
+})(PercentageChangeTimeframes || {});
+
 // src/types/transactions/endpoint-payload/retrieve-crypto-assets.payloads.ts
 var RetrieveCryptoTokensEndpoint = {
   method: "GET" /* Get */,
@@ -492,6 +500,13 @@ var RetrieveCryptoWalletAddressEndpoint = {
   method: "GET" /* Get */,
   path: "/retrieve-wallet-address",
   fullPath: "/crypto-management/retrieve-wallet-address"
+};
+
+// src/types/transactions/endpoint-payload/retrieve-balances.payloads.ts
+var RetrieveWalletBalancesEndpoint = {
+  method: "PUT" /* Put */,
+  path: "/retrieve-wallet-balances",
+  fullPath: "/transactions/retrieve-wallet-balances"
 };
 
 // src/types/utils/models/job.model.ts
@@ -861,6 +876,16 @@ var WalletsModule = class {
       });
     });
   }
+  retrieveWalletBalances(payload, authToken) {
+    return __async(this, null, function* () {
+      return callApi({
+        serviceUri: this.apiUrl,
+        endpoint: RetrieveWalletBalancesEndpoint,
+        body: payload,
+        headers: __spreadValues({}, setBearerToken(authToken))
+      });
+    });
+  }
 };
 
 // src/sdks/internal/modules/transactions-module/transactions.sdk.ts
@@ -936,6 +961,7 @@ export {
   LpPaymentMethod,
   LpProviders,
   PassOrFail,
+  PercentageChangeTimeframes,
   RampTxType,
   RequestOtpForLoginEndpoint,
   RequestOtpToRegisterEndpoint,
@@ -951,6 +977,7 @@ export {
   RetrieveFiatWalletEndpoint,
   RetrieveProfileEndpoint,
   RetrieveTransactionsEndpoint,
+  RetrieveWalletBalancesEndpoint,
   ScalexInternalAPI,
   ScalexInternalApiVersions,
   ScalexInternalEnvironments,

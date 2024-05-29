@@ -6,3 +6,4 @@ export * from './fiat.model';
 export * from './third-party-lp.model';
 export * from './ramp-transaction.model';
 export * from './transaction-status.enum';
+export * from './rate.model';
