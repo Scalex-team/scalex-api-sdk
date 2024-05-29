@@ -1,7 +1,7 @@
-import { ICountry } from "../../generic";
+import { IBaseModel, ICountry } from "../../generic";
 import { IRate } from "./rate.model";
 
-export interface IFiat {
+export interface IFiat extends IBaseModel {
 	symbol: string,
 	abbr: string,
 	shortName: string,
@@ -26,7 +26,7 @@ export interface Nuban {
 	isActive: boolean;
 }
 
-export interface IFiatWallet {
+export interface IFiatWallet extends IBaseModel {
 	customerId: string,
 	fiatId: string,
 	ledgerBalance: number,

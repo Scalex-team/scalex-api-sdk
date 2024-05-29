@@ -590,7 +590,7 @@ interface ICoin extends IBaseModel {
     networks: Array<iNetwork> | Array<string>;
 }
 
-interface IFiat {
+interface IFiat extends IBaseModel {
     symbol: string;
     abbr: string;
     shortName: string;
@@ -612,7 +612,7 @@ interface Nuban {
     bank: string;
     isActive: boolean;
 }
-interface IFiatWallet {
+interface IFiatWallet extends IBaseModel {
     customerId: string;
     fiatId: string;
     ledgerBalance: number;
